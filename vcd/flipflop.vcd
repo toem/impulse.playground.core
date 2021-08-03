@@ -1,0 +1,130 @@
+$date Fri Jan 11 09:05:28 CET 2013 $end 
+$version s pin 0.6.0 $end
+$comment 
+$end
+$timescale 1 ns $end
+$scope  module Top $end
+$scope  module FlipFlop $end
+$var wire 1 aaa q $end
+$upscope FlipFlop $end
+$var wire 1 aab clk $end
+$var wire 1 aac data $end
+$var wire 1 aad reset $end
+$enddefinitions 
+$end
+#0
+b0 aac
+b1 aad
+b0 aab
+b0 aaa
+b1 aab
+b0 aaa
+#25
+b0 aab
+#50
+b1 aab
+b0 aaa
+#75
+b0 aab
+#80
+b1 aac
+#100
+b1 aab
+b1 aaa
+#120
+b0 aad
+b0 aaa
+#125
+b0 aab
+#150
+b1 aab
+b0 aaa
+#170
+b1 aad
+#175
+b0 aab
+#200
+b1 aab
+b1 aaa
+#225
+b0 aab
+#250
+b1 aab
+b0 aaa
+#275
+b0 aab
+#280
+b0 aac
+#300
+b1 aab
+b0 aaa
+#325
+b0 aab
+#350
+b1 aab
+b0 aaa
+#375
+b0 aab
+#400
+b1 aab
+b0 aaa
+#425
+b0 aab
+#450
+b1 aab
+b0 aaa
+#475
+b0 aab
+#500
+b1 aab
+b0 aaa
+#525
+b0 aab
+#550
+b1 aab
+b0 aaa
+#575
+b0 aab
+#600
+b1 aab
+b0 aaa
+#625
+b0 aab
+#650
+b1 aab
+b0 aaa
+#675
+b0 aab
+#700
+b1 aab
+b0 aaa
+#725
+b0 aab
+#750
+b1 aab
+b0 aaa
+#775
+b0 aab
+#800
+b1 aab
+b0 aaa
+#825
+b0 aab
+#850
+b1 aab
+b0 aaa
+#875
+b0 aab
+#900
+b1 aab
+b0 aaa
+#925
+b0 aab
+#950
+b1 aab
+b0 aaa
+#975
+b0 aab
+#1000
+b1 aab
+b0 aaa

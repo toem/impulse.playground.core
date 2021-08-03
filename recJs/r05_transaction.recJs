@@ -1,0 +1,101 @@
+//-recjs (keep this line)
+// generator   : Record generator (de.toem.impulse.samples.ISingleDomainRecordGenerator)
+// file        : File object of the executed recJs file (java.io.File)
+// p0..p9      : Parameters from the reader configuration (java.lang.String)
+// progress    : Progress control (de.toem.pattern.threading.IProgress)
+// console     : Console output (de.toem.impulse.scripting.IScriptConsole)
+ 
+// Init the record
+generator.initRecord("Example Record",TimeBase.ns);
+
+ 
+// Create a record with scopes and some signals
+var signals = generator.addScope(null, "External Signals");
+var intsig = generator.addSignal(signals, "Sin", "", ProcessType.Discrete, SignalType.Integer, SignalDescriptor.DEFAULT);
+var struct1 = generator.addSignal(signals, "TR 1", "", ProcessType.Discrete, SignalType.Struct, SignalDescriptor.StructTransaction);
+var struct2 = generator.addSignal(signals, "TR 2", "", ProcessType.Discrete, SignalType.Struct, SignalDescriptor.StructTransaction);
+
+// We start at 0 ns
+var t = 0; // 0 ns
+generator.open(t);
+
+// int signal
+var writer /*:IIntegerSamplesWriter:*/ = generator.getWriter(intsig);
+writer.writeInt(t, false, 0);
+t=14000;
+writer.writeInt(t, false, 0);
+for (; t < 94000; t ++) {
+
+    // write time as integer
+    writer.writeInt(t, false,  (100 * Math.sin(t/1000.0)));
+}
+writer.writeInt(t, false, 0);
+writer.writeInt(100000, false, 0);
+
+
+// struct1 signal
+writer /*:IStructSamplesWriter:*/ = generator.getWriter(struct1);
+var members /*:[Lde.toem.impulse.values.StructMember;:*/  = writer.createMembers(7);
+writer.createMember(members,0,"Address",	ISample.STRUCT_TYPE_INTEGER,null,ISample.FORMAT_HEXADECIMAL);
+writer.createMember(members,1,"Data",	ISample.STRUCT_TYPE_INTEGER,null,ISample.FORMAT_HEXADECIMAL);
+writer.createMember(members,2,"Par",	ISample.STRUCT_TYPE_INTEGER,null,-1);
+writer.createMember(members,3,"IO",	ISample.STRUCT_TYPE_INTEGER,null,-1);
+writer.createMember(members,4,"Seg4",	ISample.STRUCT_TYPE_INTEGER,null,ISample.FORMAT_HEXADECIMAL);
+writer.createMember(members,5,"Seg8",	ISample.STRUCT_TYPE_INTEGER,null,ISample.FORMAT_HEXADECIMAL);
+writer.createMember(members,6,"Label",	ISample.STRUCT_TYPE_TEXT,null,-1);
+
+var id = 0;
+var addr = 0x1000;
+for (t=0;t<100000;t+=900){
+	members[0].setIntValue(addr++); 
+	members[1].setIntValue(0x100);
+	members[2].setIntValue(5);
+	members[3].setIntValue(1);
+	members[4].setIntValue(4);
+	members[5].setIntValue(8);
+	members[6].setStringValue("A1");
+	writer.write(t,t%1000 == 0,id,ISample.GO_FIRST,0,members);
+	
+	members[4].setIntValue(8);
+	writer.write(t+400,t%1000 == 0,id,ISample.GO_INTER,0,members);
+			
+	members[1].setIntValue(0x200);
+	writer.write(t + 700,t%1000 == 0,id,ISample.GO_LAST,0,members);
+	id++;
+}
+
+// struct1 signal
+writer = generator.getWriter(struct2);
+
+id = 0;
+addr = 0x5000;
+for (t=0;t<100000;t+=1000){
+	members[0].setIntValue(addr++); 
+	members[1].setIntValue(0x500);
+	members[2].setIntValue(5);
+	members[3].setIntValue(1);
+	members[4].setIntValue(4);
+	members[5].setIntValue(8);
+	members[6].setStringValue("A2");
+	writer.write(t,t%9000 == 0,id,ISample.GO_FIRST,0,members);
+	
+	members[4].setIntValue(8);
+	writer.write(t+450,t%9000 == 0,id,ISample.GO_INTER,0,members);
+		
+	members[5].setIntValue(8);
+	writer.write(t+650,t%9000 == 0,id,ISample.GO_INTER,0,members);
+		
+	members[1].setIntValue(0x200);
+	writer.write(t + 1000,t%9000 == 0,id,ISample.GO_LAST,0,members);
+	id++;
+}
+
+
+
+
+
+// And close finally
+generator.close(100000);
+
+
+

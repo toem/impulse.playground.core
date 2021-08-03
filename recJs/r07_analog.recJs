@@ -1,0 +1,37 @@
+//-recjs (keep this line)
+// generator   : Record generator (de.toem.impulse.samples.ISingleDomainRecordGenerator)
+// file        : File object of the executed recJs file (java.io.File)
+// p0..p9      : Parameters from the reader configuration (java.lang.String)
+// progress    : Progress control (de.toem.pattern.threading.IProgress)
+// console     : Console output (de.toem.impulse.scripting.IScriptConsole)
+
+// Init the record
+generator.initRecord("Example Record",TimeBase.ms);
+var signals = [];
+for (var i=0;i<8;i++){
+	signals[i] = generator.addSignal(null, "a"+i, "", ProcessType.Discrete, SignalType.Float, SignalDescriptor.DEFAULT);
+}
+generator.open(0);
+
+for (var i=0;i<8;i++){
+	generate(i,signals[i]);
+}
+
+var current = 0;
+
+generator.close( 10000);
+
+function generate(idx,signal){
+	var writer/*:IFloatSamplesWriter:*/ = generator.getWriter( signal);
+	a=Math.random();
+	b=Math.random()/2;
+	c=Math.random()/3;
+	d=Math.random()/4;
+	e=Math.random()/5;
+	f=Math.random()/6;
+	
+	for (var t=0;t<10000;t++){
+		var v = Math.sin(a*t)*a+Math.cos(b*t)*b+Math.sin(c*t)*c+Math.cos(d*t)*d+Math.sin(e*t)*e+Math.cos(f*t)*f;
+		writer.writeDouble( t, false, v);
+	}
+}

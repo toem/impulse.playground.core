@@ -1,0 +1,242 @@
+//-recjs (keep this line)
+// generator   : Record generator (de.toem.impulse.samples.ISingleDomainRecordGenerator)
+// file        : File object of the executed recJs file (java.io.File)
+// p0..p9      : Parameters from the reader configuration (java.lang.String)
+// progress    : Progress control (de.toem.pattern.threading.IProgress)
+// console     : Console output (de.toem.impulse.scripting.IScriptConsole)
+ 
+// Init the record
+generator.initRecord("Example Record",TimeBase.ns);
+
+
+// Create a record with scopes and some signals
+var signals = generator.addScope(null, "External Signals");
+var int1 = generator.addSignal(signals, "Sin", "", ProcessType.Discrete, SignalType.Integer, SignalDescriptor.DEFAULT);
+var int2 = generator.addSignal(signals, "Load1", "", ProcessType.Discrete, SignalType.Integer, SignalDescriptor.DEFAULT);
+var int3 = generator.addSignal(signals, "Load2", "", ProcessType.Discrete, SignalType.Integer, SignalDescriptor.DEFAULT);
+
+var core1 = generator.addScope(null, "Core 1");
+var task_1_1 = generator.addSignal(core1, "Task 1", "", ProcessType.Discrete, SignalType.Event, SignalDescriptor.EventGantt);
+var task_1_2 = generator.addSignal(core1, "Task 2", "", ProcessType.Discrete, SignalType.Event, SignalDescriptor.EventGantt);
+var task_1_3 = generator.addSignal(core1, "Task 3", "", ProcessType.Discrete, SignalType.Event, SignalDescriptor.EventGantt);
+var task_1_4 = generator.addSignal(core1, "Task 4", "", ProcessType.Discrete, SignalType.Event, SignalDescriptor.EventGantt);
+
+var core2 = generator.addScope(null, "Core 2");
+var task_2_1 = generator.addSignal(core2, "Task 1", "", ProcessType.Discrete, SignalType.Event, SignalDescriptor.EventGantt);
+var task_2_2 = generator.addSignal(core2, "Task 2", "", ProcessType.Discrete, SignalType.Event, SignalDescriptor.EventGantt);
+var task_2_3 = generator.addSignal(core2, "Task 3", "", ProcessType.Discrete, SignalType.Event, SignalDescriptor.EventGantt);
+var task_2_4 = generator.addSignal(core2, "Task 4", "", ProcessType.Discrete, SignalType.Event, SignalDescriptor.EventGantt);
+
+var isr = generator.addScope(null, "ISR");
+var isr_1 = generator.addSignal(isr, "AAX", "", ProcessType.Discrete, SignalType.Event, SignalDescriptor.EventGantt);
+var isr_2 = generator.addSignal(isr, "AAY", "", ProcessType.Discrete, SignalType.Event, SignalDescriptor.EventGantt);
+
+
+// We start at 0 ns
+var t = 0; // 0 ns
+generator.open(t);
+
+// get the writers
+var integerWriter /*:IIntegerSamplesWriter:*/ = generator.getWriter(int1);
+
+// And continue until 1000 ns
+integerWriter.writeInt(t, false, 0);
+t=14000;
+integerWriter.writeInt(t, false, 0);
+for (; t < 94000; t ++) {
+
+    // write time as integer
+    integerWriter.writeInt(t, false,  (100 * Math.sin(t/1000.0)));
+}
+integerWriter.writeInt(t, false, 0);
+integerWriter.writeInt(100000, false, 0);
+
+// Add marker
+var marker /*:Marker:*/ = new Marker(Marker.BOOKMARK,"My Bookmark",""); 
+marker.setLocation(Link.fromPath("@@@Time='40us'"));  
+marker.setRelation(Link.fromPath(int2.getPath()+"@@@Time='80us'")); 
+integerWriter.addMarker(marker);
+
+// task 1
+var eventWriter /*:IEventSamplesWriter:*/=  generator.getWriter(task_1_1);
+eventWriter.write(13000, false,"Running");
+eventWriter.write(24000, false,"Waiting");
+eventWriter.write(25000, false);
+eventWriter.attachRelation(task_1_3.getPath(), "", 0);
+eventWriter.write(35000, false,"Running");
+eventWriter.write(65000, false);
+eventWriter.attachRelation(task_1_3.getPath(), "", 0);
+eventWriter.write(73000, false,"Running");
+eventWriter.write(80000, false,"Storing");
+eventWriter.write(84000, false,"Waiting");
+eventWriter.write(88000, false,"Running");
+eventWriter.write(06000, false);
+
+// task 2
+eventWriter = generator.getWriter(task_1_2);
+eventWriter.write(10000, false,"A");
+eventWriter.write(14000, false,"Comb");
+eventWriter.attachRelation(int1.getPath(), "Enable", 0);
+eventWriter.write(17000, false,"X1");
+eventWriter.write(20000, false);
+eventWriter.attachRelation(task_1_4.getPath(), "", 0);
+eventWriter.write(30000, false,"A");
+eventWriter.write(34000, false,"Comb");
+eventWriter.write(37000, false,"X1");
+eventWriter.write(40000, false);
+eventWriter.attachRelation(task_1_4.getPath(), "", 0);
+eventWriter.write(50000, false,"A");
+eventWriter.write(54000, false,"Comb");
+eventWriter.write(57000, false,"X1");
+eventWriter.write(60000, false);
+eventWriter.attachRelation(task_1_4.getPath(), "", 0);
+eventWriter.write(70000, false,"A");
+eventWriter.write(74000, false,"Comb");
+eventWriter.write(77000, false,"X1");
+eventWriter.write(80000, false);
+eventWriter.attachRelation(task_1_4.getPath(), "", 0);
+eventWriter.write(90000, false,"A");
+eventWriter.write(94000, false,"Comb");
+eventWriter.attachRelation(int1.getPath(), "Disable", 0);
+eventWriter.write(97000, false,"X1");
+eventWriter.write(100000, false);
+
+
+// task 3
+eventWriter = generator.getWriter(task_1_3);
+eventWriter.write(25000, false,"Running");
+eventWriter.write(35000, false);
+eventWriter.attachRelation(task_1_1.getPath(), "", 0);
+eventWriter.write(65000, false,"Running");
+eventWriter.write(73000, false);
+eventWriter.attachRelation(task_1_1.getPath(), "", 0);
+
+// task 4
+eventWriter = generator.getWriter(task_1_4);
+eventWriter.write(00000, false,"Running");
+eventWriter.write(10000, false);
+eventWriter.attachRelation(task_1_2.getPath(), "Success/fa752e", 0);
+eventWriter.attachRelation(isr_1.getPath(), "Overlay", 20000);
+eventWriter.write(20000, false,"Running");
+eventWriter.write(30000, false);
+eventWriter.attachRelation(task_1_2.getPath(), "Success/fa752e", 0);
+eventWriter.write(40000, false,"Running");
+eventWriter.write(50000, false);
+eventWriter.attachRelation(task_1_2.getPath(), "Success/fa752e", 0);
+eventWriter.write(60000, true,"Running");
+eventWriter.write(70000, false);
+eventWriter.attachRelation(task_1_2.getPath(), "Success/fa752e", 0);
+eventWriter.write(80000, false,"Running");
+eventWriter.write(90000, false);
+eventWriter.attachRelation(task_1_2.getPath(), "Success/fa752e", 0);
+
+// core 2 
+eventWriter =  generator.getWriter(task_2_1);
+eventWriter.write(10000, false,"Running");
+eventWriter.write(30000, false);
+eventWriter.write(40000, false,"Running");
+eventWriter.write(60000, false);
+eventWriter.write(70000, false,"Running");
+eventWriter.write(90000, false);
+
+eventWriter =  generator.getWriter(task_2_2);
+eventWriter.write(15000, false,"Running");
+eventWriter.write(35000, false);
+eventWriter.write(45000, false,"Running");
+eventWriter.write(65000, false);
+eventWriter.write(75000, false,"Running");
+eventWriter.write(95000, false);
+
+eventWriter =  generator.getWriter(task_2_3);
+eventWriter.write(20000, false,"Running");
+eventWriter.write(40000, false);
+eventWriter.attachRelation(task_2_1.getPath(), "Reset/00ffff", 0);
+eventWriter.write(50000, false,"Running");
+eventWriter.write(70000, false);
+eventWriter.attachRelation(task_2_1.getPath(), "Reset/00ffff", 0);
+eventWriter.write(80000, false,"Running");
+eventWriter.write(100000, false);
+
+eventWriter =  generator.getWriter(task_2_4);
+eventWriter.write(10000, false,"Running");
+eventWriter.write(12000, false,"Staging");
+eventWriter.write(14000, false);
+eventWriter.write(20000, false,"Running");
+eventWriter.write(22000, false,"Staging");
+eventWriter.write(24000, false);
+eventWriter.write(30000, false,"Running");
+eventWriter.write(32000, false,"Staging");
+eventWriter.write(34000, false);
+eventWriter.write(40000, false,"Running");
+eventWriter.write(42000, false,"Staging");
+eventWriter.write(44000, false);
+eventWriter.write(50000, false,"Running");
+eventWriter.write(52000, false,"Staging");
+eventWriter.write(54000, false);
+eventWriter.write(60000, false,"Running");
+eventWriter.write(62000, false,"Staging");
+eventWriter.write(64000, false);
+eventWriter.write(70000, false,"Running");
+eventWriter.write(72000, false,"Staging");
+eventWriter.write(74000, false);
+eventWriter.write(80000, false,"Running");
+eventWriter.write(82000, false,"Staging");
+eventWriter.write(84000, false);
+eventWriter.write(90000, false,"Running");
+eventWriter.write(92000, false,"Staging");
+eventWriter.write(94000, false);
+
+
+// isr
+eventWriter =  generator.getWriter(isr_1);
+var legend/*:ISamplesLegend:*/ = eventWriter.getLegend();
+legend.addEnum(Enumeration.ENUM_GLOBAL,"Running",10);
+legend.addEnum(Enumeration.ENUM_GLOBAL,"Waiting",11);
+eventWriter.write(13000, false,"Running");
+eventWriter.write(14000, false,"Waiting");
+eventWriter.write(15000, false);
+eventWriter.write(25000, false,"Destroy");     
+eventWriter.write(30000, false,"Start");  
+eventWriter.write(44000, false,"Continue");
+eventWriter.write(45000, false);
+eventWriter.write(55000, false,"Destroy");     
+eventWriter.write(60000, false,"Start"); 
+eventWriter.write(65000, false); 
+
+eventWriter =  generator.getWriter(isr_2);
+eventWriter.write(33000, false,"Running");
+eventWriter.write(36000, true,"Waiting");
+eventWriter.write(45000, false);
+eventWriter.write(79000, false,"Destroy");     
+eventWriter.write(81000, false,"Start");  
+eventWriter.write(87000, false,"Continue");
+eventWriter.write(88000, false);
+eventWriter.write(91000, false,"Destroy");     
+eventWriter.write(92000, false,"Start"); 
+eventWriter.write(97000, false); 
+
+// load
+integerWriter = generator.getWriter(int2);
+integerWriter.writeInt(10000, false, 10);
+integerWriter.writeInt(20000, false, 14);
+integerWriter.writeInt(25000, false, 17);
+integerWriter.writeInt(30000, false, 33);
+integerWriter.writeInt(35000, false, 12);
+integerWriter.writeInt(40000, false, 1);
+integerWriter.writeInt(45000, false, 0);
+
+integerWriter = generator.getWriter(int3);
+integerWriter.writeInt(10000, false, 66);
+integerWriter.writeInt(20000, false, 1);
+integerWriter.writeInt(25000, false, 17);
+integerWriter.writeInt(30000, false, 33);
+integerWriter.writeInt(35000, false, 5);
+integerWriter.writeInt(40000, false, 13);
+integerWriter.writeInt(45000, false, 0);
+
+
+// And close finally
+generator.close(100000);
+
+
+

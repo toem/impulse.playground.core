@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<document coverType="" cellType="record" version="2">
+    <cell name="unknown" type="record" hunt="1415875732397102">
+        <fd name="domainBase">Unknown</fd>
+        <cell name="State" type="record.signal" hunt="1415875732397103">
+            <fd name="signalType">Float</fd>
+            <fd name="signalDescriptor">Default/0/0/0/2/-1</fd>
+            <fd name="end">103</fd>
+            <fd name="rate">4</fd>
+            <pfd name="samples" a="9" b="0">FQgBAFDoAAAAAAAAKEBQCAAAAAAAACJAGlAIAAAAAAAAIkAGUAgAAAAAAAAoQAFQCAAAAAAAABhACVAIAAAAAAAAKEAGUAgAAAAAAAAkQAdQCAAAAAAAAChACVAIAAAAAAAAIkAE</pfd>
+            <fd name="domainBase">mX100</fd>
+        </cell>
+        <cell name="DutyCycle" type="record.signal" hunt="1415875732397104">
+            <fd name="signalType">Float</fd>
+            <fd name="signalDescriptor">Default/0/0/0/2/-1</fd>
+            <fd name="end">103</fd>
+            <fd name="rate">4</fd>
+            <pfd name="samples" a="9" b="0">FQgBAFDoAAAAAABAj0BQCAAAAAAAQI9AGlAIAAAAAACgZEAGUAgAAAAAAECPQAFQCAAAAAAAQI9ACVAIAAAAAABAj0AGUAgAAAAAAECPQAdQCAAAAAAAQI9ACVAIAAAAAADAZEAE</pfd>
+            <fd name="domainBase">mX100</fd>
+        </cell>
+    </cell>
+</document>
