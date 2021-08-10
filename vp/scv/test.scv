@@ -1,0 +1,101 @@
+scv_tr_stream (ID 1, name "pipelined_stream", kind "transactor")        
+scv_tr_stream (ID 2, name "addr_stream", kind "transactor")
+scv_tr_stream (ID 3, name "data_stream", kind "transactor")
+scv_tr_generator (ID 4, name "read", scv_tr_stream 1,
+begin_attribute (ID 0, name "addr", type "UNSIGNED")
+end_attribute (ID 1, name "data", type "UNSIGNED")
+)
+scv_tr_generator (ID 5, name "write", scv_tr_stream 1,
+begin_attribute (ID 0, name "addr", type "UNSIGNED")
+end_attribute (ID 1, name "data", type "UNSIGNED")
+)
+scv_tr_generator (ID 6, name "addr", scv_tr_stream 2,
+begin_attribute (ID 0, name "addr", type "UNSIGNED")
+)
+scv_tr_generator (ID 7, name "data", scv_tr_stream 3,
+begin_attribute (ID 0, name "data", type "UNSIGNED")
+)
+tx_begin 1 4 0 s
+a 0
+tx_begin 2 6 0 s
+a 0
+tx_relation "addr_phase" 2 1
+tx_end 2 6 100 ns
+tx_begin 3 7 100 ns
+a UNDEFINED
+tx_relation "data_phase" 3 1
+tx_end 3 7 260 ns
+tx_end 1 4 260 ns
+a 0
+tx_begin 4 4 260 ns
+a 1
+tx_begin 5 6 260 ns
+a 1
+tx_relation "addr_phase" 5 4
+tx_end 5 6 460 ns
+tx_begin 6 7 460 ns
+a UNDEFINED
+tx_relation "data_phase" 6 4
+tx_end 6 7 600 ns
+tx_end 4 4 600 ns
+a 1
+tx_begin 7 4 600 ns
+a 2
+tx_begin 8 6 600 ns
+a 2
+tx_relation "addr_phase" 8 7
+tx_end 8 6 720 ns
+tx_begin 9 7 720 ns
+a UNDEFINED
+tx_relation "data_phase" 9 7
+tx_end 9 7 860 ns
+tx_end 7 4 860 ns
+a 2
+tx_begin 10 4 860 ns
+a 52
+tx_begin 11 6 860 ns
+a 52
+tx_relation "addr_phase" 11 10
+tx_end 11 6 1040 ns
+tx_begin 12 7 1040 ns
+a UNDEFINED
+tx_relation "data_phase" 12 10
+tx_end 12 7 1140 ns
+tx_end 10 4 1140 ns
+a 52
+tx_begin 13 4 1140 ns
+a 145
+tx_begin 14 6 1140 ns
+a 145
+tx_relation "addr_phase" 14 13
+tx_end 14 6 1380 ns
+tx_begin 15 7 1380 ns
+a UNDEFINED
+tx_relation "data_phase" 15 13
+tx_end 15 7 1440 ns
+tx_end 13 4 1440 ns
+a 145
+tx_begin 16 4 1440 ns
+a 203
+tx_begin 17 6 1440 ns
+a 203
+tx_relation "addr_phase" 17 16
+tx_end 17 6 1540 ns
+tx_begin 18 7 1540 ns
+a UNDEFINED
+tx_relation "data_phase" 18 16
+tx_end 18 7 1740 ns
+tx_end 16 4 1740 ns
+a 203
+tx_begin 19 5 1740 ns
+a 47
+tx_end 19 5 1840 ns
+a 9
+tx_begin 20 5 1740 ns
+a 92
+tx_end 20 5 1940 ns
+a 92
+tx_begin 21 5 1940 ns
+a 7
+tx_end 21 5 2040 ns
+a 63
