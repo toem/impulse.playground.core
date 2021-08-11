@@ -4,6 +4,8 @@
 
 [**impulse**](https://toem.de/index.php/products/impulse) is an event and waveform visualization and analysis workbench (simulation, traces, logs) which helps engineers to comfortably understand and debug complex semiconductor and multi-core software systems.
 
+[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/toem/playground)
+
 ## Play with gitpod
 
 Just enter [https://www.gitpod.io#https://github.com/toem/impulse.playground](https://www.gitpod.io#https://github.com/toem/impulse.playground) into your browser and log-in with your github account.
