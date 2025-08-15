@@ -1,0 +1,4 @@
+*.prompt
+scripts/
+licenses
+.vscode/tasks.json

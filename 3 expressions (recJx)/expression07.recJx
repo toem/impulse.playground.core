@@ -1,0 +1,191 @@
+//-recjx 
+// Example Impulse Record Producer Script for Color, Label, and Event Demonstrations
+// This script demonstrates how to use the Impulse API to generate a record with:
+//   - Integer signals (Sin, Load1, Load2)
+//   - Enum signals for tasks with various color and label configurations
+//   - Hierarchical scopes for organizing signals by core
+//   - Writing events, attaching relations, and adding labels
+//   - Demonstrating Gantt/event color areas, user formats, and associations
+// The script initializes the record, defines signals and scopes, writes sample data, attaches relations and labels, and closes the record.
+//
+// Provided variables:
+//   - producer: ISingleDomainRecordProducer
+//   - file:     java.io.File (executed recJs file)
+//   - p:        IProgress (progress control)
+//   - console:  IConsoleStream (console output)
+
+// Init the record with name and time base (nanoseconds)
+producer.initRecord("Example Record", TimeBase.ns);
+
+// Create top-level scope and integer signals
+var signals = producer.addScope(null, "External Signals");
+var int1 = producer.addSignal(signals, "Sin", null, null, ISample.DATA_TYPE_INTEGER, -1, ISamples.FORMAT_DEFAULT); 
+var intsig = producer.addSignal(signals, "Sin", null, null, ISample.DATA_TYPE_INTEGER, -1, ISamples.FORMAT_DEFAULT);
+var int2 = producer.addSignal(signals, "Load1", null, null, ISample.DATA_TYPE_INTEGER, -1, ISamples.FORMAT_DEFAULT);
+var int3 = producer.addSignal(signals, "Load2", null, null, ISample.DATA_TYPE_INTEGER, -1, ISamples.FORMAT_DEFAULT);
+
+// Create hierarchical scope for core 1 and add various enum and float signals
+var core1 = producer.addScope(null, "Core 1");
+var task_1_1 = producer.addSignal(core1, "Task 1", null, null, ISample.DATA_TYPE_ENUM, -1, ISamples.FORMAT_DEFAULT);
+var task_1_2 = producer.addSignal(core1, "Task 2", null, null, ISample.DATA_TYPE_ENUM, -1, ISamples.FORMAT_DEFAULT);
+var task_1_3 = producer.addSignal(core1, "Automatic colors", null, null, ISample.DATA_TYPE_ENUM, -1, ISamples.FORMAT_DEFAULT);
+var task_1_4 = producer.addSignal(core1, "Fixed Colors", null, null, ISample.DATA_TYPE_ENUM, -1, ISamples.FORMAT_DEFAULT);
+var task_1_5 = producer.addSignal(core1, "Shade Colors", null, null, ISample.DATA_TYPE_ENUM, -1, ISamples.FORMAT_DEFAULT);
+var task_1_6 = producer.addSignal(core1, "Automatic colors event", null, null, ISample.DATA_TYPE_ENUM, -1, ISamples.FORMAT_DEFAULT);
+var task_1_7 = producer.addSignal(core1, "Fixed Colors event", null, null, ISample.DATA_TYPE_ENUM, -1, ISamples.FORMAT_DEFAULT);
+var task_1_8 = producer.addSignal(core1, "Shade Colors event", null, null, ISample.DATA_TYPE_ENUM, -1, ISamples.FORMAT_DEFAULT);
+var task_1_9 = producer.addSignal(core1, "Task with Labels", null, null, ISample.DATA_TYPE_ENUM, -1, ISamples.FORMAT_DEFAULT);
+var task_1_10 = producer.addSignal(core1, "User format", null, null, ISample.DATA_TYPE_FLOAT, -1, ISamples.FORMAT_DEFAULT);
+
+// Start writing samples at 0 ns
+var t = 0l; // 0 ns
+producer.open(t);
+
+// Write integer signal ("Sin") with a sine wave pattern
+var integerWriter = producer.getWriter(int1);
+integerWriter.writeInt(t, false, 0);
+t = 14000l;
+integerWriter.writeInt(t, false, 0);
+t = 14000l;
+while (t < 94000l) {
+    // Write time as integer value (sine wave)
+    integerWriter.writeInt(t, false, (int)(100.0 * Math.sin(1.0 * t / 1000.0)));
+    t = t + 1l;
+}
+integerWriter.writeInt(t, false, 0);
+integerWriter.writeInt(100000l, false, 0);
+
+// Write events and attach relations for various tasks and color/event demonstrations
+// task 1
+var eventWriter = producer.getWriter(task_1_1);
+eventWriter.write(13000l, false, "Running");
+eventWriter.write(24000l, false, "Waiting");
+eventWriter.write(25000l, false);
+eventWriter.attachRelation(task_1_3.getId(), "", 0l);
+eventWriter.write(35000l, false, "Running");
+eventWriter.write(65000l, false);
+eventWriter.attachRelation(task_1_3.getId(), "", 0l);
+eventWriter.write(73000l, false, "Running");
+eventWriter.write(80000l, false, "Storing");
+eventWriter.write(84000l, false, "Waiting");
+eventWriter.write(88000l, false, "Running");
+eventWriter.write(6000l, false);
+
+// task 2
+eventWriter = producer.getWriter(task_1_2);
+eventWriter.write(10000l, false, "A");
+eventWriter.write(14000l, false, "Comb");
+eventWriter.attachRelation(int1.getId(), "Enable", 0l);
+eventWriter.write(17000l, false, "X1");
+eventWriter.write(20000l, false);
+eventWriter.attachRelation(task_1_4.getId(), "", 0l);
+eventWriter.write(30000l, false, "A");
+eventWriter.write(34000l, false, "Comb");
+eventWriter.write(37000l, false, "X1");
+eventWriter.write(40000l, false);
+eventWriter.attachRelation(task_1_4.getId(), "", 0l);
+eventWriter.write(50000l, false, "A");
+eventWriter.write(54000l, false, "Comb");
+eventWriter.write(57000l, false, "X1");
+eventWriter.write(60000l, false);
+eventWriter.attachRelation(task_1_4.getId(), "", 0l);
+eventWriter.write(70000l, false, "A");
+eventWriter.write(74000l, false, "Comb");
+eventWriter.write(77000l, false, "X1");
+eventWriter.write(80000l, false);
+eventWriter.attachRelation(task_1_4.getId(), "", 0l);
+eventWriter.write(90000l, false, "A");
+eventWriter.write(94000l, false, "Comb");
+eventWriter.attachRelation(int1.getId(), "Disable", 0l);
+eventWriter.write(97000l, false, "X1");
+eventWriter.write(100000l, false);
+
+// COLOR areas
+var n = 0;
+
+// GANTT
+eventWriter = producer.getWriter(task_1_3);
+n = 0;
+while (n < 32) {
+    eventWriter.write(1000l * 3l * n, false, n);
+    n = n + 1;
+}
+eventWriter.write(32l * 1000l, false, 0);
+
+eventWriter = producer.getWriter(task_1_4);
+n = 0;
+while (n < 32) {
+    eventWriter.write(1000l * 3l * n, false, 0xc000 + n);
+    n = n + 1;
+}
+eventWriter.write(32l * 1000l, false, 0);
+
+eventWriter = producer.getWriter(task_1_5);
+n = 0;
+while (n < 32) {
+    eventWriter.write(1000l * 3l * n, false, 0xf000 + n);
+    n = n + 1;
+}
+eventWriter.write(32l * 1000l, false, 0);
+
+// EVENTS
+eventWriter = producer.getWriter(task_1_6);
+n = 0;
+while (n < 32) {
+    eventWriter.write(1000l * 3l * n, false, n);
+    n = n + 1;
+}
+eventWriter.write(32l * 1000l, false, 0);
+
+eventWriter = producer.getWriter(task_1_7);
+n = 0;
+while (n < 32) {
+    eventWriter.write(1000l * 3l * n, false, 0xc000 + n);
+    n = n + 1;
+}
+eventWriter.write(32l * 1000l, false, 0);
+
+eventWriter = producer.getWriter(task_1_8);
+n = 0;
+while (n < 32) {
+    eventWriter.write(1000l * 3l * n, false, 0xf000 + n);
+    n = n + 1;
+}
+eventWriter.write(32l * 1000l, false, 0);
+
+// LABELS and ASSOCIATIONS
+eventWriter = producer.getWriter(task_1_9);
+eventWriter.write(13000l, false, "Running");
+eventWriter.write(24000l, false, "Waiting");
+eventWriter.write(25000l, false);
+eventWriter.attachRelation(task_1_3.getId(), "test/1/line/no", 10000l);
+eventWriter.attachRelation(task_1_3.getId(), "test/2/cubic/normal", 20000l);
+eventWriter.attachRelation(task_1_3.getId(), "test/3/line/normal", 30000l);
+eventWriter.attachRelation(task_1_3.getId(), "test/4/cubic/no", 40000l);
+eventWriter.attachRelation(task_1_3.getId(), "test/5/cubic/no", 41000l);
+eventWriter.attachRelation(task_1_3.getId(), "test/6/cubic/no", 42000l);
+eventWriter.attachRelation(task_1_3.getId(), "test/7/cubic/no", 43000l);
+eventWriter.attachRelation(task_1_3.getId(), "test/8/cubic/no", 44000l);
+eventWriter.attachLabel("hi label/2/add");
+eventWriter.write(35000l, false, "Running");
+eventWriter.write(65000l, false);
+eventWriter.attachRelation(task_1_3.getId(), "", 0l);
+eventWriter.write(73000l, false, "Running");
+eventWriter.write(80000l, false, "Storing");
+eventWriter.write(84000l, false, "Waiting");
+eventWriter.write(88000l, false, "Running");
+eventWriter.attachLabel("hi label/3/star");
+eventWriter.write(6000l, false);
+
+eventWriter = producer.getWriter(task_1_10);
+n = 0;
+while (n < 6) {
+    eventWriter.write(1000l * 24l * n , false, 10.234 * n);
+    n = n + 1;
+}
+
+// And close finally
+producer.close(100000l);
+
+
+

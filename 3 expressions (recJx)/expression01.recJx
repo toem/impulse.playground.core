@@ -1,0 +1,142 @@
+//-recjx 
+// Example Impulse Record Producer Script using Expressions
+// This script demonstrates how to use the Impulse API and the impulse expression language
+// to create a record with three signals:
+//   - "Sin": Integer signal with a sine wave pattern (using Math.sin expression)
+//   - "Struct": Struct signal with integer members and a label
+//   - "XY": 2D float array signal (x, y), values generated using Math.sin and Math.cos expressions
+// The script initializes the record, defines signals, writes sample data using expressions, and closes the record.
+//
+// Impulse expressions are used for mathematical calculations and data generation in this script.
+// For more about the expression language, see the Impulse documentation.
+//
+// Provided variables:
+//   - producer: ISingleDomainRecordProducer
+//   - file:     java.io.File (executed recJs file)
+//   - p:        IProgress (progress control)
+//   - console:  IConsoleStream (console output)
+
+// Init the record with name and time base (nanoseconds)
+producer.initRecord("Example Record",TimeBase.ns);
+
+ 
+// Create a scope and add three signals: integer, struct, and float array
+var signals = producer.addScope(null, "External Signals");
+var intsig = producer.addSignal(signals, "Sin", null,null, ISample.DATA_TYPE_INTEGER,-1,ISample.FORMAT_DEFAULT);
+var struct = producer.addSignal(signals, "Struct", null,null,ISample.DATA_TYPE_STRUCT, -1,ISample.FORMAT_DEFAULT,IndexBase.n);
+var struct2 = producer.addSignal(signals, "Struct2", null,null,ISample.DATA_TYPE_STRUCT, -1,ISample.FORMAT_DEFAULT,IndexBase.n);
+var struct3 = producer.addSignal(signals, "Struct3", null,null,ISample.DATA_TYPE_STRUCT, -1,ISample.FORMAT_DEFAULT,IndexBase.n);
+var floatArray = producer.addSignal(signals, "XY", null,null, ISample.DATA_TYPE_FLOAT_ARRAY, 2,ISample.FORMAT_DEFAULT);
+
+
+// Start writing samples at 0 ns
+var t = 0l; // 0 ns
+producer.open(t);
+
+// Write integer signal ("Sin") with a sine wave pattern
+var writer  = producer.getWriter(intsig);
+writer.writeInt(t, false, 0);
+t=14000l;
+writer.writeInt(t, false, 0);
+while (t< 94000) {
+    // Write time as integer value (sine wave)
+    writer.writeInt(t, false, (int)(100.0 * Math.sin(1.0 * t/1000.0)));
+    t = t + 10;
+}
+writer.writeInt(t, false, 0);
+writer.writeInt(100000l, false, 0);
+
+
+// Write struct signal ("Struct") with multiple members and a label
+writer = producer.getWriter(struct);
+members = writer.createMembers(7);
+// Define struct members: A-F (integers), Label (text)
+writer.createMember(members,0,"A",	null,null,null,ISample.DATA_TYPE_INTEGER,-1,ISample.FORMAT_DEFAULT);
+writer.createMember(members,1,"B",	null,null,null,ISample.DATA_TYPE_INTEGER,-1,ISample.FORMAT_DEFAULT);
+writer.createMember(members,2,"C",	null,null,null,ISample.DATA_TYPE_INTEGER,-1,ISample.FORMAT_DEFAULT);
+writer.createMember(members,3,"D",	null,null,null,ISample.DATA_TYPE_INTEGER,-1,ISample.FORMAT_DEFAULT);
+writer.createMember(members,4,"E",	null,null,null,ISample.DATA_TYPE_INTEGER,-1,ISample.FORMAT_DEFAULT);
+writer.createMember(members,5,"F",null,null,null,	ISample.DATA_TYPE_INTEGER,-1,ISample.FORMAT_DEFAULT);
+writer.createMember(members,6,"Label",	null,null,ISamples.TAG_LABEL,ISample.DATA_TYPE_TEXT,-1,ISample.FORMAT_DEFAULT);
+writer.open(0l);
+// Set values for first struct sample
+members[0].setValue(1); 
+members[1].setValue(8);
+members[2].setValue(5);
+members[3].setValue(12);
+members[4].setValue(12);
+members[5].setValue(12);
+members[6].setStringValue("Series 1");
+writer.write(0l,false,members);
+// Set values for second struct sample
+members[0].setValue(14);
+members[1].setValue(15);
+members[2].setValue(16);
+members[3].setValue(17);
+members[4].setValue(18);
+members[5].setValue(19);
+members[6].setStringValue("Series 2");
+writer.write(1l,false,members);
+// Set values for third struct sample
+members[0].setValue(34);
+members[1].setValue(35);
+members[2].setValue(46);
+members[3].setValue(27);
+members[4].setValue(38);
+members[5].setValue(29);
+members[6].setStringValue("Series 3");
+writer.write(2l,false,members);
+writer.close(2l);
+
+// Additional struct signal ("Struct2") with example data using a while loop
+writer = producer.getWriter(struct2);
+var members2 = writer.createMembers(4);
+writer.createMember(members2,0,"X", null,null,null,ISample.DATA_TYPE_INTEGER,-1,ISample.FORMAT_DEFAULT);
+writer.createMember(members2,1,"Y", null,null,null,ISample.DATA_TYPE_INTEGER,-1,ISample.FORMAT_DEFAULT);
+writer.createMember(members2,2,"Z", null,null,null,ISample.DATA_TYPE_INTEGER,-1,ISample.FORMAT_DEFAULT);
+writer.createMember(members2,3,"Label", null,null,ISamples.TAG_LABEL,ISample.DATA_TYPE_TEXT,-1,ISample.FORMAT_DEFAULT);
+writer.open(0l);
+var t2 = 0l;
+while (t2 < 10) {
+    members2[0].setValue(t2);
+    members2[1].setValue(t2 * 2);
+    members2[2].setValue(t2 * t2);
+    members2[3].setStringValue("Row " + t2);
+    writer.write(t2, false, members2);
+    t2++;
+}
+writer.close(9l);
+
+// Additional struct signal ("Struct3") with example data using a while loop
+writer = producer.getWriter(struct3);
+var members3 = writer.createMembers(3);
+writer.createMember(members3,0,"Alpha", null,null,null,ISample.DATA_TYPE_INTEGER,-1,ISample.FORMAT_DEFAULT);
+writer.createMember(members3,1,"Beta", null,null,null,ISample.DATA_TYPE_INTEGER,-1,ISample.FORMAT_DEFAULT);
+writer.createMember(members3,2,"Label", null,null,ISamples.TAG_LABEL,ISample.DATA_TYPE_TEXT,-1,ISample.FORMAT_DEFAULT);
+writer.open(0l);
+var t3 = 0l;
+while (t3 < 5) {
+    members3[0].setValue(100 + t3);
+    members3[1].setValue(200 - t3);
+    members3[2].setStringValue("Entry " + t3);
+    writer.write(t3, false, members3);
+    t3++;
+}
+writer.close(4l);
+
+// Write float array signal ("XY") as 2D points
+writer = producer.getWriter(floatArray);
+writer.setMember( 0, "x", null, ISample.FORMAT_DEFAULT);
+writer.setMember( 1, "y", null, ISample.FORMAT_DEFAULT);  
+array = writer.createDoubleArray(2);
+t = 0l;
+while (t < 100000) {
+    // Calculate x and y values for each sample
+    array[0] =  Math.sin((100.0 + t ) / 3000.0) * 10.0;
+    array[1] =  Math.cos((100.0 + t) / 3000.0) * 10.0;       
+	writer.writeDoubleArray(t, false, array);
+    t++;
+}
+      
+// Close the record at 100000 ns
+producer.close(100000L);

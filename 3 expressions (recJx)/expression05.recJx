@@ -1,0 +1,115 @@
+//-recjx 
+// Example Impulse Record Producer Script for Integer and Struct Signals
+// This script demonstrates how to use the Impulse API to generate a record with:
+//   - An integer signal ("Sin") with a sine wave pattern
+//   - Two struct signals ("TR 1", "TR 2") with multiple integer and text members
+//   - Use of different sample kinds (GO_INITIAL, GO_INTER, GO_FINAL) for struct signals
+// The script initializes the record, defines signals, writes sample data, and closes the record.
+//
+// Provided variables:
+//   - producer: ISingleDomainRecordProducer
+//   - file:     java.io.File (executed recJs file)
+//   - p:        IProgress (progress control)
+//   - console:  IConsoleStream (console output)
+
+// Init the record with name and time base (nanoseconds)
+producer.initRecord("Example Record", TimeBase.ns);
+
+// Create a scope and add signals: integer and two structs
+var signals = producer.addScope(null, "External Signals");
+var intsig = producer.addSignal(signals, "Sin", "", null, ISample.DATA_TYPE_INTEGER, -1, ISamples.FORMAT_DEFAULT);
+var struct1 = producer.addSignal(signals, "TR 1", "", null, ISample.DATA_TYPE_STRUCT, -1, ISamples.FORMAT_DEFAULT);
+var struct2 = producer.addSignal(signals, "TR 2", "", null, ISample.DATA_TYPE_STRUCT, -1, ISamples.FORMAT_DEFAULT);
+
+// Start writing samples at 0 ns
+var t = 0l; // 0 ns
+producer.open(t);
+
+// Write integer signal ("Sin") with a sine wave pattern
+var writer = producer.getWriter(intsig);
+writer.writeInt(t, false, 0);
+t = 14000l;
+writer.writeInt(t, false, 0);
+t = 14000l;
+while (t < 94000l) {
+    // Write time as integer value (sine wave)
+    writer.writeInt(t, false, (int)(100.0 * Math.sin(1.0 * t / 1000.0)));
+    t = t + 1l;
+}
+writer.writeInt(t, false, 0);
+writer.writeInt(100000l, false, 0);
+
+// Write struct signal ("TR 1") with multiple members and different sample kinds
+writer = producer.getWriter(struct1);
+var members = writer.createMembers(7);
+writer.createMember(members, 0, "Address",null,null,null, ISample.DATA_TYPE_INTEGER, -1, ISample.FORMAT_HEXADECIMAL);
+writer.createMember(members, 1, "Data", null,null,null,ISample.DATA_TYPE_INTEGER, -1, ISample.FORMAT_HEXADECIMAL);
+writer.createMember(members, 2, "Par", null,null,null,ISample.DATA_TYPE_INTEGER,  -1,ISamples.FORMAT_DEFAULT);
+writer.createMember(members, 3, "IO",null,null,null, ISample.DATA_TYPE_INTEGER,  -1,ISamples.FORMAT_DEFAULT);
+writer.createMember(members, 4, "Seg4",null,null,null ,ISample.DATA_TYPE_INTEGER, -1, ISample.FORMAT_HEXADECIMAL);
+writer.createMember(members, 5, "Seg8",null,null,null, ISample.DATA_TYPE_INTEGER, -1, ISample.FORMAT_HEXADECIMAL);
+writer.createMember(members, 6, "Label",null,null,null, ISample.DATA_TYPE_TEXT, -1, ISamples.FORMAT_DEFAULT);
+
+var id = 0;
+var addr = 0x1000;
+t = 0l;
+while (t < 100000l) {
+    // Set struct member values for each sample
+    members[0].setValue(addr++);
+    members[1].setValue(0x100);
+    members[2].setValue(5);
+    members[3].setValue(1);
+    members[4].setValue(4);
+    members[5].setValue(8);
+    members[6].setStringValue("A1");
+    // Write initial sample
+    writer.write(t, t % 1000l == 0, ISample.GO_INITIAL, 0, members);
+
+    // Change Seg4 and write intermediate sample
+    members[4].setValue(8);
+    writer.write(t + 400l, (t + 400l) % 1000l == 0,  ISample.GO_INTER, 0, members);
+
+    // Change Data and write final sample
+    members[1].setValue(0x200);
+    writer.write(t + 700l, (t + 700l) % 1000l == 0,  ISample.GO_FINAL, 0, members);
+    id++;
+    t = t + 900l;
+}
+
+// Write struct signal ("TR 2") with similar logic but different timing and values
+writer = producer.getWriter(struct2);
+id = 0;
+addr = 0x5000;
+t = 0l;
+while (t < 100000l) {
+    // Set struct member values for each sample
+    members[0].setValue(addr++);
+    members[1].setValue(0x500);
+    members[2].setValue(5);
+    members[3].setValue(1);
+    members[4].setValue(4);
+    members[5].setValue(8);
+    members[6].setStringValue("A2");
+    // Write initial sample
+    writer.write(t, t % 9000l == 0,  ISample.GO_INITIAL, 0, members);
+
+    // Change Seg4 and write intermediate sample
+    members[4].setValue(8);
+    writer.write(t + 450l, (t + 450l) % 9000l == 0,  ISample.GO_INTER, 0, members);
+
+    // Change Seg8 and write another intermediate sample
+    members[5].setValue(8);
+    writer.write(t + 650l, (t + 650l) % 9000l == 0, ISample.GO_INTER, 0, members);
+
+    // Change Data and write final sample
+    members[1].setValue(0x200);
+    writer.write(t + 1000l, (t + 1000l) % 9000l == 0,  ISample.GO_FINAL, 0, members);
+    id++;
+    t = t + 1000l;
+}
+
+// Close the record at 100000 ns
+producer.close(100000l);
+
+
+

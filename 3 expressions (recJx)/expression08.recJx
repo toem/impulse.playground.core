@@ -1,0 +1,131 @@
+//-recjx 
+// Example Impulse Record Producer Script for State Machine and Buffer/Send Events
+// This script demonstrates how to use the Impulse API to generate a record with:
+//   - Enum signals for Init, Generator, Buffer, Send
+//   - Integer signal for Count
+//   - Struct signal for Logs with multiple members
+//   - Writing events, attaching relations between events, and writing struct samples
+//   - Simulating a repeated state machine sequence with buffer/send interactions
+// The script initializes the record, defines signals, writes sample data, attaches relations, and closes the record.
+//
+// Provided variables:
+//   - producer: ISingleDomainRecordProducer
+//   - file:     java.io.File (executed recJs file)
+//   - p:        IProgress (progress control)
+//   - console:  IConsoleStream (console output)
+
+// Init the record with name and time base (nanoseconds)
+producer.initRecord("Example Record", TimeBase.ns);
+
+// Create signals: enums for state machines, integer for count, struct for logs
+var is = producer.addSignal(null, "Init", "", null, ISample.DATA_TYPE_ENUM, -1, ISamples.FORMAT_DEFAULT);
+var gs = producer.addSignal(null, "Generator", null, null, ISample.DATA_TYPE_ENUM, -1, ISamples.FORMAT_DEFAULT);
+var bs = producer.addSignal(null, "Buffer", null, null, ISample.DATA_TYPE_ENUM, -1, ISamples.FORMAT_DEFAULT);
+var cs = producer.addSignal(null, "Count", null, null, ISample.DATA_TYPE_INTEGER, -1, ISamples.FORMAT_DEFAULT);
+var ss = producer.addSignal(null, "Send", null, null, ISample.DATA_TYPE_ENUM, -1, ISamples.FORMAT_DEFAULT);
+var logs = producer.addSignal(null, "Logs", null, null, ISample.DATA_TYPE_STRUCT, -1, ISamples.FORMAT_DEFAULT);
+
+// Get writers for all signals and define struct members for logs
+var i = producer.getWriter(is);
+var g = producer.getWriter(gs);
+var b = producer.getWriter(bs);
+var c = producer.getWriter(cs);
+var s = producer.getWriter(ss);
+var log = producer.getWriter(logs);
+var members = log.createMembers(7);
+log.createMember(members, 0, "Statemachine", null, null, null, ISample.DATA_TYPE_INTEGER, -1, ISample.FORMAT_HEXADECIMAL);
+log.createMember(members, 1, "Data", null, null, null, ISample.DATA_TYPE_INTEGER, -1, ISample.FORMAT_HEXADECIMAL);
+log.createMember(members, 2, "Par", null, null, null, ISample.DATA_TYPE_INTEGER, -1, ISamples.FORMAT_DEFAULT);
+log.createMember(members, 3, "IO", null, null, null, ISample.DATA_TYPE_INTEGER, -1, ISamples.FORMAT_DEFAULT);
+log.createMember(members, 4, "Seg4", null, null, null, ISample.DATA_TYPE_INTEGER, -1, ISample.FORMAT_HEXADECIMAL);
+log.createMember(members, 5, "Seg8", null, null, null, ISample.DATA_TYPE_INTEGER, -1, ISample.FORMAT_HEXADECIMAL);
+log.createMember(members, 6, "Label", null, null, null, ISample.DATA_TYPE_TEXT, -1, ISamples.FORMAT_DEFAULT);
+
+// Start writing samples at 0 ns
+var t = 0l; // 0 ns
+producer.open(t);
+
+// Write initial count and init event, attach relation to Generator
+c.write(t, false, 0);
+i.write(t + 100l, false, "Start");
+i.attachRelation(ISample.AT_RELATION_DELTA_POS, gs.getId(), "", 100l);
+
+// Simulate repeated state machine sequence with offsets (doit(t) logic)
+var offsets = Arrays.asList(0l, 2000l, 4000l, 6000l, 8000l);
+var idx = 0;
+while (idx < 5) {
+    var base = offsets[idx];
+
+    // Generator events and relations
+    g.write(base + 200l, false, "Active");
+    g.attachRelation(ISample.AT_RELATION_DELTA_POS, gs.getId(), "Duration", 500l);
+    g.write(base + 700l, false, "Create");
+    g.write(base + 800l, false, "Deliver");
+    g.attachRelation(ISample.AT_RELATION_DELTA_POS, bs.getId(), "Deliver", 200l);
+    g.write(base + 900l, false);
+    g.attachRelation(ISample.AT_RELATION_DELTA_POS, gs.getId(), "Wait", 300l);
+
+    // Buffer and count events
+    b.write(base + 1000l, false, "Active");
+    c.write(base + 1100l, false, 1);
+    b.write(base + 1200l, false);
+
+    // Generator second cycle
+    g.write(base + 1200l, false, "Active");
+    g.attachRelation(ISample.AT_RELATION_DELTA_POS, gs.getId(), "Duration", 500l);
+    g.write(base + 1700l, false, "Create");
+    g.write(base + 1800l, false, "Deliver");
+    g.attachRelation(ISample.AT_RELATION_DELTA_POS, bs.getId(), "Deliver", 200l);
+    g.write(base + 1900l, false);
+
+    // Buffer and count events, deliver to Send
+    b.write(base + 2000l, false, "Active");
+    c.write(base + 2100l, false, 2);
+
+    b.write(base + 2300l, false, "Deliver");
+    b.attachRelation(ISample.AT_RELATION_DELTA_POS, ss.getId(), "Deliver", 100l);
+    c.write(base + 2300l, false, 1);
+
+    b.write(base + 2600l, false, "Deliver");
+    b.attachRelation(ISample.AT_RELATION_DELTA_POS, ss.getId(), "Deliver", 100l);
+    c.write(base + 2600l, false, 0);
+    b.write(base + 2800l, false);
+
+    // Send events and relations
+    s.write(base + 2400l, false, "Active");
+    s.write(base + 2500l, false, "Send");
+    s.attachRelation(ISample.AT_RELATION_DELTA_POS, bs.getId(), "Response", 100l);
+
+    s.write(base + 2600l, false, "Active");
+    s.write(base + 2700l, false, "Send");
+    s.attachRelation(ISample.AT_RELATION_DELTA_POS, bs.getId(), "Response", 100l);
+    s.write(base + 2900l, false);
+
+    idx = idx + 1;
+}
+
+// Write struct log signal samples with different sample kinds
+var addr = 0x1000;
+t = 0l;
+while (t < 10000l) {
+    // Set struct member values for each sample
+    members[0].setValue(addr++);
+    members[1].setValue(0x100);
+    members[2].setValue(5);
+    members[3].setValue(1);
+    members[4].setValue(4);
+    members[5].setValue(8);
+    members[6].setStringValue("A1");
+    log.write(t, t % 1000l == 0,  ISample.GO_INITIAL, 0, members);
+
+    members[4].setValue(8);
+    log.write(t + 400l, (t + 400l) % 1000l == 0,  ISample.GO_INTER, 0, members);
+
+    members[1].setValue(0x200);
+    log.write(t + 700l, (t + 700l) % 1000l == 0,  ISample.GO_FINAL, 0, members);
+    t = t + 900l;
+}
+
+// Close the record at 100000 ns
+producer.close(100000l);
+

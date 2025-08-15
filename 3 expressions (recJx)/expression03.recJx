@@ -1,0 +1,149 @@
+//-recjx 
+// Example Impulse Record Producer Script for Various Signal Types
+// This script demonstrates how to use the Impulse API to generate a record with multiple signal types:
+//   - Integer and integer array signals with sine/cosine data
+//   - Enum/event signals (single and array) with string and integer values
+//   - Struct signals with enum and integer members
+// The script initializes the record, defines signals, writes sample data, attaches relations, and closes the record.
+//
+// Provided variables:
+//   - producer: ISingleDomainRecordProducer
+//   - file:     java.io.File (executed recJs file)
+//   - p:        IProgress (progress control)
+//   - console:  IConsoleStream (console output)
+
+// Init the record with name and time base (nanoseconds)
+producer.initRecord("Example Record", TimeBase.ns);
+
+// Create a scope and add various signals: integers, enums, arrays, structs
+var signals = producer.addScope(null, "Signals");
+var int1 = producer.addSignal(signals, "Integer1", null, null, ISample.DATA_TYPE_INTEGER, -1, ISample.FORMAT_DEFAULT);
+var int2 = producer.addSignal(signals, "Integer2", null, null, ISample.DATA_TYPE_INTEGER_ARRAY, 2, ISample.FORMAT_DEFAULT);
+var event1 = producer.addSignal(signals, "Event1", null, null, ISample.DATA_TYPE_ENUM, -1, ISample.FORMAT_DEFAULT);
+var event2 = producer.addSignal(signals, "Event2", null, null, ISample.DATA_TYPE_ENUM, -1, ISample.FORMAT_DEFAULT);
+var event3 = producer.addSignal(signals, "Event3", null, null, ISample.DATA_TYPE_ENUM, -1, ISample.FORMAT_DEFAULT);
+var event4 = producer.addSignal(signals, "Event4", null, null, ISample.DATA_TYPE_ENUM_ARRAY, 2, ISample.FORMAT_DEFAULT);
+var struct1 = producer.addSignal(signals, "Struct1", null, null, ISample.DATA_TYPE_STRUCT, -1, ISample.FORMAT_DEFAULT);
+var struct2 = producer.addSignal(signals, "Struct2", null, null, ISample.DATA_TYPE_STRUCT, -1, ISample.FORMAT_DEFAULT);
+
+// Start writing samples at 0 ns
+var t = 0l; // 0 ns
+producer.open(t);
+
+// Get writers for integer and integer array signals
+var integerWriter = producer.getWriter(int1);
+var integerArrayWriter = producer.getWriter(int2);
+
+// Write sine/cosine data to integer and integer array signals
+while (t < 100000l) {
+    integerWriter.writeInt(t, false, (int)(100.0 * Math.sin(1.0 * t / 1000.0)));
+    integerArrayWriter.writeLongArgs(t, false,
+        (long)(Math.sin(1.0*(t + 100l) / 3000.0) * 10.0),
+        (long)(Math.cos(1.0*(t + 100l) / 3000.0) * 10.0));
+    t++;
+}
+
+// Write simple enum events (no value)
+var eventWriter = producer.getWriter(event1);
+eventWriter.write(12000l, false);
+eventWriter.write(22000l, false);
+
+// Write enum events with string values
+eventWriter = producer.getWriter(event2);
+eventWriter.write(13000l, false, "Start");
+eventWriter.write(14000l, false, "Continue");
+eventWriter.write(15000l, false, "Stop");
+eventWriter.write(25000l, false, "Destroy");
+eventWriter.write(30000l, false, "Start");
+eventWriter.write(44000l, false, "Continue");
+eventWriter.write(45000l, false, "Stop");
+eventWriter.write(55000l, false, "Destroy");
+eventWriter.write(60000l, false, "Start");
+
+// Write enum events with integer values
+eventWriter = producer.getWriter(event3);
+eventWriter.write(13000l, false, 1);
+eventWriter.write(14000l, false, 2);
+eventWriter.write(15000l, false, 3);
+eventWriter.write(25000l, false, 4);
+
+// Write enum array events with string values
+eventWriter = producer.getWriter(event4);
+eventWriter.writeStringArgs(13000l, false, "Ja", "Nein");
+eventWriter.writeStringArgs(14000l, false, "Ja", "Nein");
+
+// Write struct signal "Struct1" with enum and integer members
+var structWriter = producer.getWriter(struct1);
+var members = structWriter.createMembers(3);
+structWriter.createMember(members, 0, "State",null,null,null, ISample.DATA_TYPE_ENUM, -1, ISample.FORMAT_DEFAULT);
+structWriter.createMember(members, 1, "Value",null,null,null, ISample.DATA_TYPE_ENUM, -1, ISample.FORMAT_DEFAULT);
+structWriter.createMember(members, 2, "Other",null,null,null, ISample.DATA_TYPE_INTEGER, -1, ISample.FORMAT_DEFAULT);
+
+// Set and write struct values at various times
+members[0].setValue("Off");
+members[1].setValue("Inspect");
+members[2].setValue(100);
+structWriter.write(10000l, false, members);
+members[0].setValue("On");
+members[1].setValue("First");
+members[2].setValue(200);
+structWriter.write(20000l, false, members);
+// Attach a relation from struct1 to struct2 at 20000 ns
+structWriter.attachRelation(struct2.getId(), "Delayed", 20000l);
+members[0].setValue("Running");
+members[1].setValue("First");
+members[2].setValue(700);
+structWriter.write(30000l, false, members);
+members[0].setValue("Waiting");
+members[1].setValue("Second");
+members[2].setValue(750);
+structWriter.write(40000l, false, members);
+members[0].setValue("Running");
+members[1].setValue("Second");
+members[2].setValue(750);
+structWriter.write(50000l, false, members);
+members[0].setValue("Stopping");
+members[1].setValue("Third");
+members[2].setValue(950);
+structWriter.write(60000l, false, members);
+members[0].setValue("Off");
+members[1].setValue("Third");
+members[2].setValue(950);
+structWriter.write(70000l, false, members);
+
+// Write struct signal "Struct2" with similar members and values at different times
+structWriter = producer.getWriter(struct2);
+members[0].setValue("Off");
+members[1].setValue("Inspect");
+members[2].setValue(100);
+structWriter.write(30000l, false, members);
+members[0].setValue("On");
+members[1].setValue("First");
+members[2].setValue(200);
+structWriter.write(40000l, false, members);
+members[0].setValue("Running");
+members[1].setValue("First");
+members[2].setValue(700);
+structWriter.write(50000l, false, members);
+members[0].setValue("Waiting");
+members[1].setValue("Second");
+members[2].setValue(750);
+structWriter.write(60000l, false, members);
+members[0].setValue("Running");
+members[1].setValue("Second");
+members[2].setValue(750);
+structWriter.write(70000l, false, members);
+members[0].setValue("Stopping");
+members[1].setValue("Third");
+members[2].setValue(950);
+structWriter.write(80000l, false, members);
+members[0].setValue("Off");
+members[1].setValue("Third");
+members[2].setValue(950);
+structWriter.write(90000l, false, members);
+
+// Close the record at 100000 ns
+producer.close(100000l);
+
+
+

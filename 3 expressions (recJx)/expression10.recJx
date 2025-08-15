@@ -1,0 +1,91 @@
+//-recjx 
+// Example Impulse Record Producer Script for Struct Signals
+// This script demonstrates how to use the Impulse API to generate a record with:
+//   - Two struct signals ("Struct1", "Struct2") with multiple members (enum, text, integer)
+// The script initializes the record, defines signals, writes sample data, and closes the record.
+//
+// Provided variables:
+//   - producer: ISingleDomainRecordProducer
+//   - file:     java.io.File (executed recJs file)
+//   - p:        IProgress (progress control)
+//   - console:  IConsoleStream (console output)
+
+// Init the record with name and time base (nanoseconds)
+producer.initRecord("Example Record", TimeBase.ns);
+
+// Create a scope and add only struct signals
+var signals = producer.addScope(null, "External Signals");
+var struct1 = producer.addSignal(signals, "Struct1", "", null, ISample.DATA_TYPE_STRUCT, -1, ISamples.FORMAT_DEFAULT);
+var struct2 = producer.addSignal(signals, "Struct2", "", null, ISample.DATA_TYPE_STRUCT, -1, ISamples.FORMAT_DEFAULT);
+
+
+// Start writing samples at 0 ns
+var t = 0l; // 0 ns
+producer.open(t);
+
+// Write struct signal ("Struct1") with enum, text, and integer members
+writer = producer.getWriter(struct1);
+//writer.setTagDomain(TagDomain.Log);
+var members = writer.createMembers(6);
+writer.createMember(members, 0, "Level", null,null,null,ISample.DATA_TYPE_ENUM, -1, ISamples.FORMAT_DEFAULT);
+writer.createMember(members, 1, "Source",null,null,null, ISample.DATA_TYPE_ENUM, -1, ISamples.FORMAT_DEFAULT);
+writer.createMember(members, 2, "Message",null,null,null, ISample.DATA_TYPE_TEXT, -1, ISamples.FORMAT_DEFAULT);
+writer.createMember(members, 3, "D",null,null,null, ISample.DATA_TYPE_INTEGER, -1, ISamples.FORMAT_DEFAULT);
+writer.createMember(members, 4, "E", null,null,null,ISample.DATA_TYPE_INTEGER, -1, ISamples.FORMAT_DEFAULT);
+writer.createMember(members, 5, "F",null,null,null, ISample.DATA_TYPE_INTEGER, -1, ISamples.FORMAT_DEFAULT);
+
+// Set and write struct values at various times
+members[0].setValue("Error");
+members[1].setValue("XXX");
+members[2].setValue("This is a message");
+members[3].setValue(12);
+members[4].setValue(12);
+members[5].setValue(12);
+writer.write(0l, 0, members);
+
+members[0].setValue("Warn");
+members[1].setValue("XXX");
+members[2].setValue("This is a message");
+members[3].setValue(17);
+members[4].setValue(18);
+members[5].setValue(19);
+writer.write(10000l, 1, members);
+
+members[0].setValue("Info");
+members[1].setValue("XXX");
+members[2].setValue("This is a message");
+members[3].setValue(27);
+members[4].setValue(38);
+members[5].setValue(29);
+// Write multiple struct samples with incrementing times and sample kinds
+writer.write(20000l, 2, members);
+writer.write(30000l, 3, members);
+writer.write(40000l, 4, members);
+writer.write(50000l, 5, members);
+writer.write(60000l, 6, members);
+writer.write(70000l, 7, members);
+writer.write(80000l, 8, members);
+writer.write(90000l, 9, members);
+writer.write(100000l, 10, members);
+writer.write(110000l, 11, members);
+writer.write(120000l, 12, members);
+writer.write(130000l, 13, members);
+writer.write(140000l, 14, members);
+writer.write(150000l, 15, members);
+
+// Write struct signal ("Struct2") with enum and text members, including "none" samples
+writer = producer.getWriter(struct2);
+//writer.setTagDomain(TagDomain.Log);
+members = writer.createMembers(2);
+writer.createMember(members, 0, "Source", null,null,null,ISample.DATA_TYPE_ENUM, -1, ISamples.FORMAT_DEFAULT);
+writer.createMember(members, 1, "Message",null,null,null, ISample.DATA_TYPE_TEXT, -1, ISamples.FORMAT_DEFAULT);
+t = 0l;
+while (t < 100000l) {
+    members[0].setValue("XXX");
+    members[1].setValue("This is a message");
+    writer.write(t, 0+(t / 100l) % 16, members);
+    t = t + 10l;
+}
+
+// Close the record at 160000 ns
+producer.close(160000l);

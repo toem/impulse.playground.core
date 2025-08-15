@@ -1,0 +1,238 @@
+//-recjx 
+// Example Impulse Record Producer Script for Multi-Core Task and ISR Events
+// This script demonstrates how to use the Impulse API to generate a record with:
+//   - Integer signals (Sin, Load1, Load2)
+//   - Enum signals for tasks on two cores and ISRs
+//   - Hierarchical scopes for organizing signals by core and ISR
+//   - Event writing, relations between events, and enum value assignments
+// The script initializes the record, defines signals and scopes, writes sample data, attaches relations, and closes the record.
+//
+// Provided variables:
+//   - producer: ISingleDomainRecordProducer
+//   - file:     java.io.File (executed recJs file)
+//   - p:        IProgress (progress control)
+//   - console:  IConsoleStream (console output)
+
+// Init the record with name and time base (nanoseconds)
+producer.initRecord("Example Record", TimeBase.ns);
+
+// Create top-level scope and integer signals
+var signals = producer.addScope(null, "External Signals");
+var int1 = producer.addSignal(signals, "Sin", "", null, ISample.DATA_TYPE_INTEGER, -1, ISamples.FORMAT_DEFAULT);
+var int2 = producer.addSignal(signals, "Load1", "", null, ISample.DATA_TYPE_INTEGER, -1, ISamples.FORMAT_DEFAULT);
+var int3 = producer.addSignal(signals, "Load2", "", null, ISample.DATA_TYPE_INTEGER, -1, ISamples.FORMAT_DEFAULT);
+
+// Create hierarchical scopes for two cores and ISR, each with task/event signals
+var core1 = producer.addScope(null, "Core 1");
+var task_1_1 = producer.addSignal(core1, "Task 1", "", null, ISample.DATA_TYPE_ENUM, -1, ISamples.FORMAT_DEFAULT);
+var task_1_2 = producer.addSignal(core1, "Task 2", "", null, ISample.DATA_TYPE_ENUM, -1, ISamples.FORMAT_DEFAULT);
+var task_1_3 = producer.addSignal(core1, "Task 3", "", null, ISample.DATA_TYPE_ENUM, -1, ISamples.FORMAT_DEFAULT);
+var task_1_4 = producer.addSignal(core1, "Task 4", "", null, ISample.DATA_TYPE_ENUM, -1, ISamples.FORMAT_DEFAULT);
+
+var core2 = producer.addScope(null, "Core 2");
+var task_2_1 = producer.addSignal(core2, "Task 1", "", null, ISample.DATA_TYPE_ENUM, -1, ISamples.FORMAT_DEFAULT);
+var task_2_2 = producer.addSignal(core2, "Task 2", "", null, ISample.DATA_TYPE_ENUM, -1, ISamples.FORMAT_DEFAULT);
+var task_2_3 = producer.addSignal(core2, "Task 3", "", null, ISample.DATA_TYPE_ENUM, -1, ISamples.FORMAT_DEFAULT);
+var task_2_4 = producer.addSignal(core2, "Task 4", "", null, ISample.DATA_TYPE_ENUM, -1, ISamples.FORMAT_DEFAULT);
+
+var isr = producer.addScope(null, "ISR");
+var isr_1 = producer.addSignal(isr, "AAX", "", null, ISample.DATA_TYPE_ENUM, -1, ISamples.FORMAT_DEFAULT);
+var isr_2 = producer.addSignal(isr, "AAY", "", null, ISample.DATA_TYPE_ENUM, -1, ISamples.FORMAT_DEFAULT);
+
+// Start writing samples at 0 ns
+var t = 0l; // 0 ns
+producer.open(t);
+
+// Write initial and sine values to "Sin" integer signal
+var integerWriter /*:IIntegerSamplesWriter:*/ = producer.getWriter(int1);
+integerWriter.writeInt(t, false, 0);
+t = 14000l;
+integerWriter.writeInt(t, false, 0);
+t = 14000l;
+while (t < 94000l) {
+    // Write time as integer (sine wave)
+    integerWriter.writeInt(t, false, (int)(100.0 * Math.sin(1.0 * t / 1000.0)));
+    t = t + 1l;
+}
+integerWriter.writeInt(t, false, 0);
+integerWriter.writeInt(100000l, false, 0);
+
+// Write events for tasks on core 1, with relations between tasks
+var eventWriter /*:IEventSamplesWriter:*/ = producer.getWriter(task_1_1);
+eventWriter.write(13000l, false, "Running");
+eventWriter.write(24000l, false, "Waiting");
+eventWriter.write(25000l, false);
+eventWriter.attachRelation(task_1_3.getId(), "", 0l);
+eventWriter.write(35000l, false, "Running");
+eventWriter.write(65000l, false);
+eventWriter.attachRelation(task_1_3.getId(), "", 0l);
+eventWriter.write(73000l, false, "Running");
+eventWriter.write(80000l, false, "Storing");
+eventWriter.write(84000l, false, "Waiting");
+eventWriter.write(88000l, false, "Running");
+eventWriter.write(6000l, false);
+
+// task 2
+eventWriter = producer.getWriter(task_1_2);
+eventWriter.write(10000l, false, "A");
+eventWriter.write(14000l, false, "Comb");
+eventWriter.attachRelation(int1.getId(), "Enable", 0l);
+eventWriter.write(17000l, false, "X1");
+eventWriter.write(20000l, false);
+eventWriter.attachRelation(task_1_4.getId(), "", 0l);
+eventWriter.write(30000l, false, "A");
+eventWriter.write(34000l, false, "Comb");
+eventWriter.write(37000l, false, "X1");
+eventWriter.write(40000l, false);
+eventWriter.attachRelation(task_1_4.getId(), "", 0l);
+eventWriter.write(50000l, false, "A");
+eventWriter.write(54000l, false, "Comb");
+eventWriter.write(57000l, false, "X1");
+eventWriter.write(60000l, false);
+eventWriter.attachRelation(task_1_4.getId(), "", 0l);
+eventWriter.write(70000l, false, "A");
+eventWriter.write(74000l, false, "Comb");
+eventWriter.write(77000l, false, "X1");
+eventWriter.write(80000l, false);
+eventWriter.attachRelation(task_1_4.getId(), "", 0l);
+eventWriter.write(90000l, false, "A");
+eventWriter.write(94000l, false, "Comb");
+eventWriter.attachRelation(int1.getId(), "Disable", 0l);
+eventWriter.write(97000l, false, "X1");
+eventWriter.write(100000l, false);
+
+// task 3
+eventWriter = producer.getWriter(task_1_3);
+eventWriter.write(25000l, false, "Running");
+eventWriter.write(35000l, false);
+eventWriter.attachRelation(task_1_1.getId(), "", 0l);
+eventWriter.write(65000l, false, "Running");
+eventWriter.write(73000l, false);
+eventWriter.attachRelation(task_1_1.getId(), "", 0l);
+
+// task 4
+eventWriter = producer.getWriter(task_1_4);
+eventWriter.write(0l, false, "Running");
+eventWriter.write(10000l, false);
+eventWriter.attachRelation(task_1_2.getId(), "Success/#fa752e", 0l);
+eventWriter.attachRelation(isr_1.getId(), "Overlay", 20000l);
+eventWriter.write(20000l, false, "Running");
+eventWriter.write(30000l, false);
+eventWriter.attachRelation(task_1_2.getId(), "Success/#fa752e", 0l);
+eventWriter.write(40000l, false, "Running");
+eventWriter.write(50000l, false);
+eventWriter.attachRelation(task_1_2.getId(), "Success/#fa752e", 0l);
+eventWriter.write(60000l, true, "Running");
+eventWriter.write(70000l, false);
+eventWriter.attachRelation(task_1_2.getId(), "Success/#fa752e", 0l);
+eventWriter.write(80000l, false, "Running");
+eventWriter.write(90000l, false);
+eventWriter.attachRelation(task_1_2.getId(), "Success/#fa752e", 0l);
+
+// core 2 
+eventWriter = producer.getWriter(task_2_1);
+eventWriter.write(10000l, false, "Running");
+eventWriter.write(30000l, false);
+eventWriter.write(40000l, false, "Running");
+eventWriter.write(60000l, false);
+eventWriter.write(70000l, false, "Running");
+eventWriter.write(90000l, false);
+
+eventWriter = producer.getWriter(task_2_2);
+eventWriter.write(15000l, false, "Running");
+eventWriter.write(35000l, false);
+eventWriter.write(45000l, false, "Running");
+eventWriter.write(65000l, false);
+eventWriter.write(75000l, false, "Running");
+eventWriter.write(95000l, false);
+
+eventWriter = producer.getWriter(task_2_3);
+eventWriter.write(20000l, false, "Running");
+eventWriter.write(40000l, false);
+eventWriter.attachRelation(task_2_1.getId(), "Reset/#00ffff", 0l);
+eventWriter.write(50000l, false, "Running");
+eventWriter.write(70000l, false);
+eventWriter.attachRelation(task_2_1.getId(), "Reset/#00ffff", 0l);
+eventWriter.write(80000l, false, "Running");
+eventWriter.write(100000l, false);
+
+eventWriter = producer.getWriter(task_2_4);
+eventWriter.write(10000l, false, "Running");
+eventWriter.write(12000l, false, "Staging");
+eventWriter.write(14000l, false);
+eventWriter.write(20000l, false, "Running");
+eventWriter.write(22000l, false, "Staging");
+eventWriter.write(24000l, false);
+eventWriter.write(30000l, false, "Running");
+eventWriter.write(32000l, false, "Staging");
+eventWriter.write(34000l, false);
+eventWriter.write(40000l, false, "Running");
+eventWriter.write(42000l, false, "Staging");
+eventWriter.write(44000l, false);
+eventWriter.write(50000l, false, "Running");
+eventWriter.write(52000l, false, "Staging");
+eventWriter.write(54000l, false);
+eventWriter.write(60000l, false, "Running");
+eventWriter.write(62000l, false, "Staging");
+eventWriter.write(64000l, false);
+eventWriter.write(70000l, false, "Running");
+eventWriter.write(72000l, false, "Staging");
+eventWriter.write(74000l, false);
+eventWriter.write(80000l, false, "Running");
+eventWriter.write(82000l, false, "Staging");
+eventWriter.write(84000l, false);
+eventWriter.write(90000l, false, "Running");
+eventWriter.write(92000l, false, "Staging");
+eventWriter.write(94000l, false);
+
+// isr
+eventWriter = producer.getWriter(isr_1);
+eventWriter.setEnum(ISample.ENUM_GLOBAL, 10, "Running");
+eventWriter.setEnum(ISample.ENUM_GLOBAL, 11, "Waiting");
+eventWriter.write(13000l, false, "Running");
+eventWriter.write(14000l, false, "Waiting");
+eventWriter.write(15000l, false);
+eventWriter.write(25000l, false, "Destroy");     
+eventWriter.write(30000l, false, "Start");  
+eventWriter.write(44000l, false, "Continue");
+eventWriter.write(45000l, false);
+eventWriter.write(55000l, false, "Destroy");     
+eventWriter.write(60000l, false, "Start"); 
+eventWriter.write(65000l, false); 
+
+eventWriter = producer.getWriter(isr_2);
+eventWriter.write(33000l, false, "Running");
+eventWriter.write(36000l, true, "Waiting");
+eventWriter.write(45000l, false);
+eventWriter.write(79000l, false, "Destroy");     
+eventWriter.write(81000l, false, "Start");  
+eventWriter.write(87000l, false, "Continue");
+eventWriter.write(88000l, false);
+eventWriter.write(91000l, false, "Destroy");     
+eventWriter.write(92000l, false, "Start"); 
+eventWriter.write(97000l, false); 
+
+// Write integer values to Load1 and Load2 signals
+integerWriter = producer.getWriter(int2);
+integerWriter.writeInt(10000l, false, 10);
+integerWriter.writeInt(20000l, false, 14);
+integerWriter.writeInt(25000l, false, 17);
+integerWriter.writeInt(30000l, false, 33);
+integerWriter.writeInt(35000l, false, 12);
+integerWriter.writeInt(40000l, false, 1);
+integerWriter.writeInt(45000l, false, 0);
+
+integerWriter = producer.getWriter(int3);
+integerWriter.writeInt(10000l, false, 66);
+integerWriter.writeInt(20000l, false, 1);
+integerWriter.writeInt(25000l, false, 17);
+integerWriter.writeInt(30000l, false, 33);
+integerWriter.writeInt(35000l, false, 5);
+integerWriter.writeInt(40000l, false, 13);
+integerWriter.writeInt(45000l, false, 0);
+
+// Close the record at 100000 ns
+producer.close(100000l);
+
+
+

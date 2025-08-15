@@ -1,0 +1,51 @@
+//-recjx 
+// Example Impulse Record Producer Script for Integer and Event Signals
+// This script demonstrates how to use the Impulse API to generate a record with:
+//   - An integer signal ("Sin") with a sine wave pattern
+//   - An enum event signal ("Events") with label format, representing various events
+// The script initializes the record, defines signals, writes sample data, and closes the record.
+//
+// Provided variables:
+//   - producer: ISingleDomainRecordProducer
+//   - file:     java.io.File (executed recJs file)
+//   - p:        IProgress (progress control)
+//   - console:  IConsoleStream (console output)
+
+// Init the record with name and time base (milliseconds)
+producer.initRecord("Example Record", TimeBase.ms);
+
+// Create a scope and add signals: integer and event (enum with label format)
+var signals = producer.addScope(null, "Signals");
+var intsig = producer.addSignal(signals, "Sin", "", null, ISample.DATA_TYPE_INTEGER, -1, ISamples.FORMAT_DEFAULT);
+var event = producer.addSignal(signals, "Events", "", null, ISample.DATA_TYPE_ENUM, -1, ISamples.FORMAT_LABEL);
+
+// Start writing samples at 0 ms
+var t = 0l; // 0 ms
+producer.open(t);
+
+// Write integer signal ("Sin") with a sine wave pattern
+var writer = producer.getWriter(intsig);
+writer.writeInt(t, false, 0);
+t = 14000l;
+writer.writeInt(t, false, 0);
+t = 14000l;
+while (t < 94000l) {
+    // Write time as integer value (sine wave)
+    writer.writeInt(t, false, (int)(100.0 * Math.sin(1.0 * t / 1000.0)));
+    t = t + 1l;
+}
+writer.writeInt(t, false, 0);
+writer.writeInt(100000l, false, 0);
+
+// Write event signal ("Events") with various event names at different times
+writer = producer.getWriter(event);
+writer.write(20l, false, "dummy");
+writer.write(2000l, false, "onOff");
+writer.write(18000l, false, "pedestrianRequest");
+writer.write(60000l, false, "pedestrianRequest");
+writer.write(61000l, false, "pedestrianRequest");
+writer.write(80000l, false, "pedestrianRequest");
+writer.write(90000l, false, "onOff");
+
+// Close the record at 100000 ms
+producer.close(100000l);

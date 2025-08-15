@@ -1,0 +1,53 @@
+//-recjx 
+// Example Impulse Record Producer Script for Multiple Randomized Float Signals
+// This script demonstrates how to use the Impulse API to generate a record with 8 float signals,
+// each filled with a unique, complex waveform based on random coefficients and trigonometric expressions.
+// The script initializes the record, creates signals, writes sample data, and closes the record.
+//
+// Provided variables:
+//   - producer: ISingleDomainRecordProducer
+//   - file:     java.io.File (executed recJs file)
+//   - p:        IProgress (progress control)
+//   - console:  IConsoleStream (console output)
+
+// Init the record with name and time base (milliseconds)
+producer.initRecord("Example Record", TimeBase.ms);
+
+// Create an array of 8 float signals named a0 to a7
+var signals = Array.newInstance(Object,8);
+var i = 0;
+while (i < 8) {
+    signals[i] = producer.addSignal(null, "a" + i, "", null, ISample.DATA_TYPE_FLOAT, -1, ISamples.FORMAT_DEFAULT);
+    i = i + 1;
+}
+
+// Open all writers at t=0
+producer.open(0l);
+
+// For each signal, generate a unique waveform using random coefficients and trigonometric functions
+i = 0;
+while (i < 8) {
+    var writer = producer.getWriter(signals[i]);
+    // Generate random coefficients for waveform
+    var a = Math.random();
+    var b = Math.random() / 2.0;
+    var c = Math.random() / 3.0;
+    var d = Math.random() / 4.0;
+    var e = Math.random() / 5.0;
+    var f = Math.random() / 6.0;
+    var t = 0l;
+    while (t < 10000000l) {
+        // Calculate value as a sum of sines and cosines with random amplitudes
+        var v = Math.sin(a * t) * a + Math.cos(b * t) * b + Math.sin(c * t) * c +
+                Math.cos(d * t) * d + Math.sin(e * t) * e + Math.cos(f * t) * f;
+        writer.writeDouble(t, false, v);
+        t = t + 1l;
+    }
+    i = i + 1;
+}
+
+// Dummy variable (not used)
+var current = 0;
+
+// Close the record at 10,000,000 ms
+producer.close(10000000l);

@@ -1,0 +1,73 @@
+//-recjx 
+// Example Impulse Record Producer Script for Bus and Control Signals
+// This script demonstrates how to use the Impulse API to generate a record with logic signals
+// representing a clock, address bus, data bus, enable, and read/write control.
+// It also demonstrates attaching relations between signals (e.g., "Settle", "Delay").
+// The script initializes the record, defines signals, writes sample data, and closes the record.
+//
+// Provided variables:
+//   - producer: ISingleDomainRecordProducer
+//   - file:     java.io.File (executed recJs file)
+//   - p:        IProgress (progress control)
+//   - console:  IConsoleStream (console output)
+
+// Init the record with name and time base (nanoseconds)
+producer.initRecord("Example Record",TimeBase.ns);
+
+// Create a scope and add logic signals for clock, address, data, enable, and R/W
+var signals = producer.addScope(null, "External Signals");
+var clk = producer.addSignal(signals, "Clk", null,null, ISample.DATA_TYPE_LOGIC,1,ISample.FORMAT_DEFAULT);
+var addrbus = producer.addSignal(signals, "Addr", null,null, ISample.DATA_TYPE_LOGIC,32,ISample.FORMAT_DEFAULT);
+var databus = producer.addSignal(signals, "Data", null,null, ISample.DATA_TYPE_LOGIC,8,ISample.FORMAT_DEFAULT);
+var en = producer.addSignal(signals, "Enable", null,null, ISample.DATA_TYPE_LOGIC,1,ISample.FORMAT_DEFAULT);
+var rw = producer.addSignal(signals, "R_W", null,null, ISample.DATA_TYPE_LOGIC,1,ISample.FORMAT_DEFAULT);
+
+// Log created scope and signal for verification
+console.log(producer.getScope("External Signals"));
+console.log(producer.getSignal("External Signals/Clk"));
+
+// Start writing samples at 0 ns
+var t = 0l; // 0 ns
+var MAX_T=100000l;
+var writer = null;
+producer.open(t);
+
+// Initialize bus and control signals to unknown ('u') at t=0
+producer.getWriter(addrbus).write(0l,false,Logic.valueOf('u'));
+producer.getWriter(databus).write(0l,false,Logic.valueOf('u'));
+producer.getWriter(rw).write(0l, false, Logic.valueOf('u'));
+producer.getWriter(en).write(0l, false, Logic.valueOf('u'));
+producer.getWriter(en).write(0l, false, Logic.valueOf('u'));
+
+// Generate clock signal: toggles every 100 ns, written every 50 ns
+writer = producer.getWriter(clk);
+t = 0l;
+while (t<MAX_T){
+     writer.write(t, false,  Logic.valueOf(t % 100 == 0));
+     t += 50;
+}
+
+// Generate bus and control signal activity with relations
+t = 0l;
+while (t<MAX_T){
+     // Address and data values
+     a = 0x1000l+t*4;
+     d = (long)Math.floor(Math.random()*255);
+     // Write address bus value and attach a "Settle" relation to enable
+     producer.getWriter(addrbus).write(t,false,Logic.valueOf(a));
+     producer.getWriter(addrbus).attachRelation(en.getId(),"Settle=${delta}", 65l);
+     // Write data bus value and attach a "Full" relation to itself
+     producer.getWriter(databus).write(t+25,false,Logic.valueOf(d));
+     producer.getWriter(databus).attachRelation(databus.getId(),"Full=${delta}/#fa2e2e", 200l);
+     // Write R/W and enable signals with timing offsets
+     producer.getWriter(rw).write(t+50, false, Logic.valueOf(false));
+     producer.getWriter(en).write(t+65, false, Logic.valueOf(false));
+     producer.getWriter(en).write(t+115, false, Logic.valueOf(true));
+     // Attach a "Delay" relation from enable to address bus
+     producer.getWriter(en).attachRelation(addrbus.getId(),"Delay=${delta}", 185l);
+     t += 300;
+}
+
+// Close the record at MAX_T
+producer.close(MAX_T);
+
