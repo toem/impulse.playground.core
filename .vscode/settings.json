@@ -12,4 +12,12 @@
     "impulse.preferenceLocation.parts": "Workspace Folder",
     "impulse.preferenceLocation.licenses": "Workspace Folder",
     "impulse.preferenceLocation.commands": "Workspace Folder",
+    "workbench.editorAssociations": {
+        "*.rec??": "de.toem.impulse.editor.viewer",
+    },
+    "editor.language.colorizedBracketPairs": [
+
+    ],
+    "workbench.colorTheme": "Visual Studio Dark",
+    "impulse.xdebugger": true,
 }

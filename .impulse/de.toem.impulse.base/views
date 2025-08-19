@@ -695,7 +695,11 @@
         <view.cursor name="A"/>
         <view.axis name="Primary Axis"/>
         <view.axis name="Secondary Axis"/>
-        <view.signal name="Struct1(1)" primarySource="External Signals/Struct1" induceProducer="de.toem.impulse.processor.expressionFilter"/>
+        <view.signal name="Filtered" primarySource="External Signals/Struct1" induceProducer="de.toem.impulse.processor.expressionFilter">
+            <induceProperties len="1">
+                <expression>(int)s0.getTag() ==2 || (int)s0.getTag()==1</expression>
+            </induceProperties>
+        </view.signal>
     </view>
     <view name="expression01">
         <view.signal name="Sin" primarySource="External Signals/Sin" diagram="de.toem.impulse.diagram.chart.line" preferedHeight="119">
@@ -764,7 +768,11 @@
         <view.signal name="event" primarySource="Integers/event" description="desc" diagram="de.toem.impulse.diagram.event" preferedHeight="57"/>
         <view.signal name="float" primarySource="Floats/float" description="desc" diagram="de.toem.impulse.diagram.line"/>
         <view.signal name="double" primarySource="Floats/double" description="desc" diagram="de.toem.impulse.diagram.line" preferedHeight="101" combine="1"/>
-        <view.signal name="bit" primarySource="Logics/bit" description="desc" preferedHeight="40"/>
+        <view.signal name="bit" primarySource="Logics/bit" description="desc" preferedHeight="40">
+            <diagramProperties len="1">
+                <tags>false</tags>
+            </diagramProperties>
+        </view.signal>
         <view.signal name="vector" primarySource="Logics/vector" description="desc"/>
         <view.signal name="scattered" primarySource="Logics/scattered" preferedHeight="79"/>
         <view.signal name="Simple Struct" primarySource="Structs/Simple Struct" description="desc" preferedHeight="124"/>
@@ -779,7 +787,7 @@
         <view.signal name="View Signal" primarySource="//view/integer[2]"/>
         <view.signal name="Filtered" iconId="ri-filter-fill" primarySource="Structs/Simple Struct" description="desc" induceProducer="de.toem.impulse.processor.expressionFilter" preferedHeight="124">
             <induceProperties len="1">
-                <expression>(int)(s0.m0) == 0</expression>
+                <expression>s0.m0 != null &amp;amp;&amp;amp; (int)(s0.m0) == 0</expression>
             </induceProperties>
         </view.signal>
         <view.signal name="Simple Expression" iconId="ri-code-box-fill" induceProducer="de.toem.impulse.processor.expression" preferedHeight="52">
