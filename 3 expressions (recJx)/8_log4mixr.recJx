@@ -24,7 +24,7 @@ var t = 0l; // 0 ns
 producer.open(t);
 
 // Write struct signal ("Struct1") with enum, text, and integer members
-writer = producer.getWriter(struct1);
+var writer = producer.getWriter(struct1);
 //writer.setTagDomain(TagDomain.Log);
 var members = writer.createMembers(6);
 writer.createMember(members, 0, "Level", null,null,null,ISample.DATA_TYPE_ENUM, -1, ISamples.FORMAT_DEFAULT);

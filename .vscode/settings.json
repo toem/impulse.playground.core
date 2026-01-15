@@ -13,11 +13,19 @@
     "impulse.preferenceLocation.licenses": "Workspace Folder",
     "impulse.preferenceLocation.commands": "Workspace Folder",
     "workbench.editorAssociations": {
-        "*.rec??": "de.toem.impulse.editor.viewer",
-    },
-    "editor.language.colorizedBracketPairs": [
+        "*.vcd": "de.toem.impulse.editor.viewer",
+        "*.recMz": "de.toem.impulse.editor.viewer",
+        "*.recMl": "de.toem.impulse.editor.viewer",
+        "*.fst": "de.toem.impulse.editor.viewer",
+        "*.recTr": "de.toem.impulse.editor.viewer",
+        "*.recJx": "de.toem.impulse.editor.viewer",
+        "*.recJs": "default",
+        "*.txt": "de.toem.impulse.editor.viewer",
+        "*.ftr": "de.toem.impulse.editor.viewer",
+        "*.txlog": "de.toem.impulse.editor.viewer",
+        "*.SVDat": "de.toem.impulse.editor.viewer",
+        "*.fsdb": "de.toem.impulse.editor.viewer",
+        "*.scv": "de.toem.impulse.editor.viewer"
+    }
 
-    ],
-    "workbench.colorTheme": "Visual Studio Dark",
-    "impulse.xdebugger": true,
 }

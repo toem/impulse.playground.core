@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <views name="Views">
-    <view name="logic01">
+    <view name="simple">
         <view.signal name="clk0001" primarySource="scp0001/scp0002/clk0001" description="reg"/>
         <view.signal name="rst0001" primarySource="scp0001/scp0002/rst0001" description="reg"/>
         <view.signal name="reg0001" primarySource="scp0001/scp0002/reg0001" description="reg" preferedHeight="120">
@@ -38,7 +38,7 @@
             </diagramProperties>
         </view.signal>
     </view>
-    <view name="logic02">
+    <view name="modplus">
         <view.signal name="parameter0001" primarySource="scp0001/scp0002/scp0003/scp0004/scp0005/scp0006/scp0007/parameter0001" description="parameter"/>
         <view.signal name="reg0069" primarySource="scp0001/scp0002/scp0003/scp0004/scp0005/scp0006/scp0007/reg0069" description="reg"/>
         <view.signal name="reg0070" primarySource="scp0001/scp0002/scp0003/scp0004/scp0005/scp0006/scp0007/reg0070" description="reg"/>
@@ -676,7 +676,7 @@
         </view.signal>
         <view.signal name="Filtered" iconId="ri-newspaper-line" primarySource="scp0001/scp0002/scp0003/scp0004/scp0005/scp0006/reg0068" description="reg" induceProducer="de.toem.impulse.processor.expressionFilter" preferedHeight="77">
             <induceProperties len="10">
-                <expression>var v = (int)*s0;&lt;br/&gt;(v&amp;amp;1) == 1</expression>
+                <expression>((int)*s0 &amp; 1) == 1</expression>
                 <keepAttachments>true</keepAttachments>
                 <keepTags>false</keepTags>
                 <scale>16</scale>
@@ -689,19 +689,19 @@
             </induceProperties>
         </view.signal>
     </view>
-    <view name="expression10">
-        <view.signal name="Struct1" primarySource="External Signals/Struct1"/>
-        <view.signal name="Struct2" primarySource="External Signals/Struct2"/>
+    <view name="log4mixr">
+        <view.signal name="Struct1" primarySource="External Signals/Struct1" preferedHeight="176"/>
+        <view.signal name="Struct2" primarySource="External Signals/Struct2" preferedHeight="74"/>
         <view.cursor name="A"/>
         <view.axis name="Primary Axis"/>
         <view.axis name="Secondary Axis"/>
-        <view.signal name="Filtered" primarySource="External Signals/Struct1" induceProducer="de.toem.impulse.processor.expressionFilter">
+        <view.signal name="Filtered" primarySource="External Signals/Struct1" induceProducer="de.toem.impulse.processor.expressionFilter" colorIdx="2">
             <induceProperties len="1">
                 <expression>(int)s0.getTag() ==2 || (int)s0.getTag()==1</expression>
             </induceProperties>
         </view.signal>
     </view>
-    <view name="expression01">
+    <view name="strctsin">
         <view.signal name="Sin" primarySource="External Signals/Sin" diagram="de.toem.impulse.diagram.chart.line" preferedHeight="119">
             <diagramProperties len="1">
                 <categorize>1</categorize>
@@ -761,7 +761,7 @@
             </diagramProperties>
         </view.signal>
     </view>
-    <view name="trace11">
+    <view name="corealt">
         <view.signal name="integer" primarySource="Integers/integer" description="desc" diagram="de.toem.impulse.diagram.line" combine="1"/>
         <view.signal name="short" primarySource="Integers/short" description="desc" diagram="de.toem.impulse.diagram.line" combine="1"/>
         <view.signal name="llong" primarySource="Integers/llong" description="desc" diagram="de.toem.impulse.diagram.line" combine="1"/>
@@ -802,7 +802,7 @@
         </view.signal>
         <view.signal name="Simple Statements" iconId="ri-code-box-fill" induceProducer="de.toem.impulse.processor.expression" preferedHeight="53" colorIdx="5">
             <induceProperties len="3">
-                <expression>sum :=0d;&lt;br/&gt;sum = sum +  *s1 +  *s2;&lt;br/&gt;return sum;</expression>
+                <expression>var sum :=0.0;&lt;br/&gt;sum = sum +  *s1 +  *s2;&lt;br/&gt;return sum;</expression>
                 <enableLogging>1</enableLogging>
                 <showLogOutput>256</showLogOutput>
             </induceProperties>
@@ -812,7 +812,7 @@
         </view.signal>
         <view.signal name="More Statements" iconId="ri-code-box-fill" induceProducer="de.toem.impulse.processor.expression" preferedHeight="74" colorIdx="7">
             <induceProperties len="3">
-                <expression>n :=0; sum :=0d; // initialize&lt;br/&gt;if ((n++%2) == 0)&lt;br/&gt;  sum = sum +  *s1 +  *s2;&lt;br/&gt;return sum;</expression>
+                <expression>var n :=0; var sum :=0.0; // initialize&lt;br/&gt;if ((n++%2) == 0)&lt;br/&gt;  sum = sum +  *s1 +  *s2;&lt;br/&gt;return sum;</expression>
                 <enableLogging>1</enableLogging>
                 <showLogOutput>256</showLogOutput>
             </induceProperties>
@@ -820,5 +820,1155 @@
             <view.source name="(1).x" reference="//view/float[2]#x"/>
             <view.source name=".y" reference="//view/float[2]#y"/>
         </view.signal>
+    </view>
+    <view name="sinextro">
+        <view.signal name="a0" primarySource="a0" preferedHeight="98" colorIdx="12" combine="1">
+            <diagramProperties len="2">
+                <interpolated>true</interpolated>
+                <annotated>true</annotated>
+            </diagramProperties>
+        </view.signal>
+        <view.signal name="a1" primarySource="a1" preferedHeight="98" colorIdx="1" combine="1">
+            <diagramProperties len="1">
+                <interpolated>true</interpolated>
+            </diagramProperties>
+        </view.signal>
+        <view.signal name="a2" primarySource="a2" preferedHeight="98" colorIdx="2" combine="1">
+            <diagramProperties len="1">
+                <interpolated>true</interpolated>
+            </diagramProperties>
+        </view.signal>
+        <view.signal name="a3" primarySource="a3" preferedHeight="98" colorIdx="3" combine="1">
+            <diagramProperties len="1">
+                <interpolated>true</interpolated>
+            </diagramProperties>
+        </view.signal>
+        <view.signal name="a4" primarySource="a4" preferedHeight="98" colorIdx="4" combine="1">
+            <diagramProperties len="1">
+                <interpolated>true</interpolated>
+            </diagramProperties>
+        </view.signal>
+        <view.signal name="a5" primarySource="a5" preferedHeight="98" colorIdx="5" combine="1">
+            <diagramProperties len="1">
+                <interpolated>true</interpolated>
+            </diagramProperties>
+        </view.signal>
+        <view.signal name="a6" primarySource="a6" preferedHeight="98" colorIdx="6" combine="1">
+            <diagramProperties len="1">
+                <interpolated>true</interpolated>
+            </diagramProperties>
+        </view.signal>
+        <view.signal name="a7" primarySource="a7" preferedHeight="98" colorIdx="7" combine="1">
+            <diagramProperties len="1">
+                <interpolated>true</interpolated>
+            </diagramProperties>
+        </view.signal>
+        <view.cursor name="A"/>
+        <view.cursor name="B" colorIdx="1"/>
+        <view.axis name="Primary Axis"/>
+        <view.axis name="Secondary Axis"/>
+        <view.signal name="a0 Stat" primarySource="a0" diagram="de.toem.impulse.diagram.chart.bar" induceProducer="de.toem.impulse.processor.floatStatistics" preferedHeight="433" colorIdx="12">
+            <induceProperties len="7">
+                <aggMin>false</aggMin>
+                <aggMax>false</aggMax>
+                <aggMean>false</aggMean>
+                <aggRms>true</aggRms>
+                <aggEnergy>true</aggEnergy>
+                <aggStd>true</aggStd>
+                <domainRate>1s</domainRate>
+            </induceProperties>
+            <diagramProperties len="4">
+                <legend>true</legend>
+                <categorize>1</categorize>
+                <interpolated>true</interpolated>
+                <annotated>true</annotated>
+            </diagramProperties>
+        </view.signal>
+    </view>
+    <view name="scanio">
+        <view.cursor name="A"/>
+        <view.cursor name="B" colorIdx="1"/>
+        <view.axis name="Primary Axis"/>
+        <view.axis name="Secondary Axis"/>
+        <view.signal name="wire0018" primarySource="scp0001/scp0002/wire0018" description="wire"/>
+        <view.signal name="rst0001" primarySource="scp0001/scp0002/rst0001" description="wire"/>
+        <view.signal name="real0001" primarySource="scp0001/scp0002/real0001" axisIdx="0" description="real" diagram="de.toem.impulse.diagram.chart.line" preferedHeight="219">
+            <diagramProperties len="1">
+                <categorize>1</categorize>
+            </diagramProperties>
+        </view.signal>
+        <view.signal name="wire0018 Phase Duration" primarySource="scp0001/scp0002/wire0018" description="wire" diagram="de.toem.impulse.diagram.line" induceProducer="de.toem.impulse.processor.expression" preferedHeight="262">
+            <induceProperties len="6">
+                <expression>(double)s0.getDuration()/1000000.0</expression>
+                <sampleType>3</sampleType>
+                <enableLogging>1</enableLogging>
+                <bins>-∞&lt;20&lt;30&lt;40&lt;50&lt;60&lt;70&lt;80&lt;90&lt;100&lt;200&lt;∞</bins>
+                <normalization>2</normalization>
+                <manualBins>0:0,1:1</manualBins>
+            </induceProperties>
+            <diagramProperties len="5">
+                <scaleType>1</scaleType>
+                <legend>true</legend>
+                <cutout>true</cutout>
+                <title>1</title>
+                <categorize>1</categorize>
+            </diagramProperties>
+        </view.signal>
+        <view.signal name="wire0018 Distribution" primarySource="//view/wire0018 Phase Duration" description="wire" diagram="de.toem.impulse.diagram.chart.pie" induceProducer="de.toem.impulse.processor.floatDistribution" preferedHeight="375">
+            <induceProperties len="2">
+                <bins>20&lt;30&lt;40&lt;50&lt;60&lt;70&lt;80&lt;90&lt;100&lt;200&lt;∞</bins>
+                <manualBins>0:0,1:1</manualBins>
+            </induceProperties>
+            <diagramProperties len="3">
+                <title>1</title>
+                <cutout>true</cutout>
+                <legend>true</legend>
+            </diagramProperties>
+        </view.signal>
+        <view.signal name="wire0018 Distribution High" primarySource="scp0001/scp0002/wire0018" description="wire" diagram="de.toem.impulse.diagram.chart.bar" induceProducer="de.toem.impulse.processor.floatDistribution" preferedHeight="136">
+            <induceProperties len="3">
+                <expression>s0.isHigh() ? (double)s0.getDuration()/1000000.0:null</expression>
+                <bins>-∞&lt;20&lt;30&lt;40&lt;50&lt;60&lt;70&lt;80&lt;90&lt;100&lt;200&lt;∞</bins>
+                <manualBins>0:0,1:1</manualBins>
+            </induceProperties>
+            <diagramProperties len="2">
+                <title>1</title>
+                <cutout>true</cutout>
+            </diagramProperties>
+        </view.signal>
+        <view.signal name="wire0018 Distribution Low" primarySource="scp0001/scp0002/wire0018" description="wire" diagram="de.toem.impulse.diagram.chart.bar" induceProducer="de.toem.impulse.processor.floatDistribution" preferedHeight="136" combine="1">
+            <induceProperties len="4">
+                <expression>s0.isLow() ? (double)s0.getDuration()/1000000.0:null</expression>
+                <bins>-∞&lt;20&lt;30&lt;40&lt;50&lt;60&lt;70&lt;80&lt;90&lt;100&lt;200&lt;∞</bins>
+                <enableLogging>1</enableLogging>
+                <manualBins>0:0,1:1</manualBins>
+            </induceProperties>
+            <diagramProperties len="2">
+                <title>1</title>
+                <cutout>true</cutout>
+            </diagramProperties>
+        </view.signal>
+    </view>
+    <view name="agento">
+        <view.signal name="wire0001" primarySource="scp0001/scp0002/wire0001" description="wire"/>
+        <view.signal name="wire0002" primarySource="scp0001/scp0002/wire0002" description="wire"/>
+        <view.signal name="wire0003" primarySource="scp0001/scp0002/wire0003" description="wire"/>
+        <view.signal name="wire0004" primarySource="scp0001/scp0002/wire0004" description="wire"/>
+        <view.signal name="wire0005" primarySource="scp0001/scp0002/wire0005" description="wire"/>
+        <view.signal name="wire0006" primarySource="scp0001/scp0002/wire0006" description="wire"/>
+        <view.signal name="clk0001" primarySource="scp0001/scp0002/clk0001" description="wire"/>
+        <view.signal name="wire0001" primarySource="scp0001/scp0003/wire0001" description="wire"/>
+        <view.signal name="wire0002" primarySource="scp0001/scp0003/wire0002" description="wire"/>
+        <view.signal name="wire0003" primarySource="scp0001/scp0003/wire0003" description="wire"/>
+        <view.signal name="wire0004" primarySource="scp0001/scp0003/wire0004" description="wire"/>
+        <view.signal name="wire0005" primarySource="scp0001/scp0003/wire0005" description="wire"/>
+        <view.signal name="wire0006" primarySource="scp0001/scp0003/wire0006" description="wire"/>
+        <view.signal name="clk0001" primarySource="scp0001/scp0003/clk0001" description="wire"/>
+        <view.cursor name="A"/>
+        <view.cursor name="B" colorIdx="1"/>
+        <view.axis name="Primary Axis"/>
+        <view.axis name="Secondary Axis"/>
+    </view>
+    <view name="strctevn">
+        <view.signal name="Integer1" primarySource="Signals/Integer1" diagram="de.toem.impulse.diagram.line" preferedHeight="92"/>
+        <view.signal name="Integer2" primarySource="Signals/Integer2"/>
+        <view.signal name="Event1" primarySource="Signals/Event1"/>
+        <view.signal name="Event2" primarySource="Signals/Event2"/>
+        <view.signal name="Event3" primarySource="Signals/Event3"/>
+        <view.signal name="Event4" primarySource="Signals/Event4"/>
+        <view.signal name="Struct1" primarySource="Signals/Struct1"/>
+        <view.signal name="Struct2" primarySource="Signals/Struct2"/>
+        <view.cursor name="A"/>
+        <view.cursor name="B" colorIdx="1"/>
+        <view.axis name="Primary Axis"/>
+        <view.axis name="Secondary Axis"/>
+        <view.signal name="Extract" primarySource="Signals/Struct2" diagram="de.toem.impulse.diagram.gantt" induceProducer="de.toem.impulse.processor.memberExtract" preferedHeight="78">
+            <induceProperties len="1">
+                <member>State</member>
+            </induceProperties>
+        </view.signal>
+    </view>
+    <view name="numeric">
+        <view.signal name="0-255" primarySource="Integers/0-255" description="Signal Description" diagram="de.toem.impulse.diagram.line" preferedHeight="77" colorIdx="5"/>
+        <view.signal name="-10000-40000" primarySource="Integers/-10000-40000" description="Signal Description" diagram="de.toem.impulse.diagram.line" preferedHeight="77" colorIdx="6"/>
+        <view.signal name="0-64535" primarySource="Integers/0-64535" description="Signal Description" diagram="de.toem.impulse.diagram.line" preferedHeight="77" colorIdx="7" combine="1"/>
+        <view.signal name="a double" primarySource="Floats/a double" preferedHeight="77" colorIdx="10"/>
+        <view.signal name="0-50000^2" primarySource="Integers/0-50000^2" diagram="de.toem.impulse.diagram.line" preferedHeight="77" colorIdx="11"/>
+        <view.signal name="another double" primarySource="Floats/another double" preferedHeight="77" colorIdx="9" combine="1"/>
+        <view.cursor name="A"/>
+        <view.cursor name="B" colorIdx="1"/>
+        <view.axis name="Primary Axis"/>
+        <view.axis name="Secondary Axis"/>
+        <view.signal name="Integration" primarySource="Integers/0-255" description="Signal Description" diagram="de.toem.impulse.diagram.line" induceProducer="de.toem.impulse.processor.expression#RectIntegration" preferedHeight="100" colorIdx="12"/>
+        <view.signal name="Combine" primarySource="Integers/0-255" description="Signal Description" diagram="de.toem.impulse.diagram.line" induceProducer="de.toem.impulse.processor.expression" preferedHeight="256" colorIdx="2">
+            <induceProperties len="2">
+                <expression>*s0**s1**s2</expression>
+                <sampleType>3</sampleType>
+            </induceProperties>
+            <view.source name="a" reference="Integers/0-64535"/>
+            <view.source name="b" reference="Floats/another double"/>
+        </view.signal>
+        <view.signal name="Derive" primarySource="//view/Combine" description="Signal Description" diagram="de.toem.impulse.diagram.line" induceProducer="de.toem.impulse.processor.expression#Derivation" preferedHeight="276" colorIdx="18">
+            <induceProperties len="1">
+                <expression>*s0</expression>
+            </induceProperties>
+        </view.signal>
+        <view.signal name="Trap" primarySource="//view/Combine" description="Signal Description" diagram="de.toem.impulse.diagram.line" induceProducer="de.toem.impulse.processor.expression#TrapIntegration" preferedHeight="136" colorIdx="24"/>
+        <view.signal name="Stat" primarySource="//view/Combine" diagram="de.toem.impulse.diagram.table" induceProducer="de.toem.impulse.processor.floatStatistics" preferedHeight="254">
+            <induceProperties len="10">
+                <expression>*s0*1.1</expression>
+                <aggPeakToPeak>true</aggPeakToPeak>
+                <aggSum>true</aggSum>
+                <aggRms>true</aggRms>
+                <aggEnergy>true</aggEnergy>
+                <aggStd>true</aggStd>
+                <aggVar>true</aggVar>
+                <aggCount>true</aggCount>
+                <aggRate>true</aggRate>
+                <domainRate>50us</domainRate>
+            </induceProperties>
+            <diagramProperties len="0"/>
+        </view.signal>
+    </view>
+    <view name="event">
+        <view.signal name="enum0" primarySource="Enums/enum0" diagram="de.toem.impulse.diagram.gantt" induceProducer="de.toem.impulse.processor.expressionFilter" preferedHeight="143">
+            <induceProperties len="1">
+                <expression>Math.random()&lt; 0.3</expression>
+            </induceProperties>
+            <diagramProperties len="1">
+                <relations>true</relations>
+            </diagramProperties>
+        </view.signal>
+        <view.signal name="enum1" primarySource="Enums/enum1" preferedHeight="143"/>
+        <view.signal name="enum2" primarySource="Enums/enum2" preferedHeight="143"/>
+        <view.cursor name="A"/>
+        <view.cursor name="B" colorIdx="1"/>
+        <view.axis name="Primary Axis"/>
+        <view.axis name="Secondary Axis"/>
+        <view.signal name="Stat" primarySource="//view/enum0" diagram="de.toem.impulse.diagram.chart.bar" induceProducer="de.toem.impulse.processor.enumDistribution" preferedHeight="139">
+            <induceProperties len="1">
+                <countUndefined>true</countUndefined>
+            </induceProperties>
+        </view.signal>
+        <view.signal name="Stat2" primarySource="//view/enum0" diagram="de.toem.impulse.diagram.chart.pie" induceProducer="de.toem.impulse.processor.enumDistribution" preferedHeight="187" combine="1">
+            <induceProperties len="1">
+                <domainRate>50us</domainRate>
+            </induceProperties>
+            <diagramProperties len="1">
+                <legend>true</legend>
+            </diagramProperties>
+        </view.signal>
+        <view.signal name="Bandwidth" primarySource="//view/enum0" diagram="de.toem.impulse.diagram.chart.line" induceProducer="de.toem.impulse.processor.floatStatistics" preferedHeight="497">
+            <induceProperties len="7">
+                <expression>(double)s0.getDuration()</expression>
+                <maxLimit>1000</maxLimit>
+                <aggMin>false</aggMin>
+                <aggMax>false</aggMax>
+                <aggMean>false</aggMean>
+                <aggRate>true</aggRate>
+                <domainRate>50us</domainRate>
+            </induceProperties>
+            <diagramProperties len="2">
+                <categorize>1</categorize>
+                <relations>true</relations>
+            </diagramProperties>
+        </view.signal>
+    </view>
+    <view name="arrays">
+        <view.signal name="array of integers" primarySource="Arrays/array of integers" description="2/4 elements" preferedHeight="69">
+            <view.deduced name=".z" primarySource="#z" diagram="de.toem.impulse.diagram.line"/>
+            <view.deduced name=".z(1)" primarySource="#z" diagram="de.toem.impulse.diagram.line"/>
+        </view.signal>
+        <view.signal name="array of floats" primarySource="Arrays/array of floats" description="2 elements" preferedHeight="69"/>
+        <view.signal name="array of enums" primarySource="Arrays/array of enums" description="8 elements" preferedHeight="69"/>
+        <view.signal name="Filtered array of enums" primarySource="Arrays/array of enums" description="8 elements" induceProducer="de.toem.impulse.processor.expressionFilter" preferedHeight="69">
+            <induceProperties len="1">
+                <expression>Math.random() &lt; 0.3</expression>
+            </induceProperties>
+        </view.signal>
+        <view.cursor name="A"/>
+        <view.cursor name="B" colorIdx="1"/>
+        <view.axis name="Primary Axis"/>
+        <view.axis name="Secondary Axis"/>
+        <view.signal name="Distribution of state" primarySource="//view/Filtered array of enums" diagram="de.toem.impulse.diagram.chart.bar" induceProducer="de.toem.impulse.processor.enumDistribution">
+            <induceProperties len="1">
+                <member>state</member>
+            </induceProperties>
+            <diagramProperties len="1">
+                <legend>true</legend>
+            </diagramProperties>
+            <view.deduced name=".-" primarySource="#-" diagram="de.toem.impulse.diagram.line">
+                <diagramProperties len="0"/>
+            </view.deduced>
+        </view.signal>
+        <view.signal name="Distribution of done" primarySource="//view/Filtered array of enums" diagram="de.toem.impulse.diagram.chart.pie" induceProducer="de.toem.impulse.processor.enumDistribution" colorIdx="9" combine="1">
+            <induceProperties len="2">
+                <member>done</member>
+                <normalization>1</normalization>
+            </induceProperties>
+            <diagramProperties len="1">
+                <legend>true</legend>
+            </diagramProperties>
+        </view.signal>
+        <view.signal name="New Array from components" induceProducer="de.toem.impulse.processor.array" colorIdx="6">
+            <view.source name=".x" reference="//view/array of integers#x"/>
+            <view.source name=".y" reference="//view/array of integers#y"/>
+        </view.signal>
+        <view.signal name="Distribution of state by sector" primarySource="//view/Filtered array of enums" diagram="de.toem.impulse.diagram.chart.line" induceProducer="de.toem.impulse.processor.enumDistribution" preferedHeight="333">
+            <induceProperties len="3">
+                <member>state</member>
+                <normalization>1</normalization>
+                <domainRate>20us</domainRate>
+            </induceProperties>
+            <diagramProperties len="2">
+                <legend>true</legend>
+                <categorize>1</categorize>
+            </diagramProperties>
+            <view.deduced name=".-" primarySource="#-" diagram="de.toem.impulse.diagram.line">
+                <diagramProperties len="0"/>
+            </view.deduced>
+        </view.signal>
+    </view>
+    <view name="tracflow">
+        <view.signal name="TR 1" primarySource="External Signals/TR 1" preferedHeight="379"/>
+        <view.signal name="TR 2" primarySource="External Signals/TR 2" preferedHeight="221"/>
+        <view.cursor name="A"/>
+        <view.cursor name="B" colorIdx="1"/>
+        <view.axis name="Primary Axis"/>
+        <view.axis name="Secondary Axis"/>
+        <view.signal name="Filtered 0x200" primarySource="External Signals/TR 2" induceProducer="de.toem.impulse.processor.expressionFilter" preferedHeight="221">
+            <induceProperties len="1">
+                <expression>s0.Data == 0x200</expression>
+            </induceProperties>
+        </view.signal>
+        <view.signal name="TR 1(1)" primarySource="External Signals/TR 1" preferedHeight="218"/>
+        <view.signal name="TR 2(1)" primarySource="External Signals/TR 2" preferedHeight="221"/>
+    </view>
+    <view name="colevent">
+        <view.signal name="Sin" primarySource="External Signals/Sin" diagram="de.toem.impulse.diagram.line" preferedHeight="92"/>
+        <view.signal name="Task 1" primarySource="Core 1/Task 1" diagram="de.toem.impulse.diagram.gantt" preferedHeight="67"/>
+        <view.signal name="Task 2" primarySource="Core 1/Task 2" diagram="de.toem.impulse.diagram.gantt" preferedHeight="67"/>
+        <view.signal name="E2 Events" primarySource="Core 1/E2 Events" colorIdx="0"/>
+        <view.signal name="E1 Events" primarySource="Core 1/E1 Events" colorIdx="1"/>
+        <view.signal name="E0 Events" primarySource="Core 1/E0 Events" colorIdx="2"/>
+        <view.signal name="CCG Events" primarySource="Core 1/CCG Events" colorIdx="3"/>
+        <view.signal name="AGR Events" primarySource="Core 1/AGR Events" colorIdx="4"/>
+        <view.signal name="GRU Events" primarySource="Core 1/GRU Events" colorIdx="5"/>
+        <view.signal name="Task with Labels" primarySource="Core 1/Task with Labels" diagram="de.toem.impulse.diagram.gantt" preferedHeight="67"/>
+        <view.signal name="User format" primarySource="Core 1/User format"/>
+        <view.cursor name="A"/>
+        <view.cursor name="B" colorIdx="1"/>
+        <view.axis name="Primary Axis"/>
+        <view.axis name="Secondary Axis"/>
+        <view.signal name="E0 Events w fixed Colors" primarySource="Core 1/E0 Events" diagram="de.toem.impulse.diagram.gantt" preferedHeight="68" colorIdx="2">
+            <diagramProperties len="1">
+                <colors>1:0x1,2:0x3,3:0x1f, 4:0x1e</colors>
+            </diagramProperties>
+        </view.signal>
+        <view.signal name="E0 Events w fixed Colors and Size" primarySource="Core 1/E0 Events" diagram="de.toem.impulse.diagram.gantt" preferedHeight="68" colorIdx="3">
+            <diagramProperties len="1">
+                <colors>1:0x101,2:0x203,3:0x31f, 4:0x21e</colors>
+            </diagramProperties>
+        </view.signal>
+    </view>
+    <view name="eccfmodx">
+        <view.signal name="Init" primarySource="Init"/>
+        <view.signal name="Generator" primarySource="Generator"/>
+        <view.signal name="Buffer" primarySource="Buffer"/>
+        <view.signal name="Count" primarySource="Count"/>
+        <view.signal name="Send" primarySource="Send"/>
+        <view.signal name="Logs" primarySource="Logs"/>
+        <view.cursor name="A"/>
+        <view.cursor name="B" colorIdx="1"/>
+        <view.axis name="Primary Axis"/>
+        <view.axis name="Secondary Axis"/>
+    </view>
+    <view name="vortec">
+        <view.cursor name="A"/>
+        <view.cursor name="B" colorIdx="1"/>
+        <view.axis name="Primary Axis"/>
+        <view.axis name="Secondary Axis"/>
+        <view.signal name="wire0001" primarySource="scp0001/wire0001" description="wire"/>
+        <view.signal name="clk0001" primarySource="scp0001/clk0001" description="reg"/>
+        <view.signal name="reg0001" primarySource="scp0001/reg0001" description="reg" diagram="de.toem.impulse.diagram.line" induceProducer="de.toem.impulse.processor.expression" preferedHeight="226" colorIdx="5">
+            <induceProperties len="1">
+                <expression>*s0</expression>
+            </induceProperties>
+            <diagramProperties len="3">
+                <annotated>true</annotated>
+                <scale>true</scale>
+                <scaleTo>10.0</scaleTo>
+            </diagramProperties>
+        </view.signal>
+        <view.signal name="reg0002" primarySource="scp0001/reg0002" description="reg" diagram="de.toem.impulse.diagram.line" induceProducer="de.toem.impulse.processor.expression" preferedHeight="226" colorIdx="5">
+            <induceProperties len="1">
+                <expression>*s0</expression>
+            </induceProperties>
+            <diagramProperties len="3">
+                <annotated>true</annotated>
+                <scale>true</scale>
+                <scaleTo>10.0</scaleTo>
+            </diagramProperties>
+        </view.signal>
+        <view.signal name="integer0001" primarySource="scp0001/integer0001" description="integer" diagram="de.toem.impulse.diagram.line" induceProducer="de.toem.impulse.processor.expression" preferedHeight="226" colorIdx="5">
+            <induceProperties len="1">
+                <expression>*s0</expression>
+            </induceProperties>
+            <diagramProperties len="3">
+                <annotated>true</annotated>
+                <scale>true</scale>
+                <scaleTo>10.0</scaleTo>
+            </diagramProperties>
+        </view.signal>
+        <view.signal name="reg0003" primarySource="scp0001/reg0003" description="reg"/>
+        <view.signal name="reg0004" primarySource="scp0001/reg0004" description="reg"/>
+        <view.signal name="wire4459" primarySource="scp0001/scp0002/scp0102/wire4459" description="wire"/>
+        <view.signal name="wire4458" primarySource="scp0001/scp0002/scp0102/wire4458" description="wire"/>
+        <view.signal name="wire4458(1)" primarySource="scp0001/scp0002/scp0103/wire4458" description="wire"/>
+        <view.signal name="wire4456" primarySource="scp0001/scp0002/scp0104/wire4456" description="wire"/>
+        <view.signal name="wire4458(2)" primarySource="scp0001/scp0002/scp0104/wire4458" description="wire"/>
+        <view.signal name="wire4456(1)" primarySource="scp0001/scp0002/scp0105/wire4456" description="wire"/>
+        <view.signal name="wire4457" primarySource="scp0001/scp0002/scp0105/wire4457" description="wire"/>
+        <view.signal name="wire4459(1)" primarySource="scp0001/scp0002/scp0105/wire4459" description="wire"/>
+        <view.signal name="Extract" primarySource="scp0001/integer0001" description="integer" diagram="de.toem.impulse.diagram.gantt" induceProducer="de.toem.impulse.processor.logicExtract" preferedHeight="86" colorIdx="5">
+            <induceProperties len="3">
+                <count>3</count>
+                <keepTags>false</keepTags>
+                <expression>*s0</expression>
+            </induceProperties>
+            <diagramProperties len="4">
+                <valueFormat>dec</valueFormat>
+                <scaleTo>10.0</scaleTo>
+                <scale>true</scale>
+                <annotated>true</annotated>
+            </diagramProperties>
+        </view.signal>
+        <view.signal name="wire4458(3)" primarySource="scp0001/scp0002/scp0003/wire4458" description="wire"/>
+    </view>
+    <view name="corelabx">
+        <view.signal name="Sin" primarySource="External Signals/Sin" diagram="de.toem.impulse.diagram.line" preferedHeight="89"/>
+        <view.signal name="Load1" primarySource="External Signals/Load1"/>
+        <view.signal name="Load2" primarySource="External Signals/Load2"/>
+        <view.signal name="Task 1" primarySource="Core 1/Task 1" diagram="de.toem.impulse.diagram.gantt" preferedHeight="86">
+            <diagramProperties len="1">
+                <relations>true</relations>
+            </diagramProperties>
+        </view.signal>
+        <view.signal name="Task 2" primarySource="Core 1/Task 2" diagram="de.toem.impulse.diagram.gantt" preferedHeight="86">
+            <diagramProperties len="1">
+                <relations>true</relations>
+            </diagramProperties>
+        </view.signal>
+        <view.signal name="Task 3" primarySource="Core 1/Task 3" diagram="de.toem.impulse.diagram.gantt" preferedHeight="86">
+            <diagramProperties len="1">
+                <relations>true</relations>
+            </diagramProperties>
+        </view.signal>
+        <view.signal name="Task 4" primarySource="Core 1/Task 4" diagram="de.toem.impulse.diagram.gantt" preferedHeight="86">
+            <diagramProperties len="1">
+                <relations>true</relations>
+            </diagramProperties>
+        </view.signal>
+        <view.signal name="Task 1" primarySource="Core 2/Task 1" diagram="de.toem.impulse.diagram.gantt" preferedHeight="86">
+            <diagramProperties len="1">
+                <relations>true</relations>
+            </diagramProperties>
+        </view.signal>
+        <view.signal name="Task 2" primarySource="Core 2/Task 2" diagram="de.toem.impulse.diagram.gantt" preferedHeight="86">
+            <diagramProperties len="1">
+                <relations>true</relations>
+            </diagramProperties>
+        </view.signal>
+        <view.signal name="Task 3" primarySource="Core 2/Task 3" diagram="de.toem.impulse.diagram.gantt" preferedHeight="86">
+            <diagramProperties len="1">
+                <relations>true</relations>
+            </diagramProperties>
+        </view.signal>
+        <view.signal name="Task 4" primarySource="Core 2/Task 4" diagram="de.toem.impulse.diagram.gantt" preferedHeight="86">
+            <diagramProperties len="1">
+                <relations>true</relations>
+            </diagramProperties>
+        </view.signal>
+        <view.signal name="AAX" primarySource="ISR/AAX" preferedHeight="90"/>
+        <view.signal name="AAY" primarySource="ISR/AAY" preferedHeight="90"/>
+        <view.cursor name="A"/>
+        <view.cursor name="B" colorIdx="1"/>
+        <view.axis name="Primary Axis"/>
+        <view.axis name="Secondary Axis"/>
+    </view>
+    <view name="t1001">
+        <view.signal name="buffer_0" primarySource="rtl_sim/wrapper/x_chi_intor/buffer_0" description="wire"/>
+        <view.signal name="buffer_1" primarySource="rtl_sim/wrapper/x_chi_intor/buffer_1" description="wire"/>
+        <view.signal name="txreq_lredits" primarySource="rtl_sim/wrapper/x_chi_intor/txreq_lredits" description="wire"/>
+        <view.signal name="x_chi_tx_dataflit" primarySource="rtl_sim/wrapper/x_chi_tx_dataflit" description="wire"/>
+        <view.signal name="x_chi_tx_reqflit" primarySource="rtl_sim/wrapper/x_chi_tx_reqflit" description="wire"/>
+        <view.signal name="x_chi_tx_rspflit" primarySource="rtl_sim/wrapper/x_chi_tx_rspflit" description="wire"/>
+        <view.signal name="x_chi_rx_dataflit" primarySource="rtl_sim/wrapper/x_chi_rx_dataflit" description="wire"/>
+        <view.signal name="x_chi_rx_snpflit" primarySource="rtl_sim/wrapper/x_chi_rx_snpflit" description="wire"/>
+        <view.signal name="x_chi_rx_rspflit" primarySource="rtl_sim/wrapper/x_chi_rx_rspflit" description="wire"/>
+        <view.signal name="x_ace_ar_addr" primarySource="rtl_sim/wrapper/x_ace_ar_addr" description="wire"/>
+        <view.signal name="x_ace_aw_addr" primarySource="rtl_sim/wrapper/x_ace_aw_addr" description="wire"/>
+        <view.signal name="x_ace_ac_addr" primarySource="rtl_sim/wrapper/x_ace_ac_addr" description="wire"/>
+        <view.signal name="x_axi4_ar_addr" primarySource="rtl_sim/wrapper/x_axi4_ar_addr" description="wire"/>
+        <view.signal name="x_axi4_aw_addr" primarySource="rtl_sim/wrapper/x_axi4_aw_addr" description="wire"/>
+        <view.signal name="mem_ar_addr" primarySource="rtl_sim/wrapper/mem_ar_addr" description="wire"/>
+        <view.signal name="mem_aw_addr" primarySource="rtl_sim/wrapper/mem_aw_addr" description="wire"/>
+        <view.signal name="per_ar_addr" primarySource="rtl_sim/wrapper/per_ar_addr" description="wire"/>
+        <view.signal name="per_aw_addr" primarySource="rtl_sim/wrapper/per_aw_addr" description="wire"/>
+        <view.signal name="x_chi_ctrltx_sactive" primarySource="rtl_sim/wrapper/x_chi_ctrltx_sactive" description="wire"/>
+        <view.signal name="x_chi_ctrltx_link_active_req" primarySource="rtl_sim/wrapper/x_chi_ctrltx_link_active_req" description="wire"/>
+        <view.signal name="x_chi_ctrltx_link_active_ack" primarySource="rtl_sim/wrapper/x_chi_ctrltx_link_active_ack" description="wire"/>
+        <view.signal name="x_chi_ctrlrx_sactive" primarySource="rtl_sim/wrapper/x_chi_ctrlrx_sactive" description="wire"/>
+        <view.signal name="x_chi_ctrlrx_link_active_req" primarySource="rtl_sim/wrapper/x_chi_ctrlrx_link_active_req" description="wire"/>
+        <view.signal name="x_chi_ctrlrx_link_active_ack" primarySource="rtl_sim/wrapper/x_chi_ctrlrx_link_active_ack" description="wire"/>
+        <view.signal name="x_chi_ctrlsysco_req" primarySource="rtl_sim/wrapper/x_chi_ctrlsysco_req" description="wire"/>
+        <view.signal name="x_chi_ctrlsysco_ack" primarySource="rtl_sim/wrapper/x_chi_ctrlsysco_ack" description="wire"/>
+        <view.signal name="x_chi_tx_datalcrdv" primarySource="rtl_sim/wrapper/x_chi_tx_datalcrdv" description="wire"/>
+        <view.signal name="x_chi_tx_dataflit_pend" primarySource="rtl_sim/wrapper/x_chi_tx_dataflit_pend" description="wire"/>
+        <view.signal name="x_chi_tx_dataflit_v" primarySource="rtl_sim/wrapper/x_chi_tx_dataflit_v" description="wire"/>
+        <view.signal name="x_chi_tx_reqlcrdv" primarySource="rtl_sim/wrapper/x_chi_tx_reqlcrdv" description="wire"/>
+        <view.signal name="x_chi_tx_reqflit_pend" primarySource="rtl_sim/wrapper/x_chi_tx_reqflit_pend" description="wire"/>
+        <view.signal name="x_chi_tx_reqflit_v" primarySource="rtl_sim/wrapper/x_chi_tx_reqflit_v" description="wire"/>
+        <view.signal name="x_chi_tx_rsplcrdv" primarySource="rtl_sim/wrapper/x_chi_tx_rsplcrdv" description="wire"/>
+        <view.signal name="x_chi_tx_rspflit_pend" primarySource="rtl_sim/wrapper/x_chi_tx_rspflit_pend" description="wire"/>
+        <view.signal name="x_chi_tx_rspflit_v" primarySource="rtl_sim/wrapper/x_chi_tx_rspflit_v" description="wire"/>
+        <view.signal name="x_chi_rx_datalcrdv" primarySource="rtl_sim/wrapper/x_chi_rx_datalcrdv" description="wire"/>
+        <view.signal name="x_chi_rx_dataflit_pend" primarySource="rtl_sim/wrapper/x_chi_rx_dataflit_pend" description="wire"/>
+        <view.signal name="x_chi_rx_dataflit_v" primarySource="rtl_sim/wrapper/x_chi_rx_dataflit_v" description="wire"/>
+        <view.signal name="x_chi_rx_snplcrdv" primarySource="rtl_sim/wrapper/x_chi_rx_snplcrdv" description="wire"/>
+        <view.signal name="x_chi_rx_snpflit_pend" primarySource="rtl_sim/wrapper/x_chi_rx_snpflit_pend" description="wire"/>
+        <view.signal name="x_chi_rx_snpflit_v" primarySource="rtl_sim/wrapper/x_chi_rx_snpflit_v" description="wire"/>
+        <view.signal name="x_chi_rx_rsplcrdv" primarySource="rtl_sim/wrapper/x_chi_rx_rsplcrdv" description="wire"/>
+        <view.signal name="x_chi_rx_rspflit_pend" primarySource="rtl_sim/wrapper/x_chi_rx_rspflit_pend" description="wire"/>
+        <view.signal name="x_chi_rx_rspflit_v" primarySource="rtl_sim/wrapper/x_chi_rx_rspflit_v" description="wire"/>
+        <view.signal name="x_ace_aw_id" primarySource="rtl_sim/wrapper/x_ace_aw_id" description="wire"/>
+        <view.signal name="x_ace_aw_ready" primarySource="rtl_sim/wrapper/x_ace_aw_ready" description="wire"/>
+        <view.signal name="x_ace_aw_lock" primarySource="rtl_sim/wrapper/x_ace_aw_lock" description="wire"/>
+        <view.signal name="x_ace_aw_valid" primarySource="rtl_sim/wrapper/x_ace_aw_valid" description="wire"/>
+        <view.signal name="x_ace_aw_prot" primarySource="rtl_sim/wrapper/x_ace_aw_prot" description="wire"/>
+        <view.signal name="x_ace_aw_size" primarySource="rtl_sim/wrapper/x_ace_aw_size" description="wire"/>
+        <view.signal name="x_ace_aw_cache" primarySource="rtl_sim/wrapper/x_ace_aw_cache" description="wire"/>
+        <view.signal name="x_ace_aw_burst" primarySource="rtl_sim/wrapper/x_ace_aw_burst" description="wire"/>
+        <view.signal name="x_ace_aw_qos" primarySource="rtl_sim/wrapper/x_ace_aw_qos" description="wire"/>
+        <view.signal name="x_ace_aw_region" primarySource="rtl_sim/wrapper/x_ace_aw_region" description="wire"/>
+        <view.signal name="x_ace_aw_len" primarySource="rtl_sim/wrapper/x_ace_aw_len" description="wire"/>
+        <view.signal name="x_ace_aw_domain" primarySource="rtl_sim/wrapper/x_ace_aw_domain" description="wire"/>
+        <view.signal name="x_ace_aw_snoop" primarySource="rtl_sim/wrapper/x_ace_aw_snoop" description="wire"/>
+        <view.signal name="x_ace_aw_bar" primarySource="rtl_sim/wrapper/x_ace_aw_bar" description="wire"/>
+        <view.signal name="x_ace_aw_unique" primarySource="rtl_sim/wrapper/x_ace_aw_unique" description="wire"/>
+        <view.signal name="x_ace_aw_user" primarySource="rtl_sim/wrapper/x_ace_aw_user" description="wire"/>
+        <view.signal name="x_ace_aw_stashniden" primarySource="rtl_sim/wrapper/x_ace_aw_stashniden" description="wire"/>
+        <view.signal name="x_ace_aw_stashnid" primarySource="rtl_sim/wrapper/x_ace_aw_stashnid" description="wire"/>
+        <view.signal name="x_ace_aw_stashlpiden" primarySource="rtl_sim/wrapper/x_ace_aw_stashlpiden" description="wire"/>
+        <view.signal name="x_ace_aw_stashlpid" primarySource="rtl_sim/wrapper/x_ace_aw_stashlpid" description="wire"/>
+        <view.signal name="x_ace_aw_atop" primarySource="rtl_sim/wrapper/x_ace_aw_atop" description="wire"/>
+        <view.signal name="x_ace_aw_trace" primarySource="rtl_sim/wrapper/x_ace_aw_trace" description="wire"/>
+        <view.signal name="x_ace_wdata_id" primarySource="rtl_sim/wrapper/x_ace_wdata_id" description="wire"/>
+        <view.signal name="x_ace_wdata_data" primarySource="rtl_sim/wrapper/x_ace_wdata_data" description="wire"/>
+        <view.signal name="x_ace_wdata_strb" primarySource="rtl_sim/wrapper/x_ace_wdata_strb" description="wire"/>
+        <view.signal name="x_ace_wdata_last" primarySource="rtl_sim/wrapper/x_ace_wdata_last" description="wire"/>
+        <view.signal name="x_ace_wdata_valid" primarySource="rtl_sim/wrapper/x_ace_wdata_valid" description="wire"/>
+        <view.signal name="x_ace_wdata_ready" primarySource="rtl_sim/wrapper/x_ace_wdata_ready" description="wire"/>
+        <view.signal name="x_ace_wdata_user" primarySource="rtl_sim/wrapper/x_ace_wdata_user" description="wire"/>
+        <view.signal name="x_ace_wdata_ack" primarySource="rtl_sim/wrapper/x_ace_wdata_ack" description="wire"/>
+        <view.signal name="x_ace_wdata_trace" primarySource="rtl_sim/wrapper/x_ace_wdata_trace" description="wire"/>
+        <view.signal name="x_ace_b_valid" primarySource="rtl_sim/wrapper/x_ace_b_valid" description="wire"/>
+        <view.signal name="x_ace_b_ready" primarySource="rtl_sim/wrapper/x_ace_b_ready" description="wire"/>
+        <view.signal name="x_ace_b_id" primarySource="rtl_sim/wrapper/x_ace_b_id" description="wire"/>
+        <view.signal name="x_ace_b_resp" primarySource="rtl_sim/wrapper/x_ace_b_resp" description="wire"/>
+        <view.signal name="x_ace_b_user" primarySource="rtl_sim/wrapper/x_ace_b_user" description="wire"/>
+        <view.signal name="x_ace_b_trace" primarySource="rtl_sim/wrapper/x_ace_b_trace" description="wire"/>
+        <view.signal name="x_ace_ar_id" primarySource="rtl_sim/wrapper/x_ace_ar_id" description="wire"/>
+        <view.signal name="x_ace_ar_len" primarySource="rtl_sim/wrapper/x_ace_ar_len" description="wire"/>
+        <view.signal name="x_ace_ar_size" primarySource="rtl_sim/wrapper/x_ace_ar_size" description="wire"/>
+        <view.signal name="x_ace_ar_burst" primarySource="rtl_sim/wrapper/x_ace_ar_burst" description="wire"/>
+        <view.signal name="x_ace_ar_lock" primarySource="rtl_sim/wrapper/x_ace_ar_lock" description="wire"/>
+        <view.signal name="x_ace_ar_cache" primarySource="rtl_sim/wrapper/x_ace_ar_cache" description="wire"/>
+        <view.signal name="x_ace_ar_prot" primarySource="rtl_sim/wrapper/x_ace_ar_prot" description="wire"/>
+        <view.signal name="x_ace_ar_qos" primarySource="rtl_sim/wrapper/x_ace_ar_qos" description="wire"/>
+        <view.signal name="x_ace_ar_region" primarySource="rtl_sim/wrapper/x_ace_ar_region" description="wire"/>
+        <view.signal name="x_ace_ar_valid" primarySource="rtl_sim/wrapper/x_ace_ar_valid" description="wire"/>
+        <view.signal name="x_ace_ar_ready" primarySource="rtl_sim/wrapper/x_ace_ar_ready" description="wire"/>
+        <view.signal name="x_ace_ar_domain" primarySource="rtl_sim/wrapper/x_ace_ar_domain" description="wire"/>
+        <view.signal name="x_ace_ar_snoop" primarySource="rtl_sim/wrapper/x_ace_ar_snoop" description="wire"/>
+        <view.signal name="x_ace_ar_bar" primarySource="rtl_sim/wrapper/x_ace_ar_bar" description="wire"/>
+        <view.signal name="x_ace_ar_user" primarySource="rtl_sim/wrapper/x_ace_ar_user" description="wire"/>
+        <view.signal name="x_ace_ar_trace" primarySource="rtl_sim/wrapper/x_ace_ar_trace" description="wire"/>
+        <view.signal name="x_ace_ar_vmidext" primarySource="rtl_sim/wrapper/x_ace_ar_vmidext" description="wire"/>
+        <view.signal name="x_ace_rresp_id" primarySource="rtl_sim/wrapper/x_ace_rresp_id" description="wire"/>
+        <view.signal name="x_ace_rresp_data" primarySource="rtl_sim/wrapper/x_ace_rresp_data" description="wire"/>
+        <view.signal name="x_ace_rresp_resp" primarySource="rtl_sim/wrapper/x_ace_rresp_resp" description="wire"/>
+        <view.signal name="x_ace_rresp_last" primarySource="rtl_sim/wrapper/x_ace_rresp_last" description="wire"/>
+        <view.signal name="x_ace_rresp_valid" primarySource="rtl_sim/wrapper/x_ace_rresp_valid" description="wire"/>
+        <view.signal name="x_ace_rresp_ready" primarySource="rtl_sim/wrapper/x_ace_rresp_ready" description="wire"/>
+        <view.signal name="x_ace_rresp_user" primarySource="rtl_sim/wrapper/x_ace_rresp_user" description="wire"/>
+        <view.signal name="x_ace_rresp_trace" primarySource="rtl_sim/wrapper/x_ace_rresp_trace" description="wire"/>
+        <view.signal name="x_ace_rresp_ack" primarySource="rtl_sim/wrapper/x_ace_rresp_ack" description="wire"/>
+        <view.signal name="x_ace_ac_valid" primarySource="rtl_sim/wrapper/x_ace_ac_valid" description="wire"/>
+        <view.signal name="x_ace_ac_ready" primarySource="rtl_sim/wrapper/x_ace_ac_ready" description="wire"/>
+        <view.signal name="x_ace_ac_snoop" primarySource="rtl_sim/wrapper/x_ace_ac_snoop" description="wire"/>
+        <view.signal name="x_ace_ac_prot" primarySource="rtl_sim/wrapper/x_ace_ac_prot" description="wire"/>
+        <view.signal name="x_ace_acavmidext" primarySource="rtl_sim/wrapper/x_ace_acavmidext" description="wire"/>
+        <view.signal name="x_ace_ac_trace" primarySource="rtl_sim/wrapper/x_ace_ac_trace" description="wire"/>
+        <view.signal name="x_ace_cr_valid" primarySource="rtl_sim/wrapper/x_ace_cr_valid" description="wire"/>
+        <view.signal name="x_ace_cr_ready" primarySource="rtl_sim/wrapper/x_ace_cr_ready" description="wire"/>
+        <view.signal name="x_ace_cr_resp" primarySource="rtl_sim/wrapper/x_ace_cr_resp" description="wire"/>
+        <view.signal name="x_ace_cr_trace" primarySource="rtl_sim/wrapper/x_ace_cr_trace" description="wire"/>
+        <view.signal name="x_ace_cd_valid" primarySource="rtl_sim/wrapper/x_ace_cd_valid" description="wire"/>
+        <view.signal name="x_ace_cd_ready" primarySource="rtl_sim/wrapper/x_ace_cd_ready" description="wire"/>
+        <view.signal name="x_ace_cd_data" primarySource="rtl_sim/wrapper/x_ace_cd_data" description="wire"/>
+        <view.signal name="x_ace_cd_last" primarySource="rtl_sim/wrapper/x_ace_cd_last" description="wire"/>
+        <view.signal name="x_axi4_aw_id" primarySource="rtl_sim/wrapper/x_axi4_aw_id" description="wire"/>
+        <view.signal name="x_axi4_aw_ready" primarySource="rtl_sim/wrapper/x_axi4_aw_ready" description="wire"/>
+        <view.signal name="x_axi4_aw_lock" primarySource="rtl_sim/wrapper/x_axi4_aw_lock" description="wire"/>
+        <view.signal name="x_axi4_aw_valid" primarySource="rtl_sim/wrapper/x_axi4_aw_valid" description="wire"/>
+        <view.signal name="x_axi4_aw_prot" primarySource="rtl_sim/wrapper/x_axi4_aw_prot" description="wire"/>
+        <view.signal name="x_axi4_aw_size" primarySource="rtl_sim/wrapper/x_axi4_aw_size" description="wire"/>
+        <view.signal name="x_axi4_aw_cache" primarySource="rtl_sim/wrapper/x_axi4_aw_cache" description="wire"/>
+        <view.signal name="x_axi4_aw_burst" primarySource="rtl_sim/wrapper/x_axi4_aw_burst" description="wire"/>
+        <view.signal name="x_axi4_aw_qos" primarySource="rtl_sim/wrapper/x_axi4_aw_qos" description="wire"/>
+        <view.signal name="x_axi4_aw_region" primarySource="rtl_sim/wrapper/x_axi4_aw_region" description="wire"/>
+        <view.signal name="x_axi4_aw_len" primarySource="rtl_sim/wrapper/x_axi4_aw_len" description="wire"/>
+        <view.signal name="x_axi4_aw_user" primarySource="rtl_sim/wrapper/x_axi4_aw_user" description="wire"/>
+        <view.signal name="x_axi4_aw_atop" primarySource="rtl_sim/wrapper/x_axi4_aw_atop" description="wire"/>
+        <view.signal name="x_axi4_wdata_id" primarySource="rtl_sim/wrapper/x_axi4_wdata_id" description="wire"/>
+        <view.signal name="x_axi4_wdata_data" primarySource="rtl_sim/wrapper/x_axi4_wdata_data" description="wire"/>
+        <view.signal name="x_axi4_wdata_strb" primarySource="rtl_sim/wrapper/x_axi4_wdata_strb" description="wire"/>
+        <view.signal name="x_axi4_wdata_last" primarySource="rtl_sim/wrapper/x_axi4_wdata_last" description="wire"/>
+        <view.signal name="x_axi4_wdata_valid" primarySource="rtl_sim/wrapper/x_axi4_wdata_valid" description="wire"/>
+        <view.signal name="x_axi4_wdata_ready" primarySource="rtl_sim/wrapper/x_axi4_wdata_ready" description="wire"/>
+        <view.signal name="x_axi4_wdata_user" primarySource="rtl_sim/wrapper/x_axi4_wdata_user" description="wire"/>
+        <view.signal name="x_axi4_wdata_ack" primarySource="rtl_sim/wrapper/x_axi4_wdata_ack" description="wire"/>
+        <view.signal name="x_axi4_wdata_trace" primarySource="rtl_sim/wrapper/x_axi4_wdata_trace" description="wire"/>
+        <view.signal name="x_axi4_b_valid" primarySource="rtl_sim/wrapper/x_axi4_b_valid" description="wire"/>
+        <view.signal name="x_axi4_b_ready" primarySource="rtl_sim/wrapper/x_axi4_b_ready" description="wire"/>
+        <view.signal name="x_axi4_b_id" primarySource="rtl_sim/wrapper/x_axi4_b_id" description="wire"/>
+        <view.signal name="x_axi4_b_resp" primarySource="rtl_sim/wrapper/x_axi4_b_resp" description="wire"/>
+        <view.signal name="x_axi4_b_user" primarySource="rtl_sim/wrapper/x_axi4_b_user" description="wire"/>
+        <view.signal name="x_axi4_b_trace" primarySource="rtl_sim/wrapper/x_axi4_b_trace" description="wire"/>
+        <view.signal name="x_axi4_ar_id" primarySource="rtl_sim/wrapper/x_axi4_ar_id" description="wire"/>
+        <view.signal name="x_axi4_ar_len" primarySource="rtl_sim/wrapper/x_axi4_ar_len" description="wire"/>
+        <view.signal name="x_axi4_ar_size" primarySource="rtl_sim/wrapper/x_axi4_ar_size" description="wire"/>
+        <view.signal name="x_axi4_ar_burst" primarySource="rtl_sim/wrapper/x_axi4_ar_burst" description="wire"/>
+        <view.signal name="x_axi4_ar_lock" primarySource="rtl_sim/wrapper/x_axi4_ar_lock" description="wire"/>
+        <view.signal name="x_axi4_ar_cache" primarySource="rtl_sim/wrapper/x_axi4_ar_cache" description="wire"/>
+        <view.signal name="x_axi4_ar_prot" primarySource="rtl_sim/wrapper/x_axi4_ar_prot" description="wire"/>
+        <view.signal name="x_axi4_ar_qos" primarySource="rtl_sim/wrapper/x_axi4_ar_qos" description="wire"/>
+        <view.signal name="x_axi4_ar_region" primarySource="rtl_sim/wrapper/x_axi4_ar_region" description="wire"/>
+        <view.signal name="x_axi4_ar_valid" primarySource="rtl_sim/wrapper/x_axi4_ar_valid" description="wire"/>
+        <view.signal name="x_axi4_ar_ready" primarySource="rtl_sim/wrapper/x_axi4_ar_ready" description="wire"/>
+        <view.signal name="x_axi4_ar_user" primarySource="rtl_sim/wrapper/x_axi4_ar_user" description="wire"/>
+        <view.signal name="x_axi4_rresp_id" primarySource="rtl_sim/wrapper/x_axi4_rresp_id" description="wire"/>
+        <view.signal name="x_axi4_rresp_data" primarySource="rtl_sim/wrapper/x_axi4_rresp_data" description="wire"/>
+        <view.signal name="x_axi4_rresp_resp" primarySource="rtl_sim/wrapper/x_axi4_rresp_resp" description="wire"/>
+        <view.signal name="x_axi4_rresp_last" primarySource="rtl_sim/wrapper/x_axi4_rresp_last" description="wire"/>
+        <view.signal name="x_axi4_rresp_valid" primarySource="rtl_sim/wrapper/x_axi4_rresp_valid" description="wire"/>
+        <view.signal name="x_axi4_rresp_ready" primarySource="rtl_sim/wrapper/x_axi4_rresp_ready" description="wire"/>
+        <view.signal name="x_axi4_rresp_user" primarySource="rtl_sim/wrapper/x_axi4_rresp_user" description="wire"/>
+        <view.signal name="x_axi4_rresp_trace" primarySource="rtl_sim/wrapper/x_axi4_rresp_trace" description="wire"/>
+        <view.signal name="mem_aw_id" primarySource="rtl_sim/wrapper/mem_aw_id" description="wire"/>
+        <view.signal name="mem_aw_ready" primarySource="rtl_sim/wrapper/mem_aw_ready" description="wire"/>
+        <view.signal name="mem_aw_lock" primarySource="rtl_sim/wrapper/mem_aw_lock" description="wire"/>
+        <view.signal name="mem_aw_valid" primarySource="rtl_sim/wrapper/mem_aw_valid" description="wire"/>
+        <view.signal name="mem_aw_prot" primarySource="rtl_sim/wrapper/mem_aw_prot" description="wire"/>
+        <view.signal name="mem_aw_size" primarySource="rtl_sim/wrapper/mem_aw_size" description="wire"/>
+        <view.signal name="mem_aw_cache" primarySource="rtl_sim/wrapper/mem_aw_cache" description="wire"/>
+        <view.signal name="mem_aw_burst" primarySource="rtl_sim/wrapper/mem_aw_burst" description="wire"/>
+        <view.signal name="mem_aw_qos" primarySource="rtl_sim/wrapper/mem_aw_qos" description="wire"/>
+        <view.signal name="mem_aw_region" primarySource="rtl_sim/wrapper/mem_aw_region" description="wire"/>
+        <view.signal name="mem_aw_len" primarySource="rtl_sim/wrapper/mem_aw_len" description="wire"/>
+        <view.signal name="mem_aw_user" primarySource="rtl_sim/wrapper/mem_aw_user" description="wire"/>
+        <view.signal name="mem_aw_atop" primarySource="rtl_sim/wrapper/mem_aw_atop" description="wire"/>
+        <view.signal name="mem_wdata_id" primarySource="rtl_sim/wrapper/mem_wdata_id" description="wire"/>
+        <view.signal name="mem_wdata_data" primarySource="rtl_sim/wrapper/mem_wdata_data" description="wire"/>
+        <view.signal name="mem_wdata_strb" primarySource="rtl_sim/wrapper/mem_wdata_strb" description="wire"/>
+        <view.signal name="mem_wdata_last" primarySource="rtl_sim/wrapper/mem_wdata_last" description="wire"/>
+        <view.signal name="mem_wdata_valid" primarySource="rtl_sim/wrapper/mem_wdata_valid" description="wire"/>
+        <view.signal name="mem_wdata_ready" primarySource="rtl_sim/wrapper/mem_wdata_ready" description="wire"/>
+        <view.signal name="mem_wdata_user" primarySource="rtl_sim/wrapper/mem_wdata_user" description="wire"/>
+        <view.signal name="mem_wdata_ack" primarySource="rtl_sim/wrapper/mem_wdata_ack" description="wire"/>
+        <view.signal name="mem_wdata_trace" primarySource="rtl_sim/wrapper/mem_wdata_trace" description="wire"/>
+        <view.signal name="mem_b_valid" primarySource="rtl_sim/wrapper/mem_b_valid" description="wire"/>
+        <view.signal name="mem_b_ready" primarySource="rtl_sim/wrapper/mem_b_ready" description="wire"/>
+        <view.signal name="mem_b_id" primarySource="rtl_sim/wrapper/mem_b_id" description="wire"/>
+        <view.signal name="mem_b_resp" primarySource="rtl_sim/wrapper/mem_b_resp" description="wire"/>
+        <view.signal name="mem_b_user" primarySource="rtl_sim/wrapper/mem_b_user" description="wire"/>
+        <view.signal name="mem_b_trace" primarySource="rtl_sim/wrapper/mem_b_trace" description="wire"/>
+        <view.signal name="mem_ar_id" primarySource="rtl_sim/wrapper/mem_ar_id" description="wire"/>
+        <view.signal name="mem_ar_len" primarySource="rtl_sim/wrapper/mem_ar_len" description="wire"/>
+        <view.signal name="mem_ar_size" primarySource="rtl_sim/wrapper/mem_ar_size" description="wire"/>
+        <view.signal name="mem_ar_burst" primarySource="rtl_sim/wrapper/mem_ar_burst" description="wire"/>
+        <view.signal name="mem_ar_lock" primarySource="rtl_sim/wrapper/mem_ar_lock" description="wire"/>
+        <view.signal name="mem_ar_cache" primarySource="rtl_sim/wrapper/mem_ar_cache" description="wire"/>
+        <view.signal name="mem_ar_prot" primarySource="rtl_sim/wrapper/mem_ar_prot" description="wire"/>
+        <view.signal name="mem_ar_qos" primarySource="rtl_sim/wrapper/mem_ar_qos" description="wire"/>
+        <view.signal name="mem_ar_region" primarySource="rtl_sim/wrapper/mem_ar_region" description="wire"/>
+        <view.signal name="mem_ar_valid" primarySource="rtl_sim/wrapper/mem_ar_valid" description="wire"/>
+        <view.signal name="mem_ar_ready" primarySource="rtl_sim/wrapper/mem_ar_ready" description="wire"/>
+        <view.signal name="mem_ar_user" primarySource="rtl_sim/wrapper/mem_ar_user" description="wire"/>
+        <view.signal name="mem_rresp_id" primarySource="rtl_sim/wrapper/mem_rresp_id" description="wire"/>
+        <view.signal name="mem_rresp_data" primarySource="rtl_sim/wrapper/mem_rresp_data" description="wire"/>
+        <view.signal name="mem_rresp_resp" primarySource="rtl_sim/wrapper/mem_rresp_resp" description="wire"/>
+        <view.signal name="mem_rresp_last" primarySource="rtl_sim/wrapper/mem_rresp_last" description="wire"/>
+        <view.signal name="mem_rresp_valid" primarySource="rtl_sim/wrapper/mem_rresp_valid" description="wire"/>
+        <view.signal name="mem_rresp_ready" primarySource="rtl_sim/wrapper/mem_rresp_ready" description="wire"/>
+        <view.signal name="mem_rresp_user" primarySource="rtl_sim/wrapper/mem_rresp_user" description="wire"/>
+        <view.signal name="mem_rresp_trace" primarySource="rtl_sim/wrapper/mem_rresp_trace" description="wire"/>
+        <view.signal name="per_aw_id" primarySource="rtl_sim/wrapper/per_aw_id" description="wire"/>
+        <view.signal name="per_aw_ready" primarySource="rtl_sim/wrapper/per_aw_ready" description="wire"/>
+        <view.signal name="per_aw_lock" primarySource="rtl_sim/wrapper/per_aw_lock" description="wire"/>
+        <view.signal name="per_aw_valid" primarySource="rtl_sim/wrapper/per_aw_valid" description="wire"/>
+        <view.signal name="per_aw_prot" primarySource="rtl_sim/wrapper/per_aw_prot" description="wire"/>
+        <view.signal name="per_aw_size" primarySource="rtl_sim/wrapper/per_aw_size" description="wire"/>
+        <view.signal name="per_aw_cache" primarySource="rtl_sim/wrapper/per_aw_cache" description="wire"/>
+        <view.signal name="per_aw_burst" primarySource="rtl_sim/wrapper/per_aw_burst" description="wire"/>
+        <view.signal name="per_aw_qos" primarySource="rtl_sim/wrapper/per_aw_qos" description="wire"/>
+        <view.signal name="per_aw_region" primarySource="rtl_sim/wrapper/per_aw_region" description="wire"/>
+        <view.signal name="per_aw_len" primarySource="rtl_sim/wrapper/per_aw_len" description="wire"/>
+        <view.signal name="per_aw_user" primarySource="rtl_sim/wrapper/per_aw_user" description="wire"/>
+        <view.signal name="per_aw_atop" primarySource="rtl_sim/wrapper/per_aw_atop" description="wire"/>
+        <view.signal name="per_wdata_id" primarySource="rtl_sim/wrapper/per_wdata_id" description="wire"/>
+        <view.signal name="per_wdata_data" primarySource="rtl_sim/wrapper/per_wdata_data" description="wire"/>
+        <view.signal name="per_wdata_strb" primarySource="rtl_sim/wrapper/per_wdata_strb" description="wire"/>
+        <view.signal name="per_wdata_last" primarySource="rtl_sim/wrapper/per_wdata_last" description="wire"/>
+        <view.signal name="per_wdata_valid" primarySource="rtl_sim/wrapper/per_wdata_valid" description="wire"/>
+        <view.signal name="per_wdata_ready" primarySource="rtl_sim/wrapper/per_wdata_ready" description="wire"/>
+        <view.signal name="per_wdata_user" primarySource="rtl_sim/wrapper/per_wdata_user" description="wire"/>
+        <view.signal name="per_wdata_ack" primarySource="rtl_sim/wrapper/per_wdata_ack" description="wire"/>
+        <view.signal name="per_wdata_trace" primarySource="rtl_sim/wrapper/per_wdata_trace" description="wire"/>
+        <view.signal name="per_b_valid" primarySource="rtl_sim/wrapper/per_b_valid" description="wire"/>
+        <view.signal name="per_b_ready" primarySource="rtl_sim/wrapper/per_b_ready" description="wire"/>
+        <view.signal name="per_b_id" primarySource="rtl_sim/wrapper/per_b_id" description="wire"/>
+        <view.signal name="per_b_resp" primarySource="rtl_sim/wrapper/per_b_resp" description="wire"/>
+        <view.signal name="per_b_user" primarySource="rtl_sim/wrapper/per_b_user" description="wire"/>
+        <view.signal name="per_b_trace" primarySource="rtl_sim/wrapper/per_b_trace" description="wire"/>
+        <view.signal name="per_ar_id" primarySource="rtl_sim/wrapper/per_ar_id" description="wire"/>
+        <view.signal name="per_ar_len" primarySource="rtl_sim/wrapper/per_ar_len" description="wire"/>
+        <view.signal name="per_ar_size" primarySource="rtl_sim/wrapper/per_ar_size" description="wire"/>
+        <view.signal name="per_ar_burst" primarySource="rtl_sim/wrapper/per_ar_burst" description="wire"/>
+        <view.signal name="per_ar_lock" primarySource="rtl_sim/wrapper/per_ar_lock" description="wire"/>
+        <view.signal name="per_ar_cache" primarySource="rtl_sim/wrapper/per_ar_cache" description="wire"/>
+        <view.signal name="per_ar_prot" primarySource="rtl_sim/wrapper/per_ar_prot" description="wire"/>
+        <view.signal name="per_ar_qos" primarySource="rtl_sim/wrapper/per_ar_qos" description="wire"/>
+        <view.signal name="per_ar_region" primarySource="rtl_sim/wrapper/per_ar_region" description="wire"/>
+        <view.signal name="per_ar_valid" primarySource="rtl_sim/wrapper/per_ar_valid" description="wire"/>
+        <view.signal name="per_ar_ready" primarySource="rtl_sim/wrapper/per_ar_ready" description="wire"/>
+        <view.signal name="per_ar_user" primarySource="rtl_sim/wrapper/per_ar_user" description="wire"/>
+        <view.signal name="per_rresp_id" primarySource="rtl_sim/wrapper/per_rresp_id" description="wire"/>
+        <view.signal name="per_rresp_data" primarySource="rtl_sim/wrapper/per_rresp_data" description="wire"/>
+        <view.signal name="per_rresp_resp" primarySource="rtl_sim/wrapper/per_rresp_resp" description="wire"/>
+        <view.signal name="per_rresp_last" primarySource="rtl_sim/wrapper/per_rresp_last" description="wire"/>
+        <view.signal name="per_rresp_valid" primarySource="rtl_sim/wrapper/per_rresp_valid" description="wire"/>
+        <view.signal name="per_rresp_ready" primarySource="rtl_sim/wrapper/per_rresp_ready" description="wire"/>
+        <view.signal name="per_rresp_user" primarySource="rtl_sim/wrapper/per_rresp_user" description="wire"/>
+        <view.signal name="per_rresp_trace" primarySource="rtl_sim/wrapper/per_rresp_trace" description="wire"/>
+        <view.signal name="dbg_atu_paddr" primarySource="rtl_sim/wrapper/dbg_atu_paddr" description="wire"/>
+        <view.signal name="dbg_atu_psel" primarySource="rtl_sim/wrapper/dbg_atu_psel" description="wire"/>
+        <view.signal name="dbg_atu_penable" primarySource="rtl_sim/wrapper/dbg_atu_penable" description="wire"/>
+        <view.signal name="dbg_atu_pwrite" primarySource="rtl_sim/wrapper/dbg_atu_pwrite" description="wire"/>
+        <view.signal name="dbg_atu_prot" primarySource="rtl_sim/wrapper/dbg_atu_prot" description="wire"/>
+        <view.signal name="dbg_atu_pwdata" primarySource="rtl_sim/wrapper/dbg_atu_pwdata" description="wire"/>
+        <view.signal name="dbg_atu_pstrb" primarySource="rtl_sim/wrapper/dbg_atu_pstrb" description="wire"/>
+        <view.signal name="dbg_atu_pready" primarySource="rtl_sim/wrapper/dbg_atu_pready" description="wire"/>
+        <view.signal name="dbg_atu_prdata" primarySource="rtl_sim/wrapper/dbg_atu_prdata" description="wire"/>
+        <view.signal name="dbg_atu_pslverr" primarySource="rtl_sim/wrapper/dbg_atu_pslverr" description="wire"/>
+        <view.signal name="clk1_sub_domain_test_en" primarySource="rtl_sim/wrapper/clk1_sub_domain_test_en" description="wire"/>
+        <view.signal name="clk2_sub_domain_test_en" primarySource="rtl_sim/wrapper/clk2_sub_domain_test_en" description="wire"/>
+        <view.signal name="x_chi_evento_req" primarySource="rtl_sim/wrapper/x_chi_evento_req" description="wire"/>
+        <view.signal name="x_chi_evento_ack" primarySource="rtl_sim/wrapper/x_chi_evento_ack" description="wire"/>
+        <view.signal name="x_ace_evento_req" primarySource="rtl_sim/wrapper/x_ace_evento_req" description="wire"/>
+        <view.signal name="x_ace_evento_ack" primarySource="rtl_sim/wrapper/x_ace_evento_ack" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_0_TEST1A" primarySource="rtl_sim/wrapper/h20_sf0_TagMem_way_0_TEST1A" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_0_TEST1B" primarySource="rtl_sim/wrapper/h20_sf0_TagMem_way_0_TEST1B" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_0_RMEA" primarySource="rtl_sim/wrapper/h20_sf0_TagMem_way_0_RMEA" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_0_RMEB" primarySource="rtl_sim/wrapper/h20_sf0_TagMem_way_0_RMEB" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_0_RMA" primarySource="rtl_sim/wrapper/h20_sf0_TagMem_way_0_RMA" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_0_RMB" primarySource="rtl_sim/wrapper/h20_sf0_TagMem_way_0_RMB" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_0_LS" primarySource="rtl_sim/wrapper/h20_sf0_TagMem_way_0_LS" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_1_TEST1A" primarySource="rtl_sim/wrapper/h20_sf0_TagMem_way_1_TEST1A" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_1_TEST1B" primarySource="rtl_sim/wrapper/h20_sf0_TagMem_way_1_TEST1B" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_1_RMEA" primarySource="rtl_sim/wrapper/h20_sf0_TagMem_way_1_RMEA" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_1_RMEB" primarySource="rtl_sim/wrapper/h20_sf0_TagMem_way_1_RMEB" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_1_RMA" primarySource="rtl_sim/wrapper/h20_sf0_TagMem_way_1_RMA" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_1_RMB" primarySource="rtl_sim/wrapper/h20_sf0_TagMem_way_1_RMB" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_1_LS" primarySource="rtl_sim/wrapper/h20_sf0_TagMem_way_1_LS" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_2_TEST1A" primarySource="rtl_sim/wrapper/h20_sf0_TagMem_way_2_TEST1A" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_2_TEST1B" primarySource="rtl_sim/wrapper/h20_sf0_TagMem_way_2_TEST1B" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_2_RMEA" primarySource="rtl_sim/wrapper/h20_sf0_TagMem_way_2_RMEA" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_2_RMEB" primarySource="rtl_sim/wrapper/h20_sf0_TagMem_way_2_RMEB" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_2_RMA" primarySource="rtl_sim/wrapper/h20_sf0_TagMem_way_2_RMA" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_2_RMB" primarySource="rtl_sim/wrapper/h20_sf0_TagMem_way_2_RMB" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_2_LS" primarySource="rtl_sim/wrapper/h20_sf0_TagMem_way_2_LS" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_3_TEST1A" primarySource="rtl_sim/wrapper/h20_sf0_TagMem_way_3_TEST1A" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_3_TEST1B" primarySource="rtl_sim/wrapper/h20_sf0_TagMem_way_3_TEST1B" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_3_RMEA" primarySource="rtl_sim/wrapper/h20_sf0_TagMem_way_3_RMEA" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_3_RMEB" primarySource="rtl_sim/wrapper/h20_sf0_TagMem_way_3_RMEB" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_3_RMA" primarySource="rtl_sim/wrapper/h20_sf0_TagMem_way_3_RMA" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_3_RMB" primarySource="rtl_sim/wrapper/h20_sf0_TagMem_way_3_RMB" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_3_LS" primarySource="rtl_sim/wrapper/h20_sf0_TagMem_way_3_LS" description="wire"/>
+        <view.signal name="x_chi_eventi_req" primarySource="rtl_sim/wrapper/x_chi_eventi_req" description="wire"/>
+        <view.signal name="x_chi_eventi_ack" primarySource="rtl_sim/wrapper/x_chi_eventi_ack" description="wire"/>
+        <view.signal name="x_ace_eventi_req" primarySource="rtl_sim/wrapper/x_ace_eventi_req" description="wire"/>
+        <view.signal name="x_ace_eventi_ack" primarySource="rtl_sim/wrapper/x_ace_eventi_ack" description="wire"/>
+        <view.signal name="x_chi_irq_c" primarySource="rtl_sim/wrapper/x_chi_irq_c" description="wire"/>
+        <view.signal name="x_chi_irq_uc" primarySource="rtl_sim/wrapper/x_chi_irq_uc" description="wire"/>
+        <view.signal name="x_ace_irq_c" primarySource="rtl_sim/wrapper/x_ace_irq_c" description="wire"/>
+        <view.signal name="x_ace_irq_uc" primarySource="rtl_sim/wrapper/x_ace_irq_uc" description="wire"/>
+        <view.signal name="x_axi4_irq_c" primarySource="rtl_sim/wrapper/x_axi4_irq_c" description="wire"/>
+        <view.signal name="x_axi4_irq_uc" primarySource="rtl_sim/wrapper/x_axi4_irq_uc" description="wire"/>
+        <view.signal name="mem_irq_c" primarySource="rtl_sim/wrapper/mem_irq_c" description="wire"/>
+        <view.signal name="mem_irq_uc" primarySource="rtl_sim/wrapper/mem_irq_uc" description="wire"/>
+        <view.signal name="per_irq_c" primarySource="rtl_sim/wrapper/per_irq_c" description="wire"/>
+        <view.signal name="per_irq_uc" primarySource="rtl_sim/wrapper/per_irq_uc" description="wire"/>
+        <view.signal name="h30_irq_c" primarySource="rtl_sim/wrapper/h30_irq_c" description="wire"/>
+        <view.signal name="h30_irq_uc" primarySource="rtl_sim/wrapper/h30_irq_uc" description="wire"/>
+        <view.signal name="h20_irq_c" primarySource="rtl_sim/wrapper/h20_irq_c" description="wire"/>
+        <view.signal name="h20_irq_uc" primarySource="rtl_sim/wrapper/h20_irq_uc" description="wire"/>
+        <view.signal name="sys_dii_irq_c" primarySource="rtl_sim/wrapper/sys_dii_irq_c" description="wire"/>
+        <view.signal name="sys_dii_irq_uc" primarySource="rtl_sim/wrapper/sys_dii_irq_uc" description="wire"/>
+        <view.signal name="rst" primarySource="rtl_sim/rst" description="wire"/>
+        <view.signal name="rst_n" primarySource="rtl_sim/rst_n" description="wire"/>
+        <view.signal name="pv_clock" primarySource="rtl_sim/pv_clock" description="wire"/>
+        <view.signal name="clk1" primarySource="rtl_sim/clk1" description="wire"/>
+        <view.signal name="clk2" primarySource="rtl_sim/clk2" description="wire"/>
+        <view.signal name="buffer_0" primarySource="rtl_sim/rtl_sim/wrapper/x_chi_intor/buffer_0" description="wire"/>
+        <view.signal name="buffer_1" primarySource="rtl_sim/rtl_sim/wrapper/x_chi_intor/buffer_1" description="wire"/>
+        <view.signal name="txreq_lredits" primarySource="rtl_sim/rtl_sim/wrapper/x_chi_intor/txreq_lredits" description="wire"/>
+        <view.signal name="x_chi_tx_dataflit" primarySource="rtl_sim/rtl_sim/wrapper/x_chi_tx_dataflit" description="wire"/>
+        <view.signal name="x_chi_tx_reqflit" primarySource="rtl_sim/rtl_sim/wrapper/x_chi_tx_reqflit" description="wire"/>
+        <view.signal name="x_chi_tx_rspflit" primarySource="rtl_sim/rtl_sim/wrapper/x_chi_tx_rspflit" description="wire"/>
+        <view.signal name="x_chi_rx_dataflit" primarySource="rtl_sim/rtl_sim/wrapper/x_chi_rx_dataflit" description="wire"/>
+        <view.signal name="x_chi_rx_snpflit" primarySource="rtl_sim/rtl_sim/wrapper/x_chi_rx_snpflit" description="wire"/>
+        <view.signal name="x_chi_rx_rspflit" primarySource="rtl_sim/rtl_sim/wrapper/x_chi_rx_rspflit" description="wire"/>
+        <view.signal name="x_ace_ar_addr" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_ar_addr" description="wire"/>
+        <view.signal name="x_ace_aw_addr" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_aw_addr" description="wire"/>
+        <view.signal name="x_ace_ac_addr" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_ac_addr" description="wire"/>
+        <view.signal name="x_axi4_ar_addr" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_ar_addr" description="wire"/>
+        <view.signal name="x_axi4_aw_addr" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_aw_addr" description="wire"/>
+        <view.signal name="mem_ar_addr" primarySource="rtl_sim/rtl_sim/wrapper/mem_ar_addr" description="wire"/>
+        <view.signal name="mem_aw_addr" primarySource="rtl_sim/rtl_sim/wrapper/mem_aw_addr" description="wire"/>
+        <view.signal name="per_ar_addr" primarySource="rtl_sim/rtl_sim/wrapper/per_ar_addr" description="wire"/>
+        <view.signal name="per_aw_addr" primarySource="rtl_sim/rtl_sim/wrapper/per_aw_addr" description="wire"/>
+        <view.signal name="x_chi_ctrltx_sactive" primarySource="rtl_sim/rtl_sim/wrapper/x_chi_ctrltx_sactive" description="wire"/>
+        <view.signal name="x_chi_ctrltx_link_active_req" primarySource="rtl_sim/rtl_sim/wrapper/x_chi_ctrltx_link_active_req" description="wire"/>
+        <view.signal name="x_chi_ctrltx_link_active_ack" primarySource="rtl_sim/rtl_sim/wrapper/x_chi_ctrltx_link_active_ack" description="wire"/>
+        <view.signal name="x_chi_ctrlrx_sactive" primarySource="rtl_sim/rtl_sim/wrapper/x_chi_ctrlrx_sactive" description="wire"/>
+        <view.signal name="x_chi_ctrlrx_link_active_req" primarySource="rtl_sim/rtl_sim/wrapper/x_chi_ctrlrx_link_active_req" description="wire"/>
+        <view.signal name="x_chi_ctrlrx_link_active_ack" primarySource="rtl_sim/rtl_sim/wrapper/x_chi_ctrlrx_link_active_ack" description="wire"/>
+        <view.signal name="x_chi_ctrlsysco_req" primarySource="rtl_sim/rtl_sim/wrapper/x_chi_ctrlsysco_req" description="wire"/>
+        <view.signal name="x_chi_ctrlsysco_ack" primarySource="rtl_sim/rtl_sim/wrapper/x_chi_ctrlsysco_ack" description="wire"/>
+        <view.signal name="x_chi_tx_datalcrdv" primarySource="rtl_sim/rtl_sim/wrapper/x_chi_tx_datalcrdv" description="wire"/>
+        <view.signal name="x_chi_tx_dataflit_pend" primarySource="rtl_sim/rtl_sim/wrapper/x_chi_tx_dataflit_pend" description="wire"/>
+        <view.signal name="x_chi_tx_dataflit_v" primarySource="rtl_sim/rtl_sim/wrapper/x_chi_tx_dataflit_v" description="wire"/>
+        <view.signal name="x_chi_tx_reqlcrdv" primarySource="rtl_sim/rtl_sim/wrapper/x_chi_tx_reqlcrdv" description="wire"/>
+        <view.signal name="x_chi_tx_reqflit_pend" primarySource="rtl_sim/rtl_sim/wrapper/x_chi_tx_reqflit_pend" description="wire"/>
+        <view.signal name="x_chi_tx_reqflit_v" primarySource="rtl_sim/rtl_sim/wrapper/x_chi_tx_reqflit_v" description="wire"/>
+        <view.signal name="x_chi_tx_rsplcrdv" primarySource="rtl_sim/rtl_sim/wrapper/x_chi_tx_rsplcrdv" description="wire"/>
+        <view.signal name="x_chi_tx_rspflit_pend" primarySource="rtl_sim/rtl_sim/wrapper/x_chi_tx_rspflit_pend" description="wire"/>
+        <view.signal name="x_chi_tx_rspflit_v" primarySource="rtl_sim/rtl_sim/wrapper/x_chi_tx_rspflit_v" description="wire"/>
+        <view.signal name="x_chi_rx_datalcrdv" primarySource="rtl_sim/rtl_sim/wrapper/x_chi_rx_datalcrdv" description="wire"/>
+        <view.signal name="x_chi_rx_dataflit_pend" primarySource="rtl_sim/rtl_sim/wrapper/x_chi_rx_dataflit_pend" description="wire"/>
+        <view.signal name="x_chi_rx_dataflit_v" primarySource="rtl_sim/rtl_sim/wrapper/x_chi_rx_dataflit_v" description="wire"/>
+        <view.signal name="x_chi_rx_snplcrdv" primarySource="rtl_sim/rtl_sim/wrapper/x_chi_rx_snplcrdv" description="wire"/>
+        <view.signal name="x_chi_rx_snpflit_pend" primarySource="rtl_sim/rtl_sim/wrapper/x_chi_rx_snpflit_pend" description="wire"/>
+        <view.signal name="x_chi_rx_snpflit_v" primarySource="rtl_sim/rtl_sim/wrapper/x_chi_rx_snpflit_v" description="wire"/>
+        <view.signal name="x_chi_rx_rsplcrdv" primarySource="rtl_sim/rtl_sim/wrapper/x_chi_rx_rsplcrdv" description="wire"/>
+        <view.signal name="x_chi_rx_rspflit_pend" primarySource="rtl_sim/rtl_sim/wrapper/x_chi_rx_rspflit_pend" description="wire"/>
+        <view.signal name="x_chi_rx_rspflit_v" primarySource="rtl_sim/rtl_sim/wrapper/x_chi_rx_rspflit_v" description="wire"/>
+        <view.signal name="x_ace_aw_id" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_aw_id" description="wire"/>
+        <view.signal name="x_ace_aw_ready" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_aw_ready" description="wire"/>
+        <view.signal name="x_ace_aw_lock" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_aw_lock" description="wire"/>
+        <view.signal name="x_ace_aw_valid" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_aw_valid" description="wire"/>
+        <view.signal name="x_ace_aw_prot" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_aw_prot" description="wire"/>
+        <view.signal name="x_ace_aw_size" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_aw_size" description="wire"/>
+        <view.signal name="x_ace_aw_cache" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_aw_cache" description="wire"/>
+        <view.signal name="x_ace_aw_burst" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_aw_burst" description="wire"/>
+        <view.signal name="x_ace_aw_qos" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_aw_qos" description="wire"/>
+        <view.signal name="x_ace_aw_region" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_aw_region" description="wire"/>
+        <view.signal name="x_ace_aw_len" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_aw_len" description="wire"/>
+        <view.signal name="x_ace_aw_domain" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_aw_domain" description="wire"/>
+        <view.signal name="x_ace_aw_snoop" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_aw_snoop" description="wire"/>
+        <view.signal name="x_ace_aw_bar" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_aw_bar" description="wire"/>
+        <view.signal name="x_ace_aw_unique" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_aw_unique" description="wire"/>
+        <view.signal name="x_ace_aw_user" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_aw_user" description="wire"/>
+        <view.signal name="x_ace_aw_stashniden" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_aw_stashniden" description="wire"/>
+        <view.signal name="x_ace_aw_stashnid" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_aw_stashnid" description="wire"/>
+        <view.signal name="x_ace_aw_stashlpiden" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_aw_stashlpiden" description="wire"/>
+        <view.signal name="x_ace_aw_stashlpid" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_aw_stashlpid" description="wire"/>
+        <view.signal name="x_ace_aw_atop" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_aw_atop" description="wire"/>
+        <view.signal name="x_ace_aw_trace" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_aw_trace" description="wire"/>
+        <view.signal name="x_ace_wdata_id" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_wdata_id" description="wire"/>
+        <view.signal name="x_ace_wdata_data" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_wdata_data" description="wire"/>
+        <view.signal name="x_ace_wdata_strb" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_wdata_strb" description="wire"/>
+        <view.signal name="x_ace_wdata_last" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_wdata_last" description="wire"/>
+        <view.signal name="x_ace_wdata_valid" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_wdata_valid" description="wire"/>
+        <view.signal name="x_ace_wdata_ready" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_wdata_ready" description="wire"/>
+        <view.signal name="x_ace_wdata_user" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_wdata_user" description="wire"/>
+        <view.signal name="x_ace_wdata_ack" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_wdata_ack" description="wire"/>
+        <view.signal name="x_ace_wdata_trace" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_wdata_trace" description="wire"/>
+        <view.signal name="x_ace_b_valid" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_b_valid" description="wire"/>
+        <view.signal name="x_ace_b_ready" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_b_ready" description="wire"/>
+        <view.signal name="x_ace_b_id" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_b_id" description="wire"/>
+        <view.signal name="x_ace_b_resp" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_b_resp" description="wire"/>
+        <view.signal name="x_ace_b_user" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_b_user" description="wire"/>
+        <view.signal name="x_ace_b_trace" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_b_trace" description="wire"/>
+        <view.signal name="x_ace_ar_id" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_ar_id" description="wire"/>
+        <view.signal name="x_ace_ar_len" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_ar_len" description="wire"/>
+        <view.signal name="x_ace_ar_size" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_ar_size" description="wire"/>
+        <view.signal name="x_ace_ar_burst" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_ar_burst" description="wire"/>
+        <view.signal name="x_ace_ar_lock" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_ar_lock" description="wire"/>
+        <view.signal name="x_ace_ar_cache" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_ar_cache" description="wire"/>
+        <view.signal name="x_ace_ar_prot" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_ar_prot" description="wire"/>
+        <view.signal name="x_ace_ar_qos" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_ar_qos" description="wire"/>
+        <view.signal name="x_ace_ar_region" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_ar_region" description="wire"/>
+        <view.signal name="x_ace_ar_valid" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_ar_valid" description="wire"/>
+        <view.signal name="x_ace_ar_ready" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_ar_ready" description="wire"/>
+        <view.signal name="x_ace_ar_domain" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_ar_domain" description="wire"/>
+        <view.signal name="x_ace_ar_snoop" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_ar_snoop" description="wire"/>
+        <view.signal name="x_ace_ar_bar" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_ar_bar" description="wire"/>
+        <view.signal name="x_ace_ar_user" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_ar_user" description="wire"/>
+        <view.signal name="x_ace_ar_trace" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_ar_trace" description="wire"/>
+        <view.signal name="x_ace_ar_vmidext" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_ar_vmidext" description="wire"/>
+        <view.signal name="x_ace_rresp_id" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_rresp_id" description="wire"/>
+        <view.signal name="x_ace_rresp_data" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_rresp_data" description="wire"/>
+        <view.signal name="x_ace_rresp_resp" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_rresp_resp" description="wire"/>
+        <view.signal name="x_ace_rresp_last" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_rresp_last" description="wire"/>
+        <view.signal name="x_ace_rresp_valid" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_rresp_valid" description="wire"/>
+        <view.signal name="x_ace_rresp_ready" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_rresp_ready" description="wire"/>
+        <view.signal name="x_ace_rresp_user" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_rresp_user" description="wire"/>
+        <view.signal name="x_ace_rresp_trace" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_rresp_trace" description="wire"/>
+        <view.signal name="x_ace_rresp_ack" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_rresp_ack" description="wire"/>
+        <view.signal name="x_ace_ac_valid" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_ac_valid" description="wire"/>
+        <view.signal name="x_ace_ac_ready" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_ac_ready" description="wire"/>
+        <view.signal name="x_ace_ac_snoop" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_ac_snoop" description="wire"/>
+        <view.signal name="x_ace_ac_prot" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_ac_prot" description="wire"/>
+        <view.signal name="x_ace_acavmidext" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_acavmidext" description="wire"/>
+        <view.signal name="x_ace_ac_trace" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_ac_trace" description="wire"/>
+        <view.signal name="x_ace_cr_valid" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_cr_valid" description="wire"/>
+        <view.signal name="x_ace_cr_ready" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_cr_ready" description="wire"/>
+        <view.signal name="x_ace_cr_resp" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_cr_resp" description="wire"/>
+        <view.signal name="x_ace_cr_trace" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_cr_trace" description="wire"/>
+        <view.signal name="x_ace_cd_valid" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_cd_valid" description="wire"/>
+        <view.signal name="x_ace_cd_ready" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_cd_ready" description="wire"/>
+        <view.signal name="x_ace_cd_data" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_cd_data" description="wire"/>
+        <view.signal name="x_ace_cd_last" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_cd_last" description="wire"/>
+        <view.signal name="x_axi4_aw_id" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_aw_id" description="wire"/>
+        <view.signal name="x_axi4_aw_ready" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_aw_ready" description="wire"/>
+        <view.signal name="x_axi4_aw_lock" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_aw_lock" description="wire"/>
+        <view.signal name="x_axi4_aw_valid" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_aw_valid" description="wire"/>
+        <view.signal name="x_axi4_aw_prot" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_aw_prot" description="wire"/>
+        <view.signal name="x_axi4_aw_size" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_aw_size" description="wire"/>
+        <view.signal name="x_axi4_aw_cache" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_aw_cache" description="wire"/>
+        <view.signal name="x_axi4_aw_burst" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_aw_burst" description="wire"/>
+        <view.signal name="x_axi4_aw_qos" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_aw_qos" description="wire"/>
+        <view.signal name="x_axi4_aw_region" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_aw_region" description="wire"/>
+        <view.signal name="x_axi4_aw_len" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_aw_len" description="wire"/>
+        <view.signal name="x_axi4_aw_user" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_aw_user" description="wire"/>
+        <view.signal name="x_axi4_aw_atop" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_aw_atop" description="wire"/>
+        <view.signal name="x_axi4_wdata_id" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_wdata_id" description="wire"/>
+        <view.signal name="x_axi4_wdata_data" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_wdata_data" description="wire"/>
+        <view.signal name="x_axi4_wdata_strb" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_wdata_strb" description="wire"/>
+        <view.signal name="x_axi4_wdata_last" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_wdata_last" description="wire"/>
+        <view.signal name="x_axi4_wdata_valid" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_wdata_valid" description="wire"/>
+        <view.signal name="x_axi4_wdata_ready" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_wdata_ready" description="wire"/>
+        <view.signal name="x_axi4_wdata_user" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_wdata_user" description="wire"/>
+        <view.signal name="x_axi4_wdata_ack" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_wdata_ack" description="wire"/>
+        <view.signal name="x_axi4_wdata_trace" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_wdata_trace" description="wire"/>
+        <view.signal name="x_axi4_b_valid" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_b_valid" description="wire"/>
+        <view.signal name="x_axi4_b_ready" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_b_ready" description="wire"/>
+        <view.signal name="x_axi4_b_id" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_b_id" description="wire"/>
+        <view.signal name="x_axi4_b_resp" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_b_resp" description="wire"/>
+        <view.signal name="x_axi4_b_user" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_b_user" description="wire"/>
+        <view.signal name="x_axi4_b_trace" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_b_trace" description="wire"/>
+        <view.signal name="x_axi4_ar_id" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_ar_id" description="wire"/>
+        <view.signal name="x_axi4_ar_len" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_ar_len" description="wire"/>
+        <view.signal name="x_axi4_ar_size" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_ar_size" description="wire"/>
+        <view.signal name="x_axi4_ar_burst" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_ar_burst" description="wire"/>
+        <view.signal name="x_axi4_ar_lock" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_ar_lock" description="wire"/>
+        <view.signal name="x_axi4_ar_cache" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_ar_cache" description="wire"/>
+        <view.signal name="x_axi4_ar_prot" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_ar_prot" description="wire"/>
+        <view.signal name="x_axi4_ar_qos" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_ar_qos" description="wire"/>
+        <view.signal name="x_axi4_ar_region" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_ar_region" description="wire"/>
+        <view.signal name="x_axi4_ar_valid" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_ar_valid" description="wire"/>
+        <view.signal name="x_axi4_ar_ready" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_ar_ready" description="wire"/>
+        <view.signal name="x_axi4_ar_user" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_ar_user" description="wire"/>
+        <view.signal name="x_axi4_rresp_id" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_rresp_id" description="wire"/>
+        <view.signal name="x_axi4_rresp_data" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_rresp_data" description="wire"/>
+        <view.signal name="x_axi4_rresp_resp" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_rresp_resp" description="wire"/>
+        <view.signal name="x_axi4_rresp_last" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_rresp_last" description="wire"/>
+        <view.signal name="x_axi4_rresp_valid" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_rresp_valid" description="wire"/>
+        <view.signal name="x_axi4_rresp_ready" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_rresp_ready" description="wire"/>
+        <view.signal name="x_axi4_rresp_user" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_rresp_user" description="wire"/>
+        <view.signal name="x_axi4_rresp_trace" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_rresp_trace" description="wire"/>
+        <view.signal name="mem_aw_id" primarySource="rtl_sim/rtl_sim/wrapper/mem_aw_id" description="wire"/>
+        <view.signal name="mem_aw_ready" primarySource="rtl_sim/rtl_sim/wrapper/mem_aw_ready" description="wire"/>
+        <view.signal name="mem_aw_lock" primarySource="rtl_sim/rtl_sim/wrapper/mem_aw_lock" description="wire"/>
+        <view.signal name="mem_aw_valid" primarySource="rtl_sim/rtl_sim/wrapper/mem_aw_valid" description="wire"/>
+        <view.signal name="mem_aw_prot" primarySource="rtl_sim/rtl_sim/wrapper/mem_aw_prot" description="wire"/>
+        <view.signal name="mem_aw_size" primarySource="rtl_sim/rtl_sim/wrapper/mem_aw_size" description="wire"/>
+        <view.signal name="mem_aw_cache" primarySource="rtl_sim/rtl_sim/wrapper/mem_aw_cache" description="wire"/>
+        <view.signal name="mem_aw_burst" primarySource="rtl_sim/rtl_sim/wrapper/mem_aw_burst" description="wire"/>
+        <view.signal name="mem_aw_qos" primarySource="rtl_sim/rtl_sim/wrapper/mem_aw_qos" description="wire"/>
+        <view.signal name="mem_aw_region" primarySource="rtl_sim/rtl_sim/wrapper/mem_aw_region" description="wire"/>
+        <view.signal name="mem_aw_len" primarySource="rtl_sim/rtl_sim/wrapper/mem_aw_len" description="wire"/>
+        <view.signal name="mem_aw_user" primarySource="rtl_sim/rtl_sim/wrapper/mem_aw_user" description="wire"/>
+        <view.signal name="mem_aw_atop" primarySource="rtl_sim/rtl_sim/wrapper/mem_aw_atop" description="wire"/>
+        <view.signal name="mem_wdata_id" primarySource="rtl_sim/rtl_sim/wrapper/mem_wdata_id" description="wire"/>
+        <view.signal name="mem_wdata_data" primarySource="rtl_sim/rtl_sim/wrapper/mem_wdata_data" description="wire"/>
+        <view.signal name="mem_wdata_strb" primarySource="rtl_sim/rtl_sim/wrapper/mem_wdata_strb" description="wire"/>
+        <view.signal name="mem_wdata_last" primarySource="rtl_sim/rtl_sim/wrapper/mem_wdata_last" description="wire"/>
+        <view.signal name="mem_wdata_valid" primarySource="rtl_sim/rtl_sim/wrapper/mem_wdata_valid" description="wire"/>
+        <view.signal name="mem_wdata_ready" primarySource="rtl_sim/rtl_sim/wrapper/mem_wdata_ready" description="wire"/>
+        <view.signal name="mem_wdata_user" primarySource="rtl_sim/rtl_sim/wrapper/mem_wdata_user" description="wire"/>
+        <view.signal name="mem_wdata_ack" primarySource="rtl_sim/rtl_sim/wrapper/mem_wdata_ack" description="wire"/>
+        <view.signal name="mem_wdata_trace" primarySource="rtl_sim/rtl_sim/wrapper/mem_wdata_trace" description="wire"/>
+        <view.signal name="mem_b_valid" primarySource="rtl_sim/rtl_sim/wrapper/mem_b_valid" description="wire"/>
+        <view.signal name="mem_b_ready" primarySource="rtl_sim/rtl_sim/wrapper/mem_b_ready" description="wire"/>
+        <view.signal name="mem_b_id" primarySource="rtl_sim/rtl_sim/wrapper/mem_b_id" description="wire"/>
+        <view.signal name="mem_b_resp" primarySource="rtl_sim/rtl_sim/wrapper/mem_b_resp" description="wire"/>
+        <view.signal name="mem_b_user" primarySource="rtl_sim/rtl_sim/wrapper/mem_b_user" description="wire"/>
+        <view.signal name="mem_b_trace" primarySource="rtl_sim/rtl_sim/wrapper/mem_b_trace" description="wire"/>
+        <view.signal name="mem_ar_id" primarySource="rtl_sim/rtl_sim/wrapper/mem_ar_id" description="wire"/>
+        <view.signal name="mem_ar_len" primarySource="rtl_sim/rtl_sim/wrapper/mem_ar_len" description="wire"/>
+        <view.signal name="mem_ar_size" primarySource="rtl_sim/rtl_sim/wrapper/mem_ar_size" description="wire"/>
+        <view.signal name="mem_ar_burst" primarySource="rtl_sim/rtl_sim/wrapper/mem_ar_burst" description="wire"/>
+        <view.signal name="mem_ar_lock" primarySource="rtl_sim/rtl_sim/wrapper/mem_ar_lock" description="wire"/>
+        <view.signal name="mem_ar_cache" primarySource="rtl_sim/rtl_sim/wrapper/mem_ar_cache" description="wire"/>
+        <view.signal name="mem_ar_prot" primarySource="rtl_sim/rtl_sim/wrapper/mem_ar_prot" description="wire"/>
+        <view.signal name="mem_ar_qos" primarySource="rtl_sim/rtl_sim/wrapper/mem_ar_qos" description="wire"/>
+        <view.signal name="mem_ar_region" primarySource="rtl_sim/rtl_sim/wrapper/mem_ar_region" description="wire"/>
+        <view.signal name="mem_ar_valid" primarySource="rtl_sim/rtl_sim/wrapper/mem_ar_valid" description="wire"/>
+        <view.signal name="mem_ar_ready" primarySource="rtl_sim/rtl_sim/wrapper/mem_ar_ready" description="wire"/>
+        <view.signal name="mem_ar_user" primarySource="rtl_sim/rtl_sim/wrapper/mem_ar_user" description="wire"/>
+        <view.signal name="mem_rresp_id" primarySource="rtl_sim/rtl_sim/wrapper/mem_rresp_id" description="wire"/>
+        <view.signal name="mem_rresp_data" primarySource="rtl_sim/rtl_sim/wrapper/mem_rresp_data" description="wire"/>
+        <view.signal name="mem_rresp_resp" primarySource="rtl_sim/rtl_sim/wrapper/mem_rresp_resp" description="wire"/>
+        <view.signal name="mem_rresp_last" primarySource="rtl_sim/rtl_sim/wrapper/mem_rresp_last" description="wire"/>
+        <view.signal name="mem_rresp_valid" primarySource="rtl_sim/rtl_sim/wrapper/mem_rresp_valid" description="wire"/>
+        <view.signal name="mem_rresp_ready" primarySource="rtl_sim/rtl_sim/wrapper/mem_rresp_ready" description="wire"/>
+        <view.signal name="mem_rresp_user" primarySource="rtl_sim/rtl_sim/wrapper/mem_rresp_user" description="wire"/>
+        <view.signal name="mem_rresp_trace" primarySource="rtl_sim/rtl_sim/wrapper/mem_rresp_trace" description="wire"/>
+        <view.signal name="per_aw_id" primarySource="rtl_sim/rtl_sim/wrapper/per_aw_id" description="wire"/>
+        <view.signal name="per_aw_ready" primarySource="rtl_sim/rtl_sim/wrapper/per_aw_ready" description="wire"/>
+        <view.signal name="per_aw_lock" primarySource="rtl_sim/rtl_sim/wrapper/per_aw_lock" description="wire"/>
+        <view.signal name="per_aw_valid" primarySource="rtl_sim/rtl_sim/wrapper/per_aw_valid" description="wire"/>
+        <view.signal name="per_aw_prot" primarySource="rtl_sim/rtl_sim/wrapper/per_aw_prot" description="wire"/>
+        <view.signal name="per_aw_size" primarySource="rtl_sim/rtl_sim/wrapper/per_aw_size" description="wire"/>
+        <view.signal name="per_aw_cache" primarySource="rtl_sim/rtl_sim/wrapper/per_aw_cache" description="wire"/>
+        <view.signal name="per_aw_burst" primarySource="rtl_sim/rtl_sim/wrapper/per_aw_burst" description="wire"/>
+        <view.signal name="per_aw_qos" primarySource="rtl_sim/rtl_sim/wrapper/per_aw_qos" description="wire"/>
+        <view.signal name="per_aw_region" primarySource="rtl_sim/rtl_sim/wrapper/per_aw_region" description="wire"/>
+        <view.signal name="per_aw_len" primarySource="rtl_sim/rtl_sim/wrapper/per_aw_len" description="wire"/>
+        <view.signal name="per_aw_user" primarySource="rtl_sim/rtl_sim/wrapper/per_aw_user" description="wire"/>
+        <view.signal name="per_aw_atop" primarySource="rtl_sim/rtl_sim/wrapper/per_aw_atop" description="wire"/>
+        <view.signal name="per_wdata_id" primarySource="rtl_sim/rtl_sim/wrapper/per_wdata_id" description="wire"/>
+        <view.signal name="per_wdata_data" primarySource="rtl_sim/rtl_sim/wrapper/per_wdata_data" description="wire"/>
+        <view.signal name="per_wdata_strb" primarySource="rtl_sim/rtl_sim/wrapper/per_wdata_strb" description="wire"/>
+        <view.signal name="per_wdata_last" primarySource="rtl_sim/rtl_sim/wrapper/per_wdata_last" description="wire"/>
+        <view.signal name="per_wdata_valid" primarySource="rtl_sim/rtl_sim/wrapper/per_wdata_valid" description="wire"/>
+        <view.signal name="per_wdata_ready" primarySource="rtl_sim/rtl_sim/wrapper/per_wdata_ready" description="wire"/>
+        <view.signal name="per_wdata_user" primarySource="rtl_sim/rtl_sim/wrapper/per_wdata_user" description="wire"/>
+        <view.signal name="per_wdata_ack" primarySource="rtl_sim/rtl_sim/wrapper/per_wdata_ack" description="wire"/>
+        <view.signal name="per_wdata_trace" primarySource="rtl_sim/rtl_sim/wrapper/per_wdata_trace" description="wire"/>
+        <view.signal name="per_b_valid" primarySource="rtl_sim/rtl_sim/wrapper/per_b_valid" description="wire"/>
+        <view.signal name="per_b_ready" primarySource="rtl_sim/rtl_sim/wrapper/per_b_ready" description="wire"/>
+        <view.signal name="per_b_id" primarySource="rtl_sim/rtl_sim/wrapper/per_b_id" description="wire"/>
+        <view.signal name="per_b_resp" primarySource="rtl_sim/rtl_sim/wrapper/per_b_resp" description="wire"/>
+        <view.signal name="per_b_user" primarySource="rtl_sim/rtl_sim/wrapper/per_b_user" description="wire"/>
+        <view.signal name="per_b_trace" primarySource="rtl_sim/rtl_sim/wrapper/per_b_trace" description="wire"/>
+        <view.signal name="per_ar_id" primarySource="rtl_sim/rtl_sim/wrapper/per_ar_id" description="wire"/>
+        <view.signal name="per_ar_len" primarySource="rtl_sim/rtl_sim/wrapper/per_ar_len" description="wire"/>
+        <view.signal name="per_ar_size" primarySource="rtl_sim/rtl_sim/wrapper/per_ar_size" description="wire"/>
+        <view.signal name="per_ar_burst" primarySource="rtl_sim/rtl_sim/wrapper/per_ar_burst" description="wire"/>
+        <view.signal name="per_ar_lock" primarySource="rtl_sim/rtl_sim/wrapper/per_ar_lock" description="wire"/>
+        <view.signal name="per_ar_cache" primarySource="rtl_sim/rtl_sim/wrapper/per_ar_cache" description="wire"/>
+        <view.signal name="per_ar_prot" primarySource="rtl_sim/rtl_sim/wrapper/per_ar_prot" description="wire"/>
+        <view.signal name="per_ar_qos" primarySource="rtl_sim/rtl_sim/wrapper/per_ar_qos" description="wire"/>
+        <view.signal name="per_ar_region" primarySource="rtl_sim/rtl_sim/wrapper/per_ar_region" description="wire"/>
+        <view.signal name="per_ar_valid" primarySource="rtl_sim/rtl_sim/wrapper/per_ar_valid" description="wire"/>
+        <view.signal name="per_ar_ready" primarySource="rtl_sim/rtl_sim/wrapper/per_ar_ready" description="wire"/>
+        <view.signal name="per_ar_user" primarySource="rtl_sim/rtl_sim/wrapper/per_ar_user" description="wire"/>
+        <view.signal name="per_rresp_id" primarySource="rtl_sim/rtl_sim/wrapper/per_rresp_id" description="wire"/>
+        <view.signal name="per_rresp_data" primarySource="rtl_sim/rtl_sim/wrapper/per_rresp_data" description="wire"/>
+        <view.signal name="per_rresp_resp" primarySource="rtl_sim/rtl_sim/wrapper/per_rresp_resp" description="wire"/>
+        <view.signal name="per_rresp_last" primarySource="rtl_sim/rtl_sim/wrapper/per_rresp_last" description="wire"/>
+        <view.signal name="per_rresp_valid" primarySource="rtl_sim/rtl_sim/wrapper/per_rresp_valid" description="wire"/>
+        <view.signal name="per_rresp_ready" primarySource="rtl_sim/rtl_sim/wrapper/per_rresp_ready" description="wire"/>
+        <view.signal name="per_rresp_user" primarySource="rtl_sim/rtl_sim/wrapper/per_rresp_user" description="wire"/>
+        <view.signal name="per_rresp_trace" primarySource="rtl_sim/rtl_sim/wrapper/per_rresp_trace" description="wire"/>
+        <view.signal name="dbg_atu_paddr" primarySource="rtl_sim/rtl_sim/wrapper/dbg_atu_paddr" description="wire"/>
+        <view.signal name="dbg_atu_psel" primarySource="rtl_sim/rtl_sim/wrapper/dbg_atu_psel" description="wire"/>
+        <view.signal name="dbg_atu_penable" primarySource="rtl_sim/rtl_sim/wrapper/dbg_atu_penable" description="wire"/>
+        <view.signal name="dbg_atu_pwrite" primarySource="rtl_sim/rtl_sim/wrapper/dbg_atu_pwrite" description="wire"/>
+        <view.signal name="dbg_atu_prot" primarySource="rtl_sim/rtl_sim/wrapper/dbg_atu_prot" description="wire"/>
+        <view.signal name="dbg_atu_pwdata" primarySource="rtl_sim/rtl_sim/wrapper/dbg_atu_pwdata" description="wire"/>
+        <view.signal name="dbg_atu_pstrb" primarySource="rtl_sim/rtl_sim/wrapper/dbg_atu_pstrb" description="wire"/>
+        <view.signal name="dbg_atu_pready" primarySource="rtl_sim/rtl_sim/wrapper/dbg_atu_pready" description="wire"/>
+        <view.signal name="dbg_atu_prdata" primarySource="rtl_sim/rtl_sim/wrapper/dbg_atu_prdata" description="wire"/>
+        <view.signal name="dbg_atu_pslverr" primarySource="rtl_sim/rtl_sim/wrapper/dbg_atu_pslverr" description="wire"/>
+        <view.signal name="clk1_sub_domain_test_en" primarySource="rtl_sim/rtl_sim/wrapper/clk1_sub_domain_test_en" description="wire"/>
+        <view.signal name="clk2_sub_domain_test_en" primarySource="rtl_sim/rtl_sim/wrapper/clk2_sub_domain_test_en" description="wire"/>
+        <view.signal name="x_chi_evento_req" primarySource="rtl_sim/rtl_sim/wrapper/x_chi_evento_req" description="wire"/>
+        <view.signal name="x_chi_evento_ack" primarySource="rtl_sim/rtl_sim/wrapper/x_chi_evento_ack" description="wire"/>
+        <view.signal name="x_ace_evento_req" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_evento_req" description="wire"/>
+        <view.signal name="x_ace_evento_ack" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_evento_ack" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_0_TEST1A" primarySource="rtl_sim/rtl_sim/wrapper/h20_sf0_TagMem_way_0_TEST1A" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_0_TEST1B" primarySource="rtl_sim/rtl_sim/wrapper/h20_sf0_TagMem_way_0_TEST1B" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_0_RMEA" primarySource="rtl_sim/rtl_sim/wrapper/h20_sf0_TagMem_way_0_RMEA" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_0_RMEB" primarySource="rtl_sim/rtl_sim/wrapper/h20_sf0_TagMem_way_0_RMEB" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_0_RMA" primarySource="rtl_sim/rtl_sim/wrapper/h20_sf0_TagMem_way_0_RMA" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_0_RMB" primarySource="rtl_sim/rtl_sim/wrapper/h20_sf0_TagMem_way_0_RMB" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_0_LS" primarySource="rtl_sim/rtl_sim/wrapper/h20_sf0_TagMem_way_0_LS" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_1_TEST1A" primarySource="rtl_sim/rtl_sim/wrapper/h20_sf0_TagMem_way_1_TEST1A" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_1_TEST1B" primarySource="rtl_sim/rtl_sim/wrapper/h20_sf0_TagMem_way_1_TEST1B" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_1_RMEA" primarySource="rtl_sim/rtl_sim/wrapper/h20_sf0_TagMem_way_1_RMEA" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_1_RMEB" primarySource="rtl_sim/rtl_sim/wrapper/h20_sf0_TagMem_way_1_RMEB" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_1_RMA" primarySource="rtl_sim/rtl_sim/wrapper/h20_sf0_TagMem_way_1_RMA" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_1_RMB" primarySource="rtl_sim/rtl_sim/wrapper/h20_sf0_TagMem_way_1_RMB" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_1_LS" primarySource="rtl_sim/rtl_sim/wrapper/h20_sf0_TagMem_way_1_LS" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_2_TEST1A" primarySource="rtl_sim/rtl_sim/wrapper/h20_sf0_TagMem_way_2_TEST1A" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_2_TEST1B" primarySource="rtl_sim/rtl_sim/wrapper/h20_sf0_TagMem_way_2_TEST1B" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_2_RMEA" primarySource="rtl_sim/rtl_sim/wrapper/h20_sf0_TagMem_way_2_RMEA" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_2_RMEB" primarySource="rtl_sim/rtl_sim/wrapper/h20_sf0_TagMem_way_2_RMEB" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_2_RMA" primarySource="rtl_sim/rtl_sim/wrapper/h20_sf0_TagMem_way_2_RMA" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_2_RMB" primarySource="rtl_sim/rtl_sim/wrapper/h20_sf0_TagMem_way_2_RMB" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_2_LS" primarySource="rtl_sim/rtl_sim/wrapper/h20_sf0_TagMem_way_2_LS" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_3_TEST1A" primarySource="rtl_sim/rtl_sim/wrapper/h20_sf0_TagMem_way_3_TEST1A" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_3_TEST1B" primarySource="rtl_sim/rtl_sim/wrapper/h20_sf0_TagMem_way_3_TEST1B" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_3_RMEA" primarySource="rtl_sim/rtl_sim/wrapper/h20_sf0_TagMem_way_3_RMEA" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_3_RMEB" primarySource="rtl_sim/rtl_sim/wrapper/h20_sf0_TagMem_way_3_RMEB" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_3_RMA" primarySource="rtl_sim/rtl_sim/wrapper/h20_sf0_TagMem_way_3_RMA" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_3_RMB" primarySource="rtl_sim/rtl_sim/wrapper/h20_sf0_TagMem_way_3_RMB" description="wire"/>
+        <view.signal name="h20_sf0_TagMem_way_3_LS" primarySource="rtl_sim/rtl_sim/wrapper/h20_sf0_TagMem_way_3_LS" description="wire"/>
+        <view.signal name="x_chi_eventi_req" primarySource="rtl_sim/rtl_sim/wrapper/x_chi_eventi_req" description="wire"/>
+        <view.signal name="x_chi_eventi_ack" primarySource="rtl_sim/rtl_sim/wrapper/x_chi_eventi_ack" description="wire"/>
+        <view.signal name="x_ace_eventi_req" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_eventi_req" description="wire"/>
+        <view.signal name="x_ace_eventi_ack" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_eventi_ack" description="wire"/>
+        <view.signal name="x_chi_irq_c" primarySource="rtl_sim/rtl_sim/wrapper/x_chi_irq_c" description="wire"/>
+        <view.signal name="x_chi_irq_uc" primarySource="rtl_sim/rtl_sim/wrapper/x_chi_irq_uc" description="wire"/>
+        <view.signal name="x_ace_irq_c" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_irq_c" description="wire"/>
+        <view.signal name="x_ace_irq_uc" primarySource="rtl_sim/rtl_sim/wrapper/x_ace_irq_uc" description="wire"/>
+        <view.signal name="x_axi4_irq_c" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_irq_c" description="wire"/>
+        <view.signal name="x_axi4_irq_uc" primarySource="rtl_sim/rtl_sim/wrapper/x_axi4_irq_uc" description="wire"/>
+        <view.signal name="mem_irq_c" primarySource="rtl_sim/rtl_sim/wrapper/mem_irq_c" description="wire"/>
+        <view.signal name="mem_irq_uc" primarySource="rtl_sim/rtl_sim/wrapper/mem_irq_uc" description="wire"/>
+        <view.signal name="per_irq_c" primarySource="rtl_sim/rtl_sim/wrapper/per_irq_c" description="wire"/>
+        <view.signal name="per_irq_uc" primarySource="rtl_sim/rtl_sim/wrapper/per_irq_uc" description="wire"/>
+        <view.signal name="h30_irq_c" primarySource="rtl_sim/rtl_sim/wrapper/h30_irq_c" description="wire"/>
+        <view.signal name="h30_irq_uc" primarySource="rtl_sim/rtl_sim/wrapper/h30_irq_uc" description="wire"/>
+        <view.signal name="h20_irq_c" primarySource="rtl_sim/rtl_sim/wrapper/h20_irq_c" description="wire"/>
+        <view.signal name="h20_irq_uc" primarySource="rtl_sim/rtl_sim/wrapper/h20_irq_uc" description="wire"/>
+        <view.signal name="sys_dii_irq_c" primarySource="rtl_sim/rtl_sim/wrapper/sys_dii_irq_c" description="wire"/>
+        <view.signal name="sys_dii_irq_uc" primarySource="rtl_sim/rtl_sim/wrapper/sys_dii_irq_uc" description="wire"/>
+        <view.signal name="rst" primarySource="rtl_sim/rtl_sim/rst" description="wire"/>
+        <view.signal name="rst_n" primarySource="rtl_sim/rtl_sim/rst_n" description="wire"/>
+        <view.signal name="pv_clock" primarySource="rtl_sim/rtl_sim/pv_clock" description="wire"/>
+        <view.signal name="clk1" primarySource="rtl_sim/rtl_sim/clk1" description="wire"/>
+        <view.signal name="clk2" primarySource="rtl_sim/rtl_sim/clk2" description="wire"/>
+        <view.signal name="Statistics" primarySource="Analysis/Statistics"/>
+        <view.cursor name="A"/>
+        <view.cursor name="B" colorIdx="1"/>
+        <view.axis name="Primary Axis"/>
+        <view.axis name="Secondary Axis"/>
     </view>
 </views>

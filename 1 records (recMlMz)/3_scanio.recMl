@@ -2385,4 +2385,5 @@
             </record.signal>
         </record.scope>
     </record.scope>
+    <record.interface name="Interface" adapter="Tcp Port"/>
 </record>

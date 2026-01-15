@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<parts name="Parts">
+    <part.builtin name="de.toem.impulse.editor.viewer">
+        <part.configuration.record name="Default" description="Default Configuration">
+            <searchProperties len="1">
+                <expression>*s0==0x0F50F &amp;&amp; 
+*s1==0b01111010</expression>
+            </searchProperties>
+            <part.view.record.column name="Name" visible="2" description="Name of an element." type="1"/>
+            <part.view.record.column name="Description" visible="2" type="2">
+                <description>Describes the element.&lt;br /&gt; The description field allows to use simple formatting like bold, itallic, h2 and h3 using a WYSIWYG editor.&lt;br /&gt; The internal reresentation uses html formatting.</description>
+            </part.view.record.column>
+            <part.view.record.column name="Tags" visible="2" description="Tags" type="3"/>
+            <part.view.record.column name="Type" visible="2" description="Type" type="4"/>
+            <part.view.record.column name="Signal type" visible="2" source="de.toem.impulse.disclosures.signalType" type="7">
+                <description>The data type of the signal, such as logic, float, integer, event, text, structure, or binary. Determines how the signal's samples are interpreted and processed.</description>
+            </part.view.record.column>
+            <part.view.record.column name="Location" visible="2" description="Location" type="5"/>
+            <part.view.record.column name="Scale" visible="2" source="de.toem.impulse.disclosures.signalScale" type="7">
+                <description>Defines the dimension or width of the signal, such as the number of bits in a logic signal or the size of an array. Scale helps describe the structure and capacity of the signal.</description>
+            </part.view.record.column>
+            <part.view.record.column name="Domain base" description="Domain base" source="de.toem.impulse.disclosures.domain" type="7"/>
+            <part.view.record.column name="No of events" visible="1" source="de.toem.impulse.disclosures.noOfEvents" type="7"/>
+        </part.configuration.record>
+    </part.builtin>
+    <part.builtin name="de.toem.impulse.editor.wallet"/>
+    <part.builtin name="de.toem.impulse.editor.preferences"/>
+    <part.builtin name="de.toem.impulse.parts.samples">
+        <part.configuration.samples name="Default" description="Default Configuration">
+            <part.view.samples.column name="Position" visible="2" type="2" defaultIconId="ri-map-pin-time-fill" alignment="2">
+                <description>Position of a sample in the signal domain, such as time or index. Indicates where the sample is located in the signal timeline or structure.</description>
+            </part.view.samples.column>
+            <part.view.samples.column name="Index(@)" visible="1" description="Unique index of a sample within a signal, starting from 0. Used for referencing and accessing individual samples." type="5" defaultIconId="codicon-location" alignment="2"/>
+            <part.view.samples.column name="Signal" visible="1" description="Signal to which the sample belongs. Provides context for the sample's origin." type="6" defaultIconId="ti-signal-any"/>
+            <part.view.samples.column name="End" visible="1" description="Last position or endpoint of a sample group. Marks where a group of related samples ends." type="3" defaultIconId="ri-map-pin-fill" alignment="2"/>
+            <part.view.samples.column name="Group(⋕)" visible="1" description="Group index for grouped samples. Useful for representing transactions or hierarchical data." type="7" defaultIconId="ri-group-2-line"/>
+            <part.view.samples.column name="Order" visible="1" description="Order of a sample within its group (first, intermediate, last). Indicates sequence within a group." type="8" defaultIconId="ri-list-ordered"/>
+            <part.view.samples.column name="Layer" visible="1" description="Layer of a sample within a group. Used for hierarchical or multi-layered data structures." type="9" defaultIconId="ri-list-ordered"/>
+            <part.view.samples.column name="Samples(@)" visible="1" description="Indices of all samples within a group. Useful for grouped or related data." type="10" defaultIconId="codicon-tasklist"/>
+            <part.view.samples.column name="Labels" visible="1" description="Labels or annotations attached to samples. Used for marking events or adding notes." type="11" defaultIconId="codicon-symbol-text"/>
+            <part.view.samples.column name="Relation" visible="1" description="Relations or links between samples, such as dependencies or annotations." type="12" defaultIconId="ri-arrow-right-down-line"/>
+            <part.view.samples.column name="Tag" visible="1" description="Tags or metadata for a sample or group. Used for categorization, filtering, and visualization." type="13" defaultIconId="ri-price-tag-3-line"/>
+            <part.view.samples.column name="Value" visible="1" description="Value of a sample, according to its signal type (logic, float, integer, text, etc.)." type="4" defaultIconId="codicon-symbol-value"/>
+            <part.view.samples.column name=".m0" visible="1" source="m0" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".m1" visible="1" source="m1" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".m2" visible="1" source="m2" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".m3" visible="1" source="m3" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".A" visible="1" source="A" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".B" visible="1" source="B" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".C" visible="1" source="C" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".D" visible="1" source="D" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".E" visible="1" source="E" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".F" visible="1" source="F" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".Label" visible="1" source="Label" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".RMS" visible="1" source="RMS" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".Energy" visible="1" source="Energy" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".Std" visible="1" source="Std" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".[20.0,30.0)" visible="1" source="[20.0,30.0)" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".[30.0,40.0)" visible="1" source="[30.0,40.0)" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".[40.0,50.0)" visible="1" source="[40.0,50.0)" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".[50.0,60.0)" visible="1" source="[50.0,60.0)" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".[60.0,70.0)" visible="1" source="[60.0,70.0)" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".[70.0,80.0)" visible="1" source="[70.0,80.0)" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".[80.0,90.0)" visible="1" source="[80.0,90.0)" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".[90.0,100.0)" visible="1" source="[90.0,100.0)" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".[100.0,200.0)" visible="1" source="[100.0,200.0)" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".[200.0,∞)" visible="1" source="[200.0,∞)" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".Level" visible="1" source="Level" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".Source" visible="1" source="Source" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".Message" visible="1" source="Message" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".State" visible="1" source="State" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".Value" visible="1" source="Value" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".Other" visible="1" source="Other" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".Address" visible="1" source="Address" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".Data" visible="1" source="Data" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".Par" visible="1" source="Par" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".IO" visible="1" source="IO" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".Seg4" visible="1" source="Seg4" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".Seg8" visible="1" source="Seg8" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".[-∞,20.0)" visible="1" source="[-∞,20.0)" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".Min" visible="1" source="Min" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".Max" visible="1" source="Max" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".Peak-to-Peak" visible="1" source="Peak-to-Peak" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".Mean" visible="1" source="Mean" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".Sum" visible="1" source="Sum" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".Var" visible="1" source="Var" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".Count" visible="1" source="Count" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".Bandwidth" visible="1" source="Bandwidth" type="1" defaultIconId="codicon-symbol-enum-member"/>
+        </part.configuration.samples>
+    </part.builtin>
+    <part.builtin name="de.toem.impulse.parts.sample">
+        <part.configuration.sample name="Default" description="Default Configuration">
+            <part.view.sample.row name="Position" visible="2" type="2" defaultIconId="ri-map-pin-time-fill" alignment="2">
+                <description>Position of a sample in the signal domain, such as time or index. Indicates where the sample is located in the signal timeline or structure.</description>
+            </part.view.sample.row>
+            <part.view.sample.row name="Index(@)" visible="1" description="Unique index of a sample within a signal, starting from 0. Used for referencing and accessing individual samples." type="5" defaultIconId="codicon-location"/>
+            <part.view.sample.row name="Signal" visible="1" description="Signal to which the sample belongs. Provides context for the sample's origin." type="6" defaultIconId="ti-signal-any"/>
+            <part.view.sample.row name="End" visible="1" description="Last position or endpoint of a sample group. Marks where a group of related samples ends." type="3" defaultIconId="ri-map-pin-fill"/>
+            <part.view.sample.row name="Group(⋕)" visible="1" description="Group index for grouped samples. Useful for representing transactions or hierarchical data." type="7" defaultIconId="ri-group-2-line"/>
+            <part.view.sample.row name="Order" visible="1" description="Order of a sample within its group (first, intermediate, last). Indicates sequence within a group." type="8" defaultIconId="ri-list-ordered"/>
+            <part.view.sample.row name="Layer" visible="1" description="Layer of a sample within a group. Used for hierarchical or multi-layered data structures." type="9" defaultIconId="ri-list-ordered"/>
+            <part.view.sample.row name="Samples(@)" visible="1" description="Indices of all samples within a group. Useful for grouped or related data." type="10" defaultIconId="codicon-tasklist"/>
+            <part.view.sample.row name="Labels" visible="1" description="Labels or annotations attached to samples. Used for marking events or adding notes." type="11" defaultIconId="codicon-symbol-text"/>
+            <part.view.sample.row name="Relation" visible="1" description="Relations or links between samples, such as dependencies or annotations." type="12" defaultIconId="ri-arrow-right-down-line"/>
+            <part.view.sample.row name="Tag" visible="1" description="Tags or metadata for a sample or group. Used for categorization, filtering, and visualization." type="13" defaultIconId="ri-price-tag-3-line"/>
+            <part.view.sample.row name="Value" visible="1" description="Value of a sample, according to its signal type (logic, float, integer, text, etc.)." type="4" defaultIconId="codicon-symbol-value"/>
+            <part.view.sample.row name=".State" visible="1" source="State" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".Value" visible="1" source="Value" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".Other" visible="1" source="Other" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".m0" visible="1" source="m0" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".m1" visible="1" source="m1" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".m2" visible="1" source="m2" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".m3" visible="1" source="m3" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".A" visible="1" source="A" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".B" visible="1" source="B" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".C" visible="1" source="C" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".D" visible="1" source="D" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".E" visible="1" source="E" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".F" visible="1" source="F" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".Label" visible="1" source="Label" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".RMS" visible="1" source="RMS" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".Energy" visible="1" source="Energy" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".Std" visible="1" source="Std" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".[20.0,30.0)" visible="1" source="[20.0,30.0)" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".[30.0,40.0)" visible="1" source="[30.0,40.0)" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".[40.0,50.0)" visible="1" source="[40.0,50.0)" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".[50.0,60.0)" visible="1" source="[50.0,60.0)" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".[60.0,70.0)" visible="1" source="[60.0,70.0)" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".[70.0,80.0)" visible="1" source="[70.0,80.0)" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".[80.0,90.0)" visible="1" source="[80.0,90.0)" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".[90.0,100.0)" visible="1" source="[90.0,100.0)" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".[100.0,200.0)" visible="1" source="[100.0,200.0)" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".[200.0,∞)" visible="1" source="[200.0,∞)" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".Level" visible="1" source="Level" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".Source" visible="1" source="Source" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".Message" visible="1" source="Message" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".Address" visible="1" source="Address" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".Data" visible="1" source="Data" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".Par" visible="1" source="Par" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".IO" visible="1" source="IO" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".Seg4" visible="1" source="Seg4" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".Seg8" visible="1" source="Seg8" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".[-∞,20.0)" visible="1" source="[-∞,20.0)" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".Min" visible="1" source="Min" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".Max" visible="1" source="Max" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".Peak-to-Peak" visible="1" source="Peak-to-Peak" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".Mean" visible="1" source="Mean" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".Sum" visible="1" source="Sum" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".Var" visible="1" source="Var" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".Count" visible="1" source="Count" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".Bandwidth" visible="1" source="Bandwidth" type="1" defaultIconId="codicon-symbol-enum-member"/>
+        </part.configuration.sample>
+    </part.builtin>
+    <part.builtin name="de.toem.impulse.dialog.viewSelect"/>
+    <part.builtin name="de.toem.impulse.dialog.partConfigurationSelect"/>
+    <part.builtin name="de.toem.impulse.dialog.find"/>
+    <part.builtin name="de.toem.toolkits.dialog.about"/>
+    <part.builtin name="record"/>
+    <part.builtin name="record.scope"/>
+    <part.builtin name="record.signal"/>
+    <part.builtin name="record.proxy"/>
+    <part.builtin name="record.interface"/>
+    <part.builtin name="record.include"/>
+    <part.builtin name="record.analysis"/>
+    <part.builtin name="record.source"/>
+    <part.builtin name="record.relation"/>
+    <part.builtin name="views"/>
+    <part.builtin name="view"/>
+    <part.builtin name="view.cursor"/>
+    <part.builtin name="view.axis"/>
+    <part.builtin name="view.folder"/>
+    <part.builtin name="view.signal"/>
+    <part.builtin name="view.deduced"/>
+    <part.builtin name="view.source"/>
+    <part.builtin name="templates"/>
+    <part.builtin name="searches"/>
+    <part.builtin name="samplesSearch.builtin"/>
+    <part.builtin name="samplesSearch.configuration.default"/>
+    <part.builtin name="samplesSearch.source"/>
+    <part.builtin name="colors"/>
+    <part.builtin name="serializers"/>
+    <part.builtin name="parts"/>
+    <part.builtin name="commands"/>
+    <part.builtin name="part.builtin"/>
+    <part.builtin name="part.configuration.default"/>
+    <part.builtin name="processors"/>
+    <part.builtin name="processor.builtin"/>
+    <part.builtin name="processor.configuration.default"/>
+    <part.builtin name="processor.java"/>
+    <part.builtin name="producers"/>
+    <part.builtin name="adaptors"/>
+    <part.builtin name="diagram.builtin"/>
+    <part.builtin name="diagram.configuration.default"/>
+    <part.builtin name="color.set"/>
+    <part.builtin name="color.builtin"/>
+    <part.builtin name="samplesFormatter"/>
+    <part.builtin name="samplesFormatter.builtin"/>
+    <part.builtin name="licenses"/>
+    <part.builtin name="license.key"/>
+    <part.builtin name="license.beta"/>
+    <part.builtin name="diagrams"/>
+    <part.builtin name="preferences.print.configuration"/>
+    <part.builtin name="cellProducer.message"/>
+    <part.builtin name="producer.builtin"/>
+    <part.builtin name="producer.configuration.default"/>
+    <part.builtin name="producer.java"/>
+    <part.builtin name="producer.configuration.java"/>
+    <part.builtin name="serializer.builtin"/>
+    <part.builtin name="serializer.configuration.default"/>
+    <part.builtin name="serializer.java"/>
+    <part.builtin name="serializer.configuration.java"/>
+    <part.builtin name="cellAdaptor.singleton"/>
+    <part.builtin name="cellAdaptor.configuration.default"/>
+    <part.builtin name="cellAdaptor.java"/>
+    <part.builtin name="cellAdaptor.configuration.java"/>
+    <part.builtin name="command.definition"/>
+    <part.builtin name="cmd.singleton"/>
+    <part.builtin name="command.dynamic"/>
+    <part.builtin name="command.menu"/>
+    <part.builtin name="command.contribution"/>
+    <part.builtin name="command.separator"/>
+    <part.builtin name="command.item"/>
+    <part.builtin name="command.bindings"/>
+    <part.builtin name="command.binding"/>
+    <part.builtin name="part.configuration.record"/>
+    <part.builtin name="part.view.record.column"/>
+    <part.builtin name="part.configuration.samples"/>
+    <part.builtin name="part.view.samples.column"/>
+    <part.builtin name="part.configuration.sample"/>
+    <part.builtin name="part.view.sample.row"/>
+    <part.builtin name="reader.log.pattern"/>
+    <part.builtin name="reader.log.pattern.option"/>
+    <part.builtin name="reader.log.xml"/>
+    <part.builtin name="reader.log.xml.option"/>
+    <part.builtin name="reader.log.json"/>
+    <part.builtin name="reader.log.json.option"/>
+    <part.builtin name="reader.log.yaml"/>
+    <part.builtin name="reader.log.yaml.option"/>
+    <part.builtin name="de.toem.impulse.adapter.tcp"/>
+</parts>

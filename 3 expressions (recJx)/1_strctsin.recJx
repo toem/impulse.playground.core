@@ -49,7 +49,7 @@ writer.writeInt(100000l, false, 0);
 
 // Write struct signal ("Struct") with multiple members and a label
 writer = producer.getWriter(struct);
-members = writer.createMembers(7);
+var members = writer.createMembers(7);
 // Define struct members: A-F (integers), Label (text)
 writer.createMember(members,0,"A",	null,null,null,ISample.DATA_TYPE_INTEGER,-1,ISample.FORMAT_DEFAULT);
 writer.createMember(members,1,"B",	null,null,null,ISample.DATA_TYPE_INTEGER,-1,ISample.FORMAT_DEFAULT);
@@ -128,7 +128,7 @@ writer.close(4l);
 writer = producer.getWriter(floatArray);
 writer.setMember( 0, "x", null, ISample.FORMAT_DEFAULT);
 writer.setMember( 1, "y", null, ISample.FORMAT_DEFAULT);  
-array = writer.createDoubleArray(2);
+var array = writer.createDoubleArray(2);
 t = 0l;
 while (t < 100000) {
     // Calculate x and y values for each sample

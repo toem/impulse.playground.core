@@ -29,14 +29,14 @@ i = 0;
 while (i < 8) {
     var writer = producer.getWriter(signals[i]);
     // Generate random coefficients for waveform
-    var a = Math.random();
-    var b = Math.random() / 2.0;
-    var c = Math.random() / 3.0;
-    var d = Math.random() / 4.0;
-    var e = Math.random() / 5.0;
-    var f = Math.random() / 6.0;
+    var a = Math.random() / 1000.0;
+    var b = Math.random() / 2000.0;
+    var c = Math.random() / 3000.0;
+    var d = Math.random() / 4000.0;
+    var e = Math.random() / 5000.0;
+    var f = Math.random() / 6000.0;
     var t = 0l;
-    while (t < 10000000l) {
+    while (t < 100000l) {
         // Calculate value as a sum of sines and cosines with random amplitudes
         var v = Math.sin(a * t) * a + Math.cos(b * t) * b + Math.sin(c * t) * c +
                 Math.cos(d * t) * d + Math.sin(e * t) * e + Math.cos(f * t) * f;
@@ -50,4 +50,4 @@ while (i < 8) {
 var current = 0;
 
 // Close the record at 10,000,000 ms
-producer.close(10000000l);
+producer.close(100000l);

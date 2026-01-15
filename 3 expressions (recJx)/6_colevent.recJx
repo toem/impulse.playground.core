@@ -20,20 +20,18 @@ producer.initRecord("Example Record", TimeBase.ns);
 // Create top-level scope and integer signals
 var signals = producer.addScope(null, "External Signals");
 var int1 = producer.addSignal(signals, "Sin", null, null, ISample.DATA_TYPE_INTEGER, -1, ISamples.FORMAT_DEFAULT); 
-var intsig = producer.addSignal(signals, "Sin", null, null, ISample.DATA_TYPE_INTEGER, -1, ISamples.FORMAT_DEFAULT);
-var int2 = producer.addSignal(signals, "Load1", null, null, ISample.DATA_TYPE_INTEGER, -1, ISamples.FORMAT_DEFAULT);
-var int3 = producer.addSignal(signals, "Load2", null, null, ISample.DATA_TYPE_INTEGER, -1, ISamples.FORMAT_DEFAULT);
+
 
 // Create hierarchical scope for core 1 and add various enum and float signals
 var core1 = producer.addScope(null, "Core 1");
 var task_1_1 = producer.addSignal(core1, "Task 1", null, null, ISample.DATA_TYPE_ENUM, -1, ISamples.FORMAT_DEFAULT);
 var task_1_2 = producer.addSignal(core1, "Task 2", null, null, ISample.DATA_TYPE_ENUM, -1, ISamples.FORMAT_DEFAULT);
-var task_1_3 = producer.addSignal(core1, "Automatic colors", null, null, ISample.DATA_TYPE_ENUM, -1, ISamples.FORMAT_DEFAULT);
-var task_1_4 = producer.addSignal(core1, "Fixed Colors", null, null, ISample.DATA_TYPE_ENUM, -1, ISamples.FORMAT_DEFAULT);
-var task_1_5 = producer.addSignal(core1, "Shade Colors", null, null, ISample.DATA_TYPE_ENUM, -1, ISamples.FORMAT_DEFAULT);
-var task_1_6 = producer.addSignal(core1, "Automatic colors event", null, null, ISample.DATA_TYPE_ENUM, -1, ISamples.FORMAT_DEFAULT);
-var task_1_7 = producer.addSignal(core1, "Fixed Colors event", null, null, ISample.DATA_TYPE_ENUM, -1, ISamples.FORMAT_DEFAULT);
-var task_1_8 = producer.addSignal(core1, "Shade Colors event", null, null, ISample.DATA_TYPE_ENUM, -1, ISamples.FORMAT_DEFAULT);
+var task_1_3 = producer.addSignal(core1, "GRU Events", null, null, ISample.DATA_TYPE_ENUM, -1, ISamples.FORMAT_DEFAULT);
+var task_1_4 = producer.addSignal(core1, "AGR Events", null, null, ISample.DATA_TYPE_ENUM, -1, ISamples.FORMAT_DEFAULT);
+var task_1_5 = producer.addSignal(core1, "CCG Events", null, null, ISample.DATA_TYPE_ENUM, -1, ISamples.FORMAT_DEFAULT);
+var task_1_6 = producer.addSignal(core1, "E0 Events", null, null, ISample.DATA_TYPE_ENUM, -1, ISamples.FORMAT_DEFAULT);
+var task_1_7 = producer.addSignal(core1, "E1 Events", null, null, ISample.DATA_TYPE_ENUM, -1, ISamples.FORMAT_DEFAULT);
+var task_1_8 = producer.addSignal(core1, "E2 Events", null, null, ISample.DATA_TYPE_ENUM, -1, ISamples.FORMAT_DEFAULT);
 var task_1_9 = producer.addSignal(core1, "Task with Labels", null, null, ISample.DATA_TYPE_ENUM, -1, ISamples.FORMAT_DEFAULT);
 var task_1_10 = producer.addSignal(core1, "User format", null, null, ISample.DATA_TYPE_FLOAT, -1, ISamples.FORMAT_DEFAULT);
 
