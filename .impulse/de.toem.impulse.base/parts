@@ -3,8 +3,9 @@
     <part.builtin name="de.toem.impulse.editor.viewer">
         <part.configuration.record name="Default" description="Default Configuration">
             <searchProperties len="1">
-                <expression>*s0==0x0F50F &amp;&amp; 
-*s1==0b01111010</expression>
+                <expression>*s0==0b0 &amp;&amp; 
+*s1==0b0 &amp;&amp; 
+*s2==0b1</expression>
             </searchProperties>
             <part.view.record.column name="Name" visible="2" description="Name of an element." type="1"/>
             <part.view.record.column name="Description" visible="2" type="2">
@@ -86,6 +87,11 @@
             <part.view.samples.column name=".Var" visible="1" source="Var" type="1" defaultIconId="codicon-symbol-enum-member"/>
             <part.view.samples.column name=".Count" visible="1" source="Count" type="1" defaultIconId="codicon-symbol-enum-member"/>
             <part.view.samples.column name=".Bandwidth" visible="1" source="Bandwidth" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".X" visible="1" source="X" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".Y" visible="1" source="Y" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".Z" visible="1" source="Z" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".Alpha" visible="1" source="Alpha" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.samples.column name=".Beta" visible="1" source="Beta" type="1" defaultIconId="codicon-symbol-enum-member"/>
         </part.configuration.samples>
     </part.builtin>
     <part.builtin name="de.toem.impulse.parts.sample">
@@ -149,6 +155,11 @@
             <part.view.sample.row name=".Var" visible="1" source="Var" type="1" defaultIconId="codicon-symbol-enum-member"/>
             <part.view.sample.row name=".Count" visible="1" source="Count" type="1" defaultIconId="codicon-symbol-enum-member"/>
             <part.view.sample.row name=".Bandwidth" visible="1" source="Bandwidth" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".X" visible="1" source="X" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".Y" visible="1" source="Y" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".Z" visible="1" source="Z" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".Alpha" visible="1" source="Alpha" type="1" defaultIconId="codicon-symbol-enum-member"/>
+            <part.view.sample.row name=".Beta" visible="1" source="Beta" type="1" defaultIconId="codicon-symbol-enum-member"/>
         </part.configuration.sample>
     </part.builtin>
     <part.builtin name="de.toem.impulse.dialog.viewSelect"/>
@@ -237,4 +248,5 @@
     <part.builtin name="reader.log.yaml"/>
     <part.builtin name="reader.log.yaml.option"/>
     <part.builtin name="de.toem.impulse.adapter.tcp"/>
+    <part.builtin name="de.toem.toolkits.dialog.modification"/>
 </parts>

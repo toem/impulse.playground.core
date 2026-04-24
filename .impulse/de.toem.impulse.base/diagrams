@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<diagrams name="Diagrams">
+    <diagram.builtin name="de.toem.impulse.diagram.logic"/>
+    <diagram.builtin name="de.toem.impulse.diagram.vector">
+        <diagram.configuration.default name="WithDec">
+            <properties len="1">
+                <valueFormat>dec</valueFormat>
+            </properties>
+        </diagram.configuration.default>
+    </diagram.builtin>
+    <diagram.builtin name="de.toem.impulse.diagram.event"/>
+    <diagram.builtin name="de.toem.impulse.diagram.gantt"/>
+    <diagram.builtin name="de.toem.impulse.diagram.image"/>
+    <diagram.builtin name="de.toem.impulse.diagram.table"/>
+    <diagram.builtin name="de.toem.impulse.diagram.line"/>
+    <diagram.builtin name="de.toem.impulse.diagram.chart.bar"/>
+    <diagram.builtin name="de.toem.impulse.diagram.chart.pie"/>
+    <diagram.builtin name="de.toem.impulse.diagram.chart.line"/>
+    <diagram.builtin name="de.toem.impulse.diagram.chart.radar"/>
+</diagrams>
