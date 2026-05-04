@@ -47,9 +47,8 @@
                 <enableLogging>1</enableLogging>
                 <showLogOutput>256</showLogOutput>
             </induceProperties>
-            <view.deduced name=".x" primarySource="#x" diagram="de.toem.impulse.diagram.line" colorIdx="22"/>
-            <view.source name="(1).x" reference="//view/float[2]#x"/>
-            <view.source name=".y" reference="//view/float[2]#y"/>
+            <view.source name=".x" reference="//view/float[2]#0"/>
+            <view.source name=".y" reference="//view/float[2]#1"/>
         </view.signal>
         <view.signal name="Simple Statements" iconId="ri-code-box-fill" induceProducer="de.toem.impulse.processor.expression" preferedHeight="53" colorIdx="5">
             <induceProperties len="3">
@@ -57,9 +56,8 @@
                 <enableLogging>1</enableLogging>
                 <showLogOutput>256</showLogOutput>
             </induceProperties>
-            <view.deduced name=".x" primarySource="#x" diagram="de.toem.impulse.diagram.line" colorIdx="22"/>
-            <view.source name="(1).x" reference="//view/float[2]#x"/>
-            <view.source name=".y" reference="//view/float[2]#y"/>
+            <view.source name=".x" reference="//view/float[2]#0"/>
+            <view.source name=".y" reference="//view/float[2]#1"/>
         </view.signal>
         <view.signal name="More Statements" iconId="ri-code-box-fill" induceProducer="de.toem.impulse.processor.expression" preferedHeight="74" colorIdx="7">
             <induceProperties len="3">
@@ -67,17 +65,20 @@
                 <enableLogging>1</enableLogging>
                 <showLogOutput>256</showLogOutput>
             </induceProperties>
-            <view.deduced name=".x" primarySource="#x" diagram="de.toem.impulse.diagram.line" colorIdx="22"/>
-            <view.source name="(1).x" reference="//view/float[2]#x"/>
-            <view.source name=".y" reference="//view/float[2]#y"/>
+            <view.source name=".x" reference="//view/float[2]#0"/>
+            <view.source name=".y" reference="//view/float[2]#1"/>
         </view.signal>
+        <view.signal name=".x" primarySource="//view/float[2]#0"/>
+        <view.signal name=".y" primarySource="//view/float[2]#1"/>
+        <view.signal name=".state" primarySource="//view/event[2]#0"/>
+        <view.signal name=".done" primarySource="//view/event[2]#1"/>
     </view>
     <view name="scanio">
         <view.cursor name="A"/>
         <view.cursor name="B" colorIdx="1"/>
         <view.axis name="Primary Axis"/>
         <view.axis name="Secondary Axis"/>
-        <view.signal name="wire0018" primarySource="scp0001/scp0002/wire0018" description="wire"/>
+        <view.signal name="wire0018" primarySource="scp0001/scp0002/wire0018" description="wire" preferedHeight="84"/>
         <view.signal name="rst0001" primarySource="scp0001/scp0002/rst0001" description="wire"/>
         <view.signal name="real0001" primarySource="scp0001/scp0002/real0001" axisIdx="0" description="real" diagram="de.toem.impulse.diagram.chart.line" preferedHeight="219">
             <diagramProperties len="1">
@@ -882,9 +883,7 @@
             </diagramProperties>
         </view.signal>
         <view.signal name="Bar1" primarySource="External Signals/Struct" diagram="de.toem.impulse.diagram.chart.bar" preferedHeight="162" colorIdx="3">
-            <diagramProperties len="2">
-                <samples>1,2</samples>
-            </diagramProperties>
+            <diagramProperties len="0"/>
         </view.signal>
         <view.signal name="Line" primarySource="External Signals/Struct2" diagram="de.toem.impulse.diagram.chart.line"/>
         <view.signal name="Pie" primarySource="External Signals/Struct3" diagram="de.toem.impulse.diagram.chart.pie" preferedHeight="89" combine="1">
@@ -1083,6 +1082,9 @@
             <induceProperties len="1">
                 <countUndefined>true</countUndefined>
             </induceProperties>
+            <deduceProperties len="1">
+                <scale>4</scale>
+            </deduceProperties>
         </view.signal>
         <view.signal name="Stat2" primarySource="//view/enum0" diagram="de.toem.impulse.diagram.chart.pie" induceProducer="de.toem.impulse.processor.enumDistribution" preferedHeight="187" combine="1">
             <induceProperties len="1">
@@ -1091,6 +1093,9 @@
             <diagramProperties len="1">
                 <legend>true</legend>
             </diagramProperties>
+            <deduceProperties len="1">
+                <scale>4</scale>
+            </deduceProperties>
         </view.signal>
         <view.signal name="Bandwidth" primarySource="//view/enum0" diagram="de.toem.impulse.diagram.chart.line" induceProducer="de.toem.impulse.processor.floatStatistics" preferedHeight="497">
             <induceProperties len="7">
@@ -1113,7 +1118,7 @@
             <diagramProperties len="0"/>
         </view.signal>
         <view.signal name="rst0001" primarySource="scp0001/scp0002/rst0001" description="reg"/>
-        <view.folder name="scp0002" primarySource="scp0001/scp0002">
+        <view.folder name="scp0002" primarySource="scp0001/scp0002" preferedHeight="37">
             <view.signal name="clk0001" primarySource="scp0001/scp0002/clk0001" description="reg"/>
             <view.signal name="rst0001" primarySource="scp0001/scp0002/rst0001" description="reg"/>
             <view.signal name="reg0001" primarySource="scp0001/scp0002/reg0001" description="reg" diagram="de.toem.impulse.diagram.vector" preferedHeight="50">
@@ -1125,8 +1130,9 @@
             <view.signal name="reg0005" primarySource="scp0001/scp0002/reg0005" description="reg"/>
         </view.folder>
         <view.signal name="reg0001" primarySource="scp0001/scp0002/reg0001" description="reg" preferedHeight="70">
+            <diagramProperties len="0"/>
             <deduceProperties len="1">
-                <grouped>2</grouped>
+                <grouped>3</grouped>
             </deduceProperties>
         </view.signal>
         <view.signal name="reg0002" primarySource="scp0001/scp0002/reg0002" description="reg"/>
@@ -1135,7 +1141,10 @@
         <view.axis name="Primary Axis"/>
         <view.axis name="Secondary Axis"/>
         <view.signal name="Line1" primarySource="scp0001/scp0002/reg0001" description="reg" diagram="de.toem.impulse.diagram.line" preferedHeight="191" colorIdx="0">
-            <diagramProperties len="0"/>
+            <diagramProperties len="2">
+                <interpolated>true</interpolated>
+                <annotated>true</annotated>
+            </diagramProperties>
         </view.signal>
         <view.signal name="Line2" primarySource="scp0001/scp0002/reg0004" description="reg" diagram="de.toem.impulse.diagram.line" preferedHeight="129" colorIdx="12" combine="1">
             <diagramProperties len="2">
@@ -1330,83 +1339,6 @@
         </view.signal>
         <view.signal name="AAX" primarySource="ISR/AAX" preferedHeight="90"/>
         <view.signal name="AAY" primarySource="ISR/AAY" preferedHeight="90"/>
-        <view.cursor name="A"/>
-        <view.cursor name="B" colorIdx="1"/>
-        <view.axis name="Primary Axis"/>
-        <view.axis name="Secondary Axis"/>
-    </view>
-    <view name="scanio(1)">
-        <view.cursor name="A"/>
-        <view.cursor name="B" colorIdx="1"/>
-        <view.axis name="Primary Axis"/>
-        <view.axis name="Secondary Axis"/>
-        <view.signal name="wire0018" primarySource="scp0001/scp0002/wire0018" description="wire"/>
-        <view.signal name="rst0001" primarySource="scp0001/scp0002/rst0001" description="wire"/>
-        <view.signal name="real0001" primarySource="scp0001/scp0002/real0001" axisIdx="0" description="real" diagram="de.toem.impulse.diagram.chart.line" preferedHeight="219">
-            <diagramProperties len="1">
-                <categorize>1</categorize>
-            </diagramProperties>
-        </view.signal>
-        <view.signal name="wire0018 Phase Duration" primarySource="scp0001/scp0002/wire0018" description="wire" diagram="de.toem.impulse.diagram.line" induceProducer="de.toem.impulse.processor.expression" preferedHeight="262">
-            <induceProperties len="6">
-                <expression>(double)s0.getDuration()/1000000.0</expression>
-                <sampleType>3</sampleType>
-                <enableLogging>1</enableLogging>
-                <bins>-∞&lt;20&lt;30&lt;40&lt;50&lt;60&lt;70&lt;80&lt;90&lt;100&lt;200&lt;∞</bins>
-                <normalization>2</normalization>
-                <manualBins>0:0,1:1</manualBins>
-            </induceProperties>
-            <diagramProperties len="5">
-                <scaleType>1</scaleType>
-                <legend>true</legend>
-                <cutout>true</cutout>
-                <title>1</title>
-                <categorize>1</categorize>
-            </diagramProperties>
-        </view.signal>
-        <view.signal name="wire0018 Distribution" primarySource="//view/wire0018 Phase Duration" description="wire" diagram="de.toem.impulse.diagram.chart.pie" induceProducer="de.toem.impulse.processor.floatDistribution" preferedHeight="375">
-            <induceProperties len="2">
-                <bins>20&lt;30&lt;40&lt;50&lt;60&lt;70&lt;80&lt;90&lt;100&lt;200&lt;∞</bins>
-                <manualBins>0:0,1:1</manualBins>
-            </induceProperties>
-            <diagramProperties len="3">
-                <title>1</title>
-                <cutout>true</cutout>
-                <legend>true</legend>
-            </diagramProperties>
-        </view.signal>
-        <view.signal name="wire0018 Distribution High" primarySource="scp0001/scp0002/wire0018" description="wire" diagram="de.toem.impulse.diagram.chart.bar" induceProducer="de.toem.impulse.processor.floatDistribution" preferedHeight="136">
-            <induceProperties len="3">
-                <expression>s0.isHigh() ? (double)s0.getDuration()/1000000.0:null</expression>
-                <bins>-∞&lt;20&lt;30&lt;40&lt;50&lt;60&lt;70&lt;80&lt;90&lt;100&lt;200&lt;∞</bins>
-                <manualBins>0:0,1:1</manualBins>
-            </induceProperties>
-            <diagramProperties len="2">
-                <title>1</title>
-                <cutout>true</cutout>
-            </diagramProperties>
-        </view.signal>
-        <view.signal name="wire0018 Distribution Low" primarySource="scp0001/scp0002/wire0018" description="wire" diagram="de.toem.impulse.diagram.chart.bar" induceProducer="de.toem.impulse.processor.floatDistribution" preferedHeight="136" combine="1">
-            <induceProperties len="4">
-                <expression>s0.isLow() ? (double)s0.getDuration()/1000000.0:null</expression>
-                <bins>-∞&lt;20&lt;30&lt;40&lt;50&lt;60&lt;70&lt;80&lt;90&lt;100&lt;200&lt;∞</bins>
-                <enableLogging>1</enableLogging>
-                <manualBins>0:0,1:1</manualBins>
-            </induceProperties>
-            <diagramProperties len="2">
-                <title>1</title>
-                <cutout>true</cutout>
-            </diagramProperties>
-        </view.signal>
-    </view>
-    <view name="1_simple">
-        <view.signal name="clk0001" primarySource="scp0001/scp0002/clk0001" description="reg"/>
-        <view.signal name="rst0001" primarySource="scp0001/scp0002/rst0001" description="reg"/>
-        <view.signal name="reg0001" primarySource="scp0001/scp0002/reg0001" description="reg"/>
-        <view.signal name="reg0002" primarySource="scp0001/scp0002/reg0002" description="reg"/>
-        <view.signal name="reg0003" primarySource="scp0001/scp0002/reg0003" description="reg"/>
-        <view.signal name="reg0004" primarySource="scp0001/scp0002/reg0004" description="reg"/>
-        <view.signal name="reg0005" primarySource="scp0001/scp0002/reg0005" description="reg"/>
         <view.cursor name="A"/>
         <view.cursor name="B" colorIdx="1"/>
         <view.axis name="Primary Axis"/>

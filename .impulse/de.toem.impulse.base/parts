@@ -3,9 +3,9 @@
     <part.builtin name="de.toem.impulse.editor.viewer">
         <part.configuration.record name="Default" description="Default Configuration">
             <searchProperties len="1">
-                <expression>*s0==0b0 &amp;&amp; 
-*s1==0b0 &amp;&amp; 
-*s2==0b1</expression>
+                <expression>s0.isEdge(-1) &amp;&amp; 
+*s1==0b1 &amp;&amp; 
+*s2==0b0</expression>
             </searchProperties>
             <part.view.record.column name="Name" visible="2" description="Name of an element." type="1"/>
             <part.view.record.column name="Description" visible="2" type="2">
