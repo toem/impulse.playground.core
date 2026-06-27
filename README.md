@@ -25,6 +25,7 @@ impulse is a visualization and analysis workbench for signals from logs, traces,
 - recMz: Compressed binary variant of recMl (smaller, faster to load).
 - recTr: Flux trace container from C examples (supports all types: integer/float/logic/enum/text/array/struct/event; can be compressed with LZ4 or FLZ→LZ4).
 - recJx: Expression-based scripts that generate records on the fly via the impulse expression engine.
+- CSV: Simple CSV (comma-separated values) data with any content and formatting.
 
 ## Quick Start
 
