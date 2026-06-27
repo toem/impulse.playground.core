@@ -4,4 +4,6 @@
 .impulse/de.toem.impulse.base/colors
 .impulse/de.toem.impulse.base/templates
 .impulse/de.toem.impulse.base/producers
+.impulse/de.toem.impulse.base/adaptors
+.impulse/de.toem.impulse.base/formatters
 .impulse/.hints
