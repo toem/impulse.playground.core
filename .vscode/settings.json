@@ -25,7 +25,7 @@
         "*.txlog": "de.toem.impulse.editor.viewer",
         "*.SVDat": "de.toem.impulse.editor.viewer",
         "*.fsdb": "de.toem.impulse.editor.viewer",
-        "*.scv": "de.toem.impulse.editor.viewer"
+        "*.csv": "de.toem.impulse.editor.viewer"
     }
 
 }

@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<adaptors name="Adaptors">
-    <de.toem.impulse.adapter.tcp name="Tcp Port"/>
-</adaptors>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <parts name="Parts">
     <part.builtin name="de.toem.impulse.editor.viewer">
-        <part.configuration.record name="Default" description="Default Configuration">
+        <part.configuration.record name="Default" description="Default Configuration" searchWrap="true">
             <searchProperties len="1">
-                <expression>s0.isEdge(-1) &amp;&amp; 
-*s1==0b1 &amp;&amp; 
-*s2==0b0</expression>
+                <expression>s0.isEdge(1) &amp;&amp; 
+s1.isEdge(1) &amp;&amp; 
+*s2==0b00001111</expression>
             </searchProperties>
             <part.view.record.column name="Name" visible="2" description="Name of an element." type="1"/>
             <part.view.record.column name="Description" visible="2" type="2">
@@ -184,7 +184,6 @@
     <part.builtin name="view.deduced"/>
     <part.builtin name="view.source"/>
     <part.builtin name="templates"/>
-    <part.builtin name="searches"/>
     <part.builtin name="samplesSearch.builtin"/>
     <part.builtin name="samplesSearch.configuration.default"/>
     <part.builtin name="samplesSearch.source"/>
@@ -204,7 +203,6 @@
     <part.builtin name="diagram.configuration.default"/>
     <part.builtin name="color.set"/>
     <part.builtin name="color.builtin"/>
-    <part.builtin name="samplesFormatter"/>
     <part.builtin name="samplesFormatter.builtin"/>
     <part.builtin name="licenses"/>
     <part.builtin name="license.key"/>
@@ -249,4 +247,6 @@
     <part.builtin name="reader.log.yaml.option"/>
     <part.builtin name="de.toem.impulse.adapter.tcp"/>
     <part.builtin name="de.toem.toolkits.dialog.modification"/>
+    <part.builtin name="search"/>
+    <part.builtin name="formatters"/>
 </parts>

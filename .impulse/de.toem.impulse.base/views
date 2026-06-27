@@ -72,6 +72,8 @@
         <view.signal name=".y" primarySource="//view/float[2]#1"/>
         <view.signal name=".state" primarySource="//view/event[2]#0"/>
         <view.signal name=".done" primarySource="//view/event[2]#1"/>
+        <view.cursor name="B" colorIdx="1"/>
+        <view.cursor name="C" colorIdx="2"/>
     </view>
     <view name="scanio">
         <view.cursor name="A"/>
@@ -144,7 +146,7 @@
                 <grouped>2</grouped>
             </deduceProperties>
         </view.signal>
-        <view.signal name="reg0070" primarySource="scp0001/scp0002/scp0003/scp0004/scp0005/scp0006/scp0007/reg0070" description="reg"/>
+        <view.signal name="reg0070" primarySource="scp0001/scp0002/scp0003/scp0004/scp0005/scp0006/scp0007/reg0070" description="reg" preferedHeight="77"/>
         <view.signal name="reg0068" primarySource="scp0001/scp0002/scp0003/scp0004/scp0005/scp0006/reg0068" description="reg"/>
         <view.signal name="reg0072" primarySource="scp0001/scp0002/scp0003/scp0004/scp0005/scp0006/scp0008/reg0072" description="reg"/>
         <view.signal name="wire0012" primarySource="scp0001/scp0002/scp0003/scp0004/scp0005/scp0006/scp0008/wire0012" description="wire"/>
@@ -772,6 +774,13 @@
                 <swap>true</swap>
             </induceProperties>
         </view.signal>
+        <view.signal name="NumExtracted" primarySource="scp0001/scp0002/scp0003/scp0004/scp0005/scp0009/scp0007/reg0069" description="reg" induceProducer="de.toem.impulse.processor.logicExtract" preferedHeight="70" colorIdx="18">
+            <induceProperties len="3">
+                <count>4</count>
+                <swap>true</swap>
+                <conversion>2</conversion>
+            </induceProperties>
+        </view.signal>
         <view.signal name="Grouped" primarySource="scp0001/scp0002/scp0003/scp0004/scp0005/scp0006/reg0067" description="reg" preferedHeight="74">
             <deduceProperties len="1">
                 <grouped>4</grouped>
@@ -794,6 +803,10 @@
     </view>
     <view name="sinextro">
         <view.signal name="a0" primarySource="a0" preferedHeight="98" colorIdx="12" combine="1">
+            <induceProperties len="2">
+                <aggPeakToPeak>true</aggPeakToPeak>
+                <aggRms>true</aggRms>
+            </induceProperties>
             <diagramProperties len="2">
                 <interpolated>true</interpolated>
                 <annotated>true</annotated>
@@ -968,9 +981,7 @@
             <diagramProperties len="1">
                 <legend>true</legend>
             </diagramProperties>
-            <deduceProperties len="1">
-                <scale>2</scale>
-            </deduceProperties>
+            <deduceProperties len="0"/>
             <view.deduced name=".-" primarySource="#-" diagram="de.toem.impulse.diagram.line">
                 <diagramProperties len="0"/>
             </view.deduced>
@@ -983,9 +994,7 @@
             <diagramProperties len="1">
                 <legend>true</legend>
             </diagramProperties>
-            <deduceProperties len="1">
-                <scale>2</scale>
-            </deduceProperties>
+            <deduceProperties len="0"/>
         </view.signal>
         <view.signal name="New Array from components" induceProducer="de.toem.impulse.processor.array" colorIdx="6">
             <view.source name=".x" reference="//view/array of integers#0"/>
@@ -1049,7 +1058,7 @@
         </view.signal>
     </view>
     <view name="tracflow">
-        <view.signal name="TR 1" primarySource="External Signals/TR 1" preferedHeight="379"/>
+        <view.signal name="TR 1" primarySource="External Signals/TR 1" diagram="de.toem.impulse.diagram.gantt" preferedHeight="377"/>
         <view.signal name="TR 2" primarySource="External Signals/TR 2" preferedHeight="221"/>
         <view.cursor name="A"/>
         <view.cursor name="B" colorIdx="1"/>
@@ -1174,7 +1183,9 @@
     </view>
     <view name="colevent">
         <view.signal name="Sin" primarySource="External Signals/Sin" diagram="de.toem.impulse.diagram.line" preferedHeight="92"/>
-        <view.signal name="Task 1" primarySource="Core 1/Task 1" diagram="de.toem.impulse.diagram.gantt" preferedHeight="67"/>
+        <view.signal name="Task 1" primarySource="Core 1/Task 1" diagram="de.toem.impulse.diagram.gantt" preferedHeight="67">
+            <diagramProperties len="0"/>
+        </view.signal>
         <view.signal name="Task 2" primarySource="Core 1/Task 2" diagram="de.toem.impulse.diagram.gantt" preferedHeight="67"/>
         <view.signal name="E2 Events" primarySource="Core 1/E2 Events" colorIdx="0"/>
         <view.signal name="E1 Events" primarySource="Core 1/E1 Events" colorIdx="1"/>
@@ -1294,8 +1305,8 @@
         </view.signal>
     </view>
     <view name="corelabx">
-        <view.signal name="Sin" primarySource="External Signals/Sin" diagram="de.toem.impulse.diagram.line" preferedHeight="89"/>
-        <view.signal name="Load1" primarySource="External Signals/Load1"/>
+        <view.signal name="Sin" primarySource="External Signals/Sin" diagram="de.toem.impulse.diagram.line" preferedHeight="227"/>
+        <view.signal name="Load1" primarySource="External Signals/Load1" diagram="de.toem.impulse.diagram.line" preferedHeight="178"/>
         <view.signal name="Load2" primarySource="External Signals/Load2"/>
         <view.signal name="Task 1" primarySource="Core 1/Task 1" diagram="de.toem.impulse.diagram.gantt" preferedHeight="86">
             <diagramProperties len="1">
@@ -1339,6 +1350,509 @@
         </view.signal>
         <view.signal name="AAX" primarySource="ISR/AAX" preferedHeight="90"/>
         <view.signal name="AAY" primarySource="ISR/AAY" preferedHeight="90"/>
+        <view.cursor name="A"/>
+        <view.cursor name="B" colorIdx="1"/>
+        <view.axis name="Primary Axis"/>
+        <view.axis name="Secondary Axis"/>
+        <view.cursor name="C" colorIdx="2"/>
+    </view>
+    <view name="1_simple">
+        <view.signal name="clk0001" primarySource="scp0001/scp0002/clk0001" description="reg"/>
+        <view.signal name="rst0001" primarySource="scp0001/scp0002/rst0001" description="reg"/>
+        <view.signal name="reg0001" primarySource="scp0001/scp0002/reg0001" description="reg"/>
+        <view.signal name="reg0002" primarySource="scp0001/scp0002/reg0002" description="reg"/>
+        <view.signal name="reg0003" primarySource="scp0001/scp0002/reg0003" description="reg"/>
+        <view.signal name="reg0004" primarySource="scp0001/scp0002/reg0004" description="reg"/>
+        <view.signal name="reg0005" primarySource="scp0001/scp0002/reg0005" description="reg"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0006/scp0007/parameter0001" description="parameter"/>
+        <view.signal name="reg0069" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0006/scp0007/reg0069" description="reg"/>
+        <view.signal name="reg0070" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0006/scp0007/reg0070" description="reg"/>
+        <view.signal name="clk0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0006/scp0007/clk0001" description="reg"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0006/scp0008/parameter0001" description="parameter"/>
+        <view.signal name="reg0071" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0006/scp0008/reg0071" description="reg"/>
+        <view.signal name="reg0072" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0006/scp0008/reg0072" description="reg"/>
+        <view.signal name="wire0012" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0006/scp0008/wire0012" description="wire"/>
+        <view.signal name="reg0065" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0006/reg0065" description="reg"/>
+        <view.signal name="reg0066" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0006/reg0066" description="reg"/>
+        <view.signal name="reg0067" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0006/reg0067" description="reg"/>
+        <view.signal name="reg0068" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0006/reg0068" description="reg"/>
+        <view.signal name="clk0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0006/clk0001" description="reg"/>
+        <view.signal name="clk0002" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0006/clk0002" description="reg"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0009/scp0007/parameter0001" description="parameter"/>
+        <view.signal name="reg0069" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0009/scp0007/reg0069" description="reg"/>
+        <view.signal name="reg0070" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0009/scp0007/reg0070" description="reg"/>
+        <view.signal name="clk0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0009/scp0007/clk0001" description="reg"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0009/scp0008/parameter0001" description="parameter"/>
+        <view.signal name="reg0071" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0009/scp0008/reg0071" description="reg"/>
+        <view.signal name="reg0072" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0009/scp0008/reg0072" description="reg"/>
+        <view.signal name="wire0012" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0009/scp0008/wire0012" description="wire"/>
+        <view.signal name="reg0065" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0009/reg0065" description="reg"/>
+        <view.signal name="reg0066" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0009/reg0066" description="reg"/>
+        <view.signal name="reg0067" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0009/reg0067" description="reg"/>
+        <view.signal name="reg0068" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0009/reg0068" description="reg"/>
+        <view.signal name="clk0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0009/clk0001" description="reg"/>
+        <view.signal name="clk0002" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0009/clk0002" description="reg"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0010/scp0011/parameter0001" description="parameter"/>
+        <view.signal name="reg0069" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0010/scp0011/reg0069" description="reg"/>
+        <view.signal name="reg0070" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0010/scp0011/reg0070" description="reg"/>
+        <view.signal name="clk0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0010/scp0011/clk0001" description="reg"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0010/scp0012/parameter0001" description="parameter"/>
+        <view.signal name="reg0069" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0010/scp0012/reg0069" description="reg"/>
+        <view.signal name="reg0070" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0010/scp0012/reg0070" description="reg"/>
+        <view.signal name="clk0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0010/scp0012/clk0001" description="reg"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0010/scp0013/parameter0001" description="parameter"/>
+        <view.signal name="reg0069" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0010/scp0013/reg0069" description="reg"/>
+        <view.signal name="reg0070" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0010/scp0013/reg0070" description="reg"/>
+        <view.signal name="clk0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0010/scp0013/clk0001" description="reg"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0010/scp0014/parameter0001" description="parameter"/>
+        <view.signal name="reg0069" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0010/scp0014/reg0069" description="reg"/>
+        <view.signal name="reg0070" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0010/scp0014/reg0070" description="reg"/>
+        <view.signal name="clk0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0010/scp0014/clk0001" description="reg"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0010/scp0015/parameter0001" description="parameter"/>
+        <view.signal name="reg0069" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0010/scp0015/reg0069" description="reg"/>
+        <view.signal name="reg0070" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0010/scp0015/reg0070" description="reg"/>
+        <view.signal name="clk0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0010/scp0015/clk0001" description="reg"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0010/scp0016/parameter0001" description="parameter"/>
+        <view.signal name="reg0069" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0010/scp0016/reg0069" description="reg"/>
+        <view.signal name="reg0070" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0010/scp0016/reg0070" description="reg"/>
+        <view.signal name="clk0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0010/scp0016/clk0001" description="reg"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0010/scp0017/parameter0001" description="parameter"/>
+        <view.signal name="reg0069" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0010/scp0017/reg0069" description="reg"/>
+        <view.signal name="reg0070" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0010/scp0017/reg0070" description="reg"/>
+        <view.signal name="clk0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0010/scp0017/clk0001" description="reg"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0010/scp0018/parameter0001" description="parameter"/>
+        <view.signal name="reg0069" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0010/scp0018/reg0069" description="reg"/>
+        <view.signal name="reg0070" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0010/scp0018/reg0070" description="reg"/>
+        <view.signal name="clk0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0010/scp0018/clk0001" description="reg"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0010/scp0008/parameter0001" description="parameter"/>
+        <view.signal name="reg0071" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0010/scp0008/reg0071" description="reg"/>
+        <view.signal name="reg0072" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0010/scp0008/reg0072" description="reg"/>
+        <view.signal name="wire0012" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0010/scp0008/wire0012" description="wire"/>
+        <view.signal name="reg0073" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0010/reg0073" description="reg"/>
+        <view.signal name="reg0066" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0010/reg0066" description="reg"/>
+        <view.signal name="reg0067" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0010/reg0067" description="reg"/>
+        <view.signal name="reg0068" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0010/reg0068" description="reg"/>
+        <view.signal name="clk0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0010/clk0001" description="reg"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0019/parameter0001" description="parameter"/>
+        <view.signal name="wire0013" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0019/wire0013" description="wire"/>
+        <view.signal name="wire0014" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0019/wire0014" description="wire"/>
+        <view.signal name="wire0015" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0019/wire0015" description="wire"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0020/parameter0001" description="parameter"/>
+        <view.signal name="reg0071" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0020/reg0071" description="reg"/>
+        <view.signal name="reg0072" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0020/reg0072" description="reg"/>
+        <view.signal name="wire0012" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0020/wire0012" description="wire"/>
+        <view.signal name="clk0003" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0021/clk0003" description="wire"/>
+        <view.signal name="wire0017" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0021/wire0017" description="wire"/>
+        <view.signal name="wire0018" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0021/wire0018" description="wire"/>
+        <view.signal name="wire0019" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0021/wire0019" description="wire"/>
+        <view.signal name="wire0020" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0021/wire0020" description="wire"/>
+        <view.signal name="wire0021" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0021/wire0021" description="wire"/>
+        <view.signal name="wire0022" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0021/wire0022" description="wire"/>
+        <view.signal name="wire0023" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0021/wire0023" description="wire"/>
+        <view.signal name="clk0002" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0021/clk0002" description="reg"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0022/parameter0001" description="parameter"/>
+        <view.signal name="reg0071" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0022/reg0071" description="reg"/>
+        <view.signal name="reg0072" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0022/reg0072" description="reg"/>
+        <view.signal name="wire0012" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0022/wire0012" description="wire"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0023/parameter0001" description="parameter"/>
+        <view.signal name="reg0071" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0023/reg0071" description="reg"/>
+        <view.signal name="reg0072" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0023/reg0072" description="reg"/>
+        <view.signal name="wire0012" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0023/wire0012" description="wire"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0024/scp0007/parameter0001" description="parameter"/>
+        <view.signal name="reg0069" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0024/scp0007/reg0069" description="reg"/>
+        <view.signal name="reg0070" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0024/scp0007/reg0070" description="reg"/>
+        <view.signal name="clk0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0024/scp0007/clk0001" description="reg"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0024/scp0008/parameter0001" description="parameter"/>
+        <view.signal name="reg0071" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0024/scp0008/reg0071" description="reg"/>
+        <view.signal name="reg0072" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0024/scp0008/reg0072" description="reg"/>
+        <view.signal name="wire0012" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0024/scp0008/wire0012" description="wire"/>
+        <view.signal name="reg0065" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0024/reg0065" description="reg"/>
+        <view.signal name="reg0066" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0024/reg0066" description="reg"/>
+        <view.signal name="reg0067" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0024/reg0067" description="reg"/>
+        <view.signal name="reg0068" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0024/reg0068" description="reg"/>
+        <view.signal name="clk0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0024/clk0001" description="reg"/>
+        <view.signal name="clk0002" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0024/clk0002" description="reg"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0025/parameter0001" description="parameter"/>
+        <view.signal name="reg0074" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0025/reg0074" description="reg"/>
+        <view.signal name="reg0075" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0025/reg0075" description="reg"/>
+        <view.signal name="reg0076" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0025/reg0076" description="reg"/>
+        <view.signal name="reg0077" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0025/reg0077" description="reg"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0026/parameter0001" description="parameter"/>
+        <view.signal name="wire0013" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0026/wire0013" description="wire"/>
+        <view.signal name="wire0014" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0026/wire0014" description="wire"/>
+        <view.signal name="wire0015" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0026/wire0015" description="wire"/>
+        <view.signal name="wire0016" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0026/wire0016" description="wire"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0027/parameter0001" description="parameter"/>
+        <view.signal name="reg0069" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0027/reg0069" description="reg"/>
+        <view.signal name="reg0070" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0027/reg0070" description="reg"/>
+        <view.signal name="clk0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0027/clk0001" description="reg"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0028/scp0007/parameter0001" description="parameter"/>
+        <view.signal name="reg0069" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0028/scp0007/reg0069" description="reg"/>
+        <view.signal name="reg0070" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0028/scp0007/reg0070" description="reg"/>
+        <view.signal name="clk0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0028/scp0007/clk0001" description="reg"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0028/scp0008/parameter0001" description="parameter"/>
+        <view.signal name="reg0071" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0028/scp0008/reg0071" description="reg"/>
+        <view.signal name="reg0072" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0028/scp0008/reg0072" description="reg"/>
+        <view.signal name="wire0012" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0028/scp0008/wire0012" description="wire"/>
+        <view.signal name="reg0065" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0028/reg0065" description="reg"/>
+        <view.signal name="reg0066" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0028/reg0066" description="reg"/>
+        <view.signal name="reg0067" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0028/reg0067" description="reg"/>
+        <view.signal name="reg0068" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0028/reg0068" description="reg"/>
+        <view.signal name="clk0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0028/clk0001" description="reg"/>
+        <view.signal name="clk0002" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0028/clk0002" description="reg"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0029/parameter0001" description="parameter"/>
+        <view.signal name="reg0074" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0029/reg0074" description="reg"/>
+        <view.signal name="reg0078" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0029/reg0078" description="reg"/>
+        <view.signal name="reg0076" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0029/reg0076" description="reg"/>
+        <view.signal name="reg0079" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0029/reg0079" description="reg"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0030/parameter0001" description="parameter"/>
+        <view.signal name="wire0013" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0030/wire0013" description="wire"/>
+        <view.signal name="wire0014" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0030/wire0014" description="wire"/>
+        <view.signal name="wire0015" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0030/wire0015" description="wire"/>
+        <view.signal name="wire0016" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0030/wire0016" description="wire"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0031/parameter0001" description="parameter"/>
+        <view.signal name="reg0069" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0031/reg0069" description="reg"/>
+        <view.signal name="reg0070" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0031/reg0070" description="reg"/>
+        <view.signal name="clk0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0031/clk0001" description="reg"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0032/parameter0001" description="parameter"/>
+        <view.signal name="reg0069" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0032/reg0069" description="reg"/>
+        <view.signal name="reg0070" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0032/reg0070" description="reg"/>
+        <view.signal name="clk0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0032/clk0001" description="reg"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0033/parameter0001" description="parameter"/>
+        <view.signal name="reg0071" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0033/reg0071" description="reg"/>
+        <view.signal name="reg0072" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0033/reg0072" description="reg"/>
+        <view.signal name="wire0012" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0033/wire0012" description="wire"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0034/parameter0001" description="parameter"/>
+        <view.signal name="reg0069" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0034/reg0069" description="reg"/>
+        <view.signal name="reg0070" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0034/reg0070" description="reg"/>
+        <view.signal name="clk0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0034/clk0001" description="reg"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0035/parameter0001" description="parameter"/>
+        <view.signal name="wire0013" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0035/wire0013" description="wire"/>
+        <view.signal name="wire0015" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0035/wire0015" description="wire"/>
+        <view.signal name="wire0016" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0035/wire0016" description="wire"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0036/parameter0001" description="parameter"/>
+        <view.signal name="reg0069" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0036/reg0069" description="reg"/>
+        <view.signal name="reg0070" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0036/reg0070" description="reg"/>
+        <view.signal name="clk0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0036/clk0001" description="reg"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0037/parameter0001" description="parameter"/>
+        <view.signal name="reg0069" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0037/reg0069" description="reg"/>
+        <view.signal name="reg0070" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0037/reg0070" description="reg"/>
+        <view.signal name="clk0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0037/clk0001" description="reg"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0038/parameter0001" description="parameter"/>
+        <view.signal name="wire0013" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0038/wire0013" description="wire"/>
+        <view.signal name="wire0014" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0038/wire0014" description="wire"/>
+        <view.signal name="wire0024" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0038/wire0024" description="wire"/>
+        <view.signal name="wire0025" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0038/wire0025" description="wire"/>
+        <view.signal name="wire0026" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0038/wire0026" description="wire"/>
+        <view.signal name="wire0027" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0038/wire0027" description="wire"/>
+        <view.signal name="wire0016" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0038/wire0016" description="wire"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0039/parameter0001" description="parameter"/>
+        <view.signal name="wire0013" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0039/wire0013" description="wire"/>
+        <view.signal name="wire0014" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0039/wire0014" description="wire"/>
+        <view.signal name="wire0024" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0039/wire0024" description="wire"/>
+        <view.signal name="wire0027" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0039/wire0027" description="wire"/>
+        <view.signal name="wire0016" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0039/wire0016" description="wire"/>
+        <view.signal name="reg0074" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0040/reg0074" description="reg"/>
+        <view.signal name="reg0080" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0040/reg0080" description="reg"/>
+        <view.signal name="reg0076" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0040/reg0076" description="reg"/>
+        <view.signal name="reg0081" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0040/reg0081" description="reg"/>
+        <view.signal name="reg0078" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0040/reg0078" description="reg"/>
+        <view.signal name="reg0082" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0040/reg0082" description="reg"/>
+        <view.signal name="reg0083" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0040/reg0083" description="reg"/>
+        <view.signal name="reg0084" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0040/reg0084" description="reg"/>
+        <view.signal name="reg0085" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0040/reg0085" description="reg"/>
+        <view.signal name="reg0079" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0040/reg0079" description="reg"/>
+        <view.signal name="reg0086" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0040/reg0086" description="reg"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0041/parameter0001" description="parameter"/>
+        <view.signal name="reg0069" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0041/reg0069" description="reg"/>
+        <view.signal name="reg0070" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0041/reg0070" description="reg"/>
+        <view.signal name="clk0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0041/clk0001" description="reg"/>
+        <view.signal name="reg0087" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0041/reg0087" description="reg"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0042/parameter0001" description="parameter"/>
+        <view.signal name="reg0069" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0042/reg0069" description="reg"/>
+        <view.signal name="reg0070" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0042/reg0070" description="reg"/>
+        <view.signal name="clk0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0042/clk0001" description="reg"/>
+        <view.signal name="reg0087" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0042/reg0087" description="reg"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0043/parameter0001" description="parameter"/>
+        <view.signal name="reg0069" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0043/reg0069" description="reg"/>
+        <view.signal name="reg0070" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0043/reg0070" description="reg"/>
+        <view.signal name="clk0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0043/clk0001" description="reg"/>
+        <view.signal name="reg0088" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0043/reg0088" description="reg"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0044/parameter0001" description="parameter"/>
+        <view.signal name="wire0013" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0044/wire0013" description="wire"/>
+        <view.signal name="wire0014" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0044/wire0014" description="wire"/>
+        <view.signal name="wire0024" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0044/wire0024" description="wire"/>
+        <view.signal name="wire0025" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0044/wire0025" description="wire"/>
+        <view.signal name="wire0027" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0044/wire0027" description="wire"/>
+        <view.signal name="wire0016" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0044/wire0016" description="wire"/>
+        <view.signal name="reg0089[0.0]" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/scp0044/reg0089[0.0]" description="reg"/>
+        <view.signal name="reg0006" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0006" description="reg"/>
+        <view.signal name="reg0007" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0007" description="reg"/>
+        <view.signal name="reg0003" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0003" description="reg"/>
+        <view.signal name="reg0039" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0039" description="reg"/>
+        <view.signal name="reg0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0001" description="reg"/>
+        <view.signal name="reg0002" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0002" description="reg"/>
+        <view.signal name="rst0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/rst0001" description="reg"/>
+        <view.signal name="reg0005" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0005" description="reg"/>
+        <view.signal name="reg0008" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0008" description="reg"/>
+        <view.signal name="reg0009" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0009" description="reg"/>
+        <view.signal name="reg0010" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0010" description="reg"/>
+        <view.signal name="reg0011" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0011" description="reg"/>
+        <view.signal name="reg0012" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0012" description="reg"/>
+        <view.signal name="reg0015" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0015" description="reg"/>
+        <view.signal name="reg0016" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0016" description="reg"/>
+        <view.signal name="reg0017" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0017" description="reg"/>
+        <view.signal name="reg0018" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0018" description="reg"/>
+        <view.signal name="reg0019" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0019" description="reg"/>
+        <view.signal name="reg0020" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0020" description="reg"/>
+        <view.signal name="reg0021" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0021" description="reg"/>
+        <view.signal name="reg0022" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0022" description="reg"/>
+        <view.signal name="reg0023" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0023" description="reg"/>
+        <view.signal name="reg0024" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0024" description="reg"/>
+        <view.signal name="reg0025" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0025" description="reg"/>
+        <view.signal name="reg0026" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0026" description="reg"/>
+        <view.signal name="reg0027" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0027" description="reg"/>
+        <view.signal name="reg0028" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0028" description="reg"/>
+        <view.signal name="reg0029" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0029" description="reg"/>
+        <view.signal name="reg0030" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0030" description="reg"/>
+        <view.signal name="reg0031" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0031" description="reg"/>
+        <view.signal name="reg0032" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0032" description="reg"/>
+        <view.signal name="reg0033" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0033" description="reg"/>
+        <view.signal name="reg0034" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0034" description="reg"/>
+        <view.signal name="reg0035" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0035" description="reg"/>
+        <view.signal name="reg0036" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0036" description="reg"/>
+        <view.signal name="reg0037" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0037" description="reg"/>
+        <view.signal name="wire0006" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/wire0006" description="wire"/>
+        <view.signal name="wire0007" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/wire0007" description="wire"/>
+        <view.signal name="reg0040" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0040" description="reg"/>
+        <view.signal name="reg0041" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0041" description="reg"/>
+        <view.signal name="reg0042" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0042" description="reg"/>
+        <view.signal name="reg0043" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0043" description="reg"/>
+        <view.signal name="reg0044" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0044" description="reg"/>
+        <view.signal name="reg0045" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0045" description="reg"/>
+        <view.signal name="reg0046" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0046" description="reg"/>
+        <view.signal name="reg0047" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0047" description="reg"/>
+        <view.signal name="reg0048" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0048" description="reg"/>
+        <view.signal name="reg0049" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0049" description="reg"/>
+        <view.signal name="reg0050" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0050" description="reg"/>
+        <view.signal name="reg0051" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0051" description="reg"/>
+        <view.signal name="reg0052" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0052" description="reg"/>
+        <view.signal name="reg0053" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0053" description="reg"/>
+        <view.signal name="reg0054" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0054" description="reg"/>
+        <view.signal name="reg0055" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0055" description="reg"/>
+        <view.signal name="wire0008" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/wire0008" description="wire"/>
+        <view.signal name="wire0009" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/wire0009" description="wire"/>
+        <view.signal name="reg0056" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0056" description="reg"/>
+        <view.signal name="reg0057" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0057" description="reg"/>
+        <view.signal name="reg0058" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0058" description="reg"/>
+        <view.signal name="reg0059" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0059" description="reg"/>
+        <view.signal name="reg0060" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0060" description="reg"/>
+        <view.signal name="reg0061" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0061" description="reg"/>
+        <view.signal name="reg0062" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0062" description="reg"/>
+        <view.signal name="reg0063" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0063" description="reg"/>
+        <view.signal name="reg0064" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0005/reg0064" description="reg"/>
+        <view.signal name="reg0074" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0045/reg0074" description="reg"/>
+        <view.signal name="reg0090" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0045/reg0090" description="reg"/>
+        <view.signal name="reg0076" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0045/reg0076" description="reg"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0047/parameter0001" description="parameter"/>
+        <view.signal name="reg0069" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0047/reg0069" description="reg"/>
+        <view.signal name="reg0070" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0047/reg0070" description="reg"/>
+        <view.signal name="clk0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0047/clk0001" description="reg"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0048/parameter0001" description="parameter"/>
+        <view.signal name="reg0069" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0048/reg0069" description="reg"/>
+        <view.signal name="reg0070" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0048/reg0070" description="reg"/>
+        <view.signal name="clk0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0048/clk0001" description="reg"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0049/parameter0001" description="parameter"/>
+        <view.signal name="reg0069" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0049/reg0069" description="reg"/>
+        <view.signal name="reg0070" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0049/reg0070" description="reg"/>
+        <view.signal name="clk0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0049/clk0001" description="reg"/>
+        <view.signal name="reg0088" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0049/reg0088" description="reg"/>
+        <view.signal name="rst0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0049/rst0001" description="reg"/>
+        <view.signal name="reg0111" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0050/reg0111" description="reg"/>
+        <view.signal name="reg0112" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0050/reg0112" description="reg"/>
+        <view.signal name="reg0014" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0051/reg0014" description="reg"/>
+        <view.signal name="reg0013" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0051/reg0013" description="reg"/>
+        <view.signal name="reg0100" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0051/reg0100" description="reg"/>
+        <view.signal name="reg0101" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0051/reg0101" description="reg"/>
+        <view.signal name="reg0113" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0051/reg0113" description="reg"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0052/parameter0001" description="parameter"/>
+        <view.signal name="wire0013" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0052/wire0013" description="wire"/>
+        <view.signal name="wire0014" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0052/wire0014" description="wire"/>
+        <view.signal name="wire0015" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0052/wire0015" description="wire"/>
+        <view.signal name="wire0016" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0052/wire0016" description="wire"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0053/parameter0001" description="parameter"/>
+        <view.signal name="wire0013" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0053/wire0013" description="wire"/>
+        <view.signal name="wire0014" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0053/wire0014" description="wire"/>
+        <view.signal name="wire0024" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0053/wire0024" description="wire"/>
+        <view.signal name="wire0027" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0053/wire0027" description="wire"/>
+        <view.signal name="wire0016" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0053/wire0016" description="wire"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0054/parameter0001" description="parameter"/>
+        <view.signal name="reg0069" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0054/reg0069" description="reg"/>
+        <view.signal name="reg0070" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0054/reg0070" description="reg"/>
+        <view.signal name="clk0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0054/clk0001" description="reg"/>
+        <view.signal name="rst0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0054/rst0001" description="reg"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0055/parameter0001" description="parameter"/>
+        <view.signal name="reg0069" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0055/reg0069" description="reg"/>
+        <view.signal name="reg0070" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0055/reg0070" description="reg"/>
+        <view.signal name="clk0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0055/clk0001" description="reg"/>
+        <view.signal name="rst0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0055/rst0001" description="reg"/>
+        <view.signal name="reg0102" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0056/reg0102" description="reg"/>
+        <view.signal name="reg0114" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0056/reg0114" description="reg"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0057/parameter0001" description="parameter"/>
+        <view.signal name="wire0013" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0057/wire0013" description="wire"/>
+        <view.signal name="wire0014" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0057/wire0014" description="wire"/>
+        <view.signal name="wire0015" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0057/wire0015" description="wire"/>
+        <view.signal name="wire0016" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0057/wire0016" description="wire"/>
+        <view.signal name="parameter0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0058/parameter0001" description="parameter"/>
+        <view.signal name="reg0069" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0058/reg0069" description="reg"/>
+        <view.signal name="reg0070" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0058/reg0070" description="reg"/>
+        <view.signal name="clk0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/scp0058/clk0001" description="reg"/>
+        <view.signal name="reg0006" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/reg0006" description="reg"/>
+        <view.signal name="reg0014" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/reg0014" description="reg"/>
+        <view.signal name="reg0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/reg0001" description="reg"/>
+        <view.signal name="reg0002" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/reg0002" description="reg"/>
+        <view.signal name="rst0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/rst0001" description="reg"/>
+        <view.signal name="reg0013" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/reg0013" description="reg"/>
+        <view.signal name="reg0091" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/reg0091" description="reg"/>
+        <view.signal name="reg0092" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/reg0092" description="reg"/>
+        <view.signal name="rst0002" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/rst0002" description="reg"/>
+        <view.signal name="reg0093" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/reg0093" description="reg"/>
+        <view.signal name="reg0094" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/reg0094" description="reg"/>
+        <view.signal name="reg0095" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/reg0095" description="reg"/>
+        <view.signal name="reg0096" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/reg0096" description="reg"/>
+        <view.signal name="reg0097" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/reg0097" description="reg"/>
+        <view.signal name="reg0098" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/reg0098" description="reg"/>
+        <view.signal name="reg0099" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/reg0099" description="reg"/>
+        <view.signal name="reg0100" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/reg0100" description="reg"/>
+        <view.signal name="reg0101" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/reg0101" description="reg"/>
+        <view.signal name="reg0102" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/reg0102" description="reg"/>
+        <view.signal name="reg0103" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/reg0103" description="reg"/>
+        <view.signal name="reg0104" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/reg0104" description="reg"/>
+        <view.signal name="reg0105" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/reg0105" description="reg"/>
+        <view.signal name="reg0106" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/reg0106" description="reg"/>
+        <view.signal name="reg0107" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/reg0107" description="reg"/>
+        <view.signal name="reg0108" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/reg0108" description="reg"/>
+        <view.signal name="reg0109" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/reg0109" description="reg"/>
+        <view.signal name="reg0110" primarySource="Include/scp0001/scp0002/scp0003/scp0004/scp0046/reg0110" description="reg"/>
+        <view.signal name="reg0003" primarySource="Include/scp0001/scp0002/scp0003/scp0004/reg0003" description="reg"/>
+        <view.signal name="wire0004" primarySource="Include/scp0001/scp0002/scp0003/scp0004/wire0004" description="wire"/>
+        <view.signal name="wire0005" primarySource="Include/scp0001/scp0002/scp0003/scp0004/wire0005" description="wire"/>
+        <view.signal name="reg0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/reg0001" description="reg"/>
+        <view.signal name="reg0002" primarySource="Include/scp0001/scp0002/scp0003/scp0004/reg0002" description="reg"/>
+        <view.signal name="rst0001" primarySource="Include/scp0001/scp0002/scp0003/scp0004/rst0001" description="reg"/>
+        <view.signal name="reg0004" primarySource="Include/scp0001/scp0002/scp0003/scp0004/reg0004" description="reg"/>
+        <view.signal name="reg0005" primarySource="Include/scp0001/scp0002/scp0003/scp0004/reg0005" description="reg"/>
+        <view.signal name="reg0008" primarySource="Include/scp0001/scp0002/scp0003/scp0004/reg0008" description="reg"/>
+        <view.signal name="reg0009" primarySource="Include/scp0001/scp0002/scp0003/scp0004/reg0009" description="reg"/>
+        <view.signal name="reg0010" primarySource="Include/scp0001/scp0002/scp0003/scp0004/reg0010" description="reg"/>
+        <view.signal name="reg0011" primarySource="Include/scp0001/scp0002/scp0003/scp0004/reg0011" description="reg"/>
+        <view.signal name="reg0012" primarySource="Include/scp0001/scp0002/scp0003/scp0004/reg0012" description="reg"/>
+        <view.signal name="reg0013" primarySource="Include/scp0001/scp0002/scp0003/scp0004/reg0013" description="reg"/>
+        <view.signal name="reg0014" primarySource="Include/scp0001/scp0002/scp0003/scp0004/reg0014" description="reg"/>
+        <view.signal name="reg0015" primarySource="Include/scp0001/scp0002/scp0003/scp0004/reg0015" description="reg"/>
+        <view.signal name="reg0016" primarySource="Include/scp0001/scp0002/scp0003/scp0004/reg0016" description="reg"/>
+        <view.signal name="reg0017" primarySource="Include/scp0001/scp0002/scp0003/scp0004/reg0017" description="reg"/>
+        <view.signal name="reg0018" primarySource="Include/scp0001/scp0002/scp0003/scp0004/reg0018" description="reg"/>
+        <view.signal name="reg0019" primarySource="Include/scp0001/scp0002/scp0003/scp0004/reg0019" description="reg"/>
+        <view.signal name="reg0020" primarySource="Include/scp0001/scp0002/scp0003/scp0004/reg0020" description="reg"/>
+        <view.signal name="reg0021" primarySource="Include/scp0001/scp0002/scp0003/scp0004/reg0021" description="reg"/>
+        <view.signal name="reg0022" primarySource="Include/scp0001/scp0002/scp0003/scp0004/reg0022" description="reg"/>
+        <view.signal name="reg0023" primarySource="Include/scp0001/scp0002/scp0003/scp0004/reg0023" description="reg"/>
+        <view.signal name="reg0024" primarySource="Include/scp0001/scp0002/scp0003/scp0004/reg0024" description="reg"/>
+        <view.signal name="reg0025" primarySource="Include/scp0001/scp0002/scp0003/scp0004/reg0025" description="reg"/>
+        <view.signal name="reg0026" primarySource="Include/scp0001/scp0002/scp0003/scp0004/reg0026" description="reg"/>
+        <view.signal name="reg0027" primarySource="Include/scp0001/scp0002/scp0003/scp0004/reg0027" description="reg"/>
+        <view.signal name="reg0028" primarySource="Include/scp0001/scp0002/scp0003/scp0004/reg0028" description="reg"/>
+        <view.signal name="reg0029" primarySource="Include/scp0001/scp0002/scp0003/scp0004/reg0029" description="reg"/>
+        <view.signal name="reg0030" primarySource="Include/scp0001/scp0002/scp0003/scp0004/reg0030" description="reg"/>
+        <view.signal name="reg0031" primarySource="Include/scp0001/scp0002/scp0003/scp0004/reg0031" description="reg"/>
+        <view.signal name="reg0032" primarySource="Include/scp0001/scp0002/scp0003/scp0004/reg0032" description="reg"/>
+        <view.signal name="reg0033" primarySource="Include/scp0001/scp0002/scp0003/scp0004/reg0033" description="reg"/>
+        <view.signal name="reg0034" primarySource="Include/scp0001/scp0002/scp0003/scp0004/reg0034" description="reg"/>
+        <view.signal name="reg0035" primarySource="Include/scp0001/scp0002/scp0003/scp0004/reg0035" description="reg"/>
+        <view.signal name="reg0036" primarySource="Include/scp0001/scp0002/scp0003/scp0004/reg0036" description="reg"/>
+        <view.signal name="reg0037" primarySource="Include/scp0001/scp0002/scp0003/scp0004/reg0037" description="reg"/>
+        <view.signal name="reg0038" primarySource="Include/scp0001/scp0002/scp0003/scp0004/reg0038" description="reg"/>
+        <view.signal name="reg0003" primarySource="Include/scp0001/scp0002/scp0003/reg0003" description="reg"/>
+        <view.signal name="reg0001" primarySource="Include/scp0001/scp0002/scp0003/reg0001" description="reg"/>
+        <view.signal name="reg0002" primarySource="Include/scp0001/scp0002/scp0003/reg0002" description="reg"/>
+        <view.signal name="rst0001" primarySource="Include/scp0001/scp0002/scp0003/rst0001" description="reg"/>
+        <view.signal name="reg0004" primarySource="Include/scp0001/scp0002/scp0003/reg0004" description="reg"/>
+        <view.signal name="reg0005" primarySource="Include/scp0001/scp0002/scp0003/reg0005" description="reg"/>
+        <view.signal name="reg0006" primarySource="Include/scp0001/scp0002/scp0003/reg0006" description="reg"/>
+        <view.signal name="reg0007" primarySource="Include/scp0001/scp0002/scp0003/reg0007" description="reg"/>
+        <view.signal name="reg0001" primarySource="Include/scp0001/scp0002/scp0059/reg0001" description="reg"/>
+        <view.signal name="reg0002" primarySource="Include/scp0001/scp0002/scp0059/reg0002" description="reg"/>
+        <view.signal name="rst0001" primarySource="Include/scp0001/scp0002/scp0059/rst0001" description="reg"/>
+        <view.signal name="reg0003" primarySource="Include/scp0001/scp0002/scp0059/reg0003" description="reg"/>
+        <view.signal name="reg0115" primarySource="Include/scp0001/scp0002/scp0059/reg0115" description="reg"/>
+        <view.signal name="reg0007" primarySource="Include/scp0001/scp0002/scp0059/reg0007" description="reg"/>
+        <view.signal name="reg0001" primarySource="Include/scp0001/scp0002/reg0001" description="reg"/>
+        <view.signal name="reg0002" primarySource="Include/scp0001/scp0002/reg0002" description="reg"/>
+        <view.signal name="rst0001" primarySource="Include/scp0001/scp0002/rst0001" description="reg"/>
+        <view.signal name="reg0003" primarySource="Include/scp0001/scp0002/reg0003" description="reg"/>
+        <view.signal name="wire0001" primarySource="Include/scp0001/scp0002/wire0001" description="wire"/>
+        <view.signal name="wire0002" primarySource="Include/scp0001/scp0002/wire0002" description="wire"/>
+        <view.signal name="wire0003" primarySource="Include/scp0001/scp0002/wire0003" description="wire"/>
+        <view.signal name="reg0001" primarySource="Include/scp0001/reg0001" description="reg"/>
+        <view.signal name="reg0002" primarySource="Include/scp0001/reg0002" description="reg"/>
+        <view.signal name="rst0001" primarySource="Include/scp0001/rst0001" description="reg"/>
+        <view.signal name="wire0001" primarySource="Include/scp0001/wire0001" description="wire"/>
+        <view.signal name="parameter0002" primarySource="Include/scp0061/parameter0002" description="parameter"/>
+        <view.signal name="parameter0003" primarySource="Include/scp0061/parameter0003" description="parameter"/>
+        <view.signal name="parameter0004" primarySource="Include/scp0061/parameter0004" description="parameter"/>
+        <view.signal name="parameter0005" primarySource="Include/scp0061/parameter0005" description="parameter"/>
+        <view.signal name="parameter0006" primarySource="Include/scp0061/parameter0006" description="parameter"/>
+        <view.signal name="parameter0007" primarySource="Include/scp0061/parameter0007" description="parameter"/>
+        <view.cursor name="A"/>
+        <view.cursor name="B" colorIdx="1"/>
+        <view.axis name="Primary Axis"/>
+        <view.axis name="Secondary Axis"/>
+    </view>
+    <view name="cantrace">
+        <view.signal name="s" primarySource="s"/>
+        <view.cursor name="A"/>
+        <view.cursor name="B" colorIdx="1"/>
+        <view.axis name="Primary Axis"/>
+        <view.axis name="Secondary Axis"/>
+        <view.signal name="delay" primarySource="delay" preferedHeight="86" colorIdx="5"/>
+        <view.signal name="received" primarySource="received" preferedHeight="86" colorIdx="6"/>
+        <view.signal name="axisA" primarySource="axisA" preferedHeight="86" colorIdx="7"/>
+        <view.signal name="axisB" primarySource="axisB" preferedHeight="747" colorIdx="14">
+            <diagramProperties len="2">
+                <annotated>true</annotated>
+                <scaleTo>13900.0</scaleTo>
+            </diagramProperties>
+        </view.signal>
+    </view>
+    <view name="signals">
+        <view.signal name="time" primarySource="time" preferedHeight="73" colorIdx="0"/>
+        <view.signal name="osc_out" primarySource="osc_out" preferedHeight="73" colorIdx="1"/>
+        <view.signal name="lvdt_outp" primarySource="lvdt_outp" preferedHeight="73" colorIdx="2"/>
+        <view.signal name="lvdt_outn" primarySource="lvdt_outn" preferedHeight="73" colorIdx="3"/>
+        <view.signal name="probe_position" primarySource="probe_position" preferedHeight="73" colorIdx="4"/>
+        <view.signal name="U_topDesign.soutput_fx" primarySource="U_topDesign.soutput_fx" preferedHeight="73" colorIdx="5"/>
+        <view.signal name="U_topDesign.detect_p" primarySource="U_topDesign.detect_p" preferedHeight="73" colorIdx="6"/>
+        <view.signal name="U_topDesign.detect_n" primarySource="U_topDesign.detect_n" preferedHeight="73" colorIdx="7" combine="1"/>
+        <view.signal name="U_topDesign.pga_out_p" primarySource="U_topDesign.pga_out_p" preferedHeight="73" colorIdx="8" combine="1"/>
+        <view.signal name="U_topDesign.pga_out_n" primarySource="U_topDesign.pga_out_n" preferedHeight="73" colorIdx="9" combine="1"/>
+        <view.signal name="U_topDesign.adc_out_p" primarySource="U_topDesign.adc_out_p" preferedHeight="137" colorIdx="10" combine="1"/>
+        <view.cursor name="A"/>
+        <view.cursor name="B" colorIdx="1"/>
+        <view.axis name="Primary Axis"/>
+        <view.axis name="Secondary Axis"/>
+    </view>
+    <view name="fsequen">
+        <view.cursor name="A"/>
+        <view.cursor name="B" colorIdx="1"/>
+        <view.axis name="Primary Axis"/>
+        <view.axis name="Secondary Axis"/>
+        <view.signal name="s" primarySource="s"/>
+    </view>
+    <view name="syslog">
+        <view.signal name="ThreadB" primarySource="ThreadB"/>
+        <view.signal name="main" primarySource="main"/>
+        <view.signal name="ThreadA" primarySource="ThreadA"/>
         <view.cursor name="A"/>
         <view.cursor name="B" colorIdx="1"/>
         <view.axis name="Primary Axis"/>

@@ -25,5 +25,10 @@
             </record.signal>
         </record.scope>
     </record.scope>
-    <record.include name="Include" embeddedControls="8" serializer="#Record" source="2_modplus.recMl"/>
+    <record.include name="Include" source="2_modplus.recMl"/>
+    <record.proxy name="Proxy" signal="Include/scp0061/parameter0004"/>
+    <record.signal name="reg0006" domainBase="ps" count="61" scale="8" description="reg" sampleType="5" end="4392001">
+        <samples len="1">FQgGAA8AkeH/UCEBIMtQQVYAxAkAUEEYgDgBAFBBeoA4AQBQQR+AOAEAkCGqYG1QQRiAOAEAkOGqUCEf4C5QIVZAnFBBB4A4AQBQQXqAOAEAUEEPgDgBAJAhqmBtUEEHgDgBAJDhqlAhD+AuUCE2QJxAQIA4AQBQQTqAOAEAUEEfgDgBAFBBGIA4AQBQQS+AOAEAUEEHgDgBAFBBGoA4AQBQQQ+AOAEAUEEHgDgBAFBBOoA4AQBQQR+AOAEAUEEYgDgBAFBBL4A4AQBQQQGAOAEAUEE2gDgBAFBBVYA4AQBQQXqAOAEAUEE9gDgBAJAhqmBtUEEwgDgBAJDhqlAhPeAuUCEBQJyRQf8AcQIAUEFWgKkDAFBBGIA4AQBQQXqAOAEAUEEfgDgBAJAhqmBtUEEYgDgBAJDhqlAhH+AuUCFWQJxQQQeAOAEAUEF6gDgBAFBBD4A4AQCQIapgbVBBB4A4AQCQ4apQIQ/gLlAhNkCcQECAOAEA</samples>
+    </record.signal>
+    <record.relation name="" source="scp0001/scp0002/rst0001" target="reg0006"/>
 </record>
