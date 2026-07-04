@@ -1,5 +1,5 @@
-## impulse meta platform
-January 01, 2025
+## impulse core playground
+January 01, 2026
 
 ### Introduction
 

@@ -26,6 +26,7 @@
         "*.SVDat": "de.toem.impulse.editor.viewer",
         "*.fsdb": "de.toem.impulse.editor.viewer",
         "*.csv": "de.toem.impulse.editor.viewer"
-    }
+    },
+    "workbench.colorTheme": "Dark 2026"
 
 }

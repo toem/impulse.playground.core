@@ -1,24 +1,86 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <serializers name="Serializers">
-    <reader.csv name="CanTraceCsv" s2="2" s3="2" s4="2" s5="2" f2="hex" f3="hex" f4="dec" f5="dec" namePattern="1_cantrace.csv" domainUnit="ms">
+    <reader.csv name="CanTraceCsv" s2="2" s3="2" s4="2" s5="2" f2="hex" f3="hex" f4="dec" f5="dec" namePattern="cantrace.csv" domainUnit="ms">
         <properties len="1">
             <domainBase>ms</domainBase>
         </properties>
     </reader.csv>
-    <reader.csv name="FSequenCsv" s1="2" s2="2" s3="2" s4="2" m1="Timestamp" m2="Cos" m3="Sin" m4="Tan" m5="Sqr" nameMode="1" f1="dec" f2="dec" f3="dec" f4="dec" f5="dec" mode="1" namePattern="2_fsequen.csv" domainUnit="1ms" description="Reader for floats_w_labels.csv with individual signals per column" name1Source="0">
+    <reader.csv name="FSequenCsv" s1="2" s2="2" s3="2" s4="2" m1="Timestamp" m2="Cos" m3="Sin" m4="Tan" m5="Sqr" nameMode="1" f1="dec" f2="dec" f3="dec" f4="dec" f5="dec" mode="1" namePattern="fsequen.csv" domainUnit="1ms" description="Reader for floats_w_labels.csv with individual signals per column" name1Source="0">
         <properties len="1">
             <charSet>UTF-8</charSet>
         </properties>
     </reader.csv>
-    <reader.csv name="SignalsCsv" s1="2" s2="2" s3="2" s4="2" s5="2" s6="2" s7="2" s8="2" s9="2" noOfColumns="12" namePattern="3_signals.csv" domainUnit="s" description="Reader for signals.csv" s11="2" s10="2">
+    <reader.csv name="SignalsCsv" s1="2" s2="2" s3="2" s4="2" s5="2" s6="2" s7="2" s8="2" s9="2" noOfColumns="12" namePattern="signals.csv" domainUnit="s" description="Reader for signals.csv" s11="2" s10="2">
         <properties len="2">
             <domainBase>ps</domainBase>
             <charSet>UTF-8</charSet>
         </properties>
     </reader.csv>
-    <reader.csv name="SysLogCsv" warningPattern="warning|WARNING|Warning|WARN" s2="4" s4="2" firstRow="2" domainMode="2" m1="Timestamp" m2="Level" m3="Thread" m4="Message" nameMode="1" noOfColumns="4" mode="2" namePattern="4_syslog.csv" domainUnit="ms" tagSource="2" description="Reader for system log CSV file with timestamp, level, thread, and message columns" name1Source="3" sepComma="true" hasLabels="false" sepSemi="false">
+    <reader.csv name="SysLogCsv" warningPattern="warning|WARNING|Warning|WARN" s2="4" s4="2" firstRow="2" domainMode="2" m1="Timestamp" m2="Level" m3="Thread" m4="Message" nameMode="1" noOfColumns="4" mode="2" namePattern="syslog.csv" domainUnit="ms" tagSource="2" description="Reader for system log CSV file with timestamp, level, thread, and message columns" name1Source="3" sepComma="true" hasLabels="false" sepSemi="false">
         <properties len="1">
             <charSet>UTF-8</charSet>
         </properties>
     </reader.csv>
+    <serializer.builtin name="de.toem.impulse.reader.vcd" namePattern="\.vcd$,\.VCD$"/>
+    <serializer.builtin name="de.toem.impulse.reader.fstn" namePattern="\.fst$,\.FST$">
+        <serializer.configuration.default name="Metrics">
+            <properties len="1">
+                <lazy>false</lazy>
+            </properties>
+            <record.analysis name="Analysis" producer="de.toem.impulse.cellProducer.transactionMetrix">
+                <record.source name="Source" reference=".."/>
+            </record.analysis>
+        </serializer.configuration.default>
+    </serializer.builtin>
+    <serializer.builtin name="de.toem.impulse.reader.fst" namePattern="\.fst$,\.FST$">
+        <serializer.configuration.default name="Metrics">
+            <properties len="1">
+                <lazy>false</lazy>
+            </properties>
+            <record.analysis name="Analysis" producer="de.toem.impulse.cellProducer.transactionMetrix">
+                <record.source name="Source" reference=".."/>
+            </record.analysis>
+        </serializer.configuration.default>
+    </serializer.builtin>
+    <serializer.builtin name="de.toem.impulse.reader.fsdbn" namePattern="\.fsdb$,\.FSDB$"/>
+    <serializer.builtin name="de.toem.serializer.genericXmlWriter">
+        <serializer.configuration.default name="Wallet" pattern="walMl$,walML$" description="Wallet xml file" version="1"/>
+        <serializer.configuration.default name="Record" pattern="recMl$,recML$" description="Record xml file" version="1"/>
+    </serializer.builtin>
+    <serializer.builtin name="de.toem.serializer.genericXmlReader">
+        <serializer.configuration.default name="Wallet" pattern="walMl$,walML$" description="Wallet xml file" version="1"/>
+        <serializer.configuration.default name="Record" pattern="recMl$,recML$" description="Record xml file" version="1"/>
+    </serializer.builtin>
+    <serializer.builtin name="de.toem.serializer.genericZmlWriter">
+        <serializer.configuration.default name="Wallet" pattern="walMz$,walMZ$" description="Wallet xml file" version="1"/>
+        <serializer.configuration.default name="Record" pattern="recMz$,recMZ$" description="Record xml file" version="1"/>
+    </serializer.builtin>
+    <serializer.builtin name="de.toem.serializer.genericZmlReader">
+        <serializer.configuration.default name="Wallet" pattern="walMz$,walMZ$" description="Wallet xml file" version="1"/>
+        <serializer.configuration.default name="Record" pattern="recMz$,recMZ$" description="Record xml file" version="1"/>
+    </serializer.builtin>
+    <serializer.builtin name="de.toem.impulse.reader.flux" namePattern="\.recTR$,\.recTr$,\.flux$,\.FLUX$"/>
+    <serializer.builtin name="de.toem.impulse.reader.recjx" namePattern="\.recJX$,\.recJx$"/>
+    <serializer.builtin name="de.toem.impulse.reader.line"/>
+    <serializer.builtin name="de.toem.impulse.reader.bytes"/>
+    <serializer.builtin name="de.toem.impulse.reader.scv" namePattern="\.scv$,\.SCV$,\.txlog$">
+        <serializer.configuration.default name="Metrics">
+            <properties len="1">
+                <lazy>false</lazy>
+            </properties>
+            <record.analysis name="Analysis" producer="de.toem.impulse.cellProducer.transactionMetrix">
+                <record.source name="Source" reference=".."/>
+            </record.analysis>
+        </serializer.configuration.default>
+    </serializer.builtin>
+    <serializer.builtin name="de.toem.impulse.reader.ftr" namePattern="\.ftr$,\.FTR$">
+        <serializer.configuration.default name="Metrics">
+            <properties len="1">
+                <lazy>false</lazy>
+            </properties>
+            <record.analysis name="Analysis" producer="de.toem.impulse.cellProducer.transactionMetrix">
+                <record.source name="Source" reference=".."/>
+            </record.analysis>
+        </serializer.configuration.default>
+    </serializer.builtin>
 </serializers>
