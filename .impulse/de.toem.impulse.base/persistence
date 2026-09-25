@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence name="Persitence">
+    <persistenceEntry name="prefs﹕⧸⧸ws⧸de.toem.impulse.base⧸parts" changed="1790076819414">
+        <values len="14">
+            <it>?de.toem.impulse.parts.samples/Default/.Message#column.width=100</it>
+            <it>?de.toem.impulse.parts.samples/Default/Position#column.width=100</it>
+            <it>?de.toem.impulse.parts.samples/Default/.D#column.width=100</it>
+            <it>?de.toem.impulse.parts.samples/Default/.E#column.width=100</it>
+            <it>?de.toem.impulse.parts.samples/Default/.F#column.width=100</it>
+            <it>?de.toem.impulse.parts.samples/Default/.Source#column.width=100</it>
+            <it>?de.toem.impulse.parts.samples/Default/.Level#column.width=122</it>
+            <it>?de.toem.impulse.parts.samples/Default/.m0#column.width=208</it>
+            <it>?de.toem.impulse.parts.samples/Default/.m1#column.width=100</it>
+            <it>?de.toem.impulse.parts.samples/Default/.m2#column.width=100</it>
+            <it>?de.toem.impulse.parts.samples/Default/.m3#column.width=100</it>
+            <it>?de.toem.impulse.parts.samples/Default/.m0#options=Yes
+</it>
+            <it>?de.toem.impulse.parts.samples#unnamed.column.filter..m0=false</it>
+            <it>?de.toem.impulse.parts.samples#unnamed.column.filterdef..m0=Yes</it>
+        </values>
+    </persistenceEntry>
+    <persistenceEntry name="⧸1%20records%20(recMlMz)⧸1_simple.recMl" changed="1790076819439">
+        <values len="12">
+            <it>reader.atempted</it>
+            <it>reader.used=de.toem.serializer.genericXmlReader</it>
+            <it>view=simple</it>
+            <it>views.column.sort.Fit=-1</it>
+            <it>views.column.sort=true</it>
+            <it>left.v.maximize=0</it>
+            <it>left.v.default=415</it>
+            <it>part.dialog.maximize=1</it>
+            <it>part.dialog.default=626</it>
+            <it>paintTree.showCursorDetails=true</it>
+            <it>left.h.default=418</it>
+            <it>check.children=true</it>
+        </values>
+    </persistenceEntry>
+    <persistenceEntry name="prefs﹕⧸⧸ws⧸de.toem.impulse.base⧸views" changed="1790076819505">
+        <values len="95">
+            <it>?simple/Primary%20Axis#Factor.Time.0=1500fs</it>
+            <it>?simple/Primary%20Axis#Offset.Time.0=-149500fs</it>
+            <it>?simple#ActiveCursor=A</it>
+            <it>?modplus/Primary%20Axis#Factor.Time.0=1800ps</it>
+            <it>?modplus/Primary%20Axis#Offset.Time.0=0ps</it>
+            <it>?modplus#ActiveCursor=A</it>
+            <it>?scanio/Primary%20Axis#Factor.Time.0=16us</it>
+            <it>?scanio/Primary%20Axis#Offset.Time.0=0us</it>
+            <it>?scanio#ActiveCursor=A</it>
+            <it>?vortec#ActiveCursor=A</it>
+            <it>?vortec/Primary%20Axis#Factor.Time.0=120ms</it>
+            <it>?vortec/Primary%20Axis#Offset.Time.0=1273360ms</it>
+            <it>?vortec/A#Position=1328s</it>
+            <it>?simple/A#Position=552500fs</it>
+            <it>?simple/B#Position=924500fs</it>
+            <it>?simple/C#Position=2200ps</it>
+            <it>?simple/reg0001#Expanded=true</it>
+            <it>?simple/reg0001#Expanded242dcfe7=true</it>
+            <it>?simple/scp0002#Expanded=false</it>
+            <it>?simple/Line1#Expanded=false</it>
+            <it>?modplus/reg0069#Expanded=true</it>
+            <it>?scanio/A#Position=9728us</it>
+            <it>?vortec/B#Position=1440s</it>
+            <it>?vortec#ActiveAxis=Primary Axis</it>
+            <it>?vortec#ActiveAxisDomain=Time</it>
+            <it>?vortec/Primary%20Axis#Factor.Time.1=1900ms</it>
+            <it>?vortec/Primary%20Axis#Offset.Time.1=903700ms</it>
+            <it>?numeric/Primary%20Axis#Factor.Time.0=190ns</it>
+            <it>?numeric/Primary%20Axis#Offset.Time.0=0ns</it>
+            <it>?numeric#ActiveCursor=A</it>
+            <it>?arrays/Primary%20Axis#Factor.Time.0=90ps</it>
+            <it>?arrays/Primary%20Axis#Offset.Time.0=119429040ps</it>
+            <it>?arrays#ActiveCursor=A</it>
+            <it>?event/Primary%20Axis#Factor.Time.0=22ps</it>
+            <it>?event/Primary%20Axis#Offset.Time.0=24260524ps</it>
+            <it>?event#ActiveCursor=A</it>
+            <it>?corealt/Primary%20Axis#Factor.Time.0=130us</it>
+            <it>?corealt/Primary%20Axis#Offset.Time.0=192927990us</it>
+            <it>?corealt#ActiveCursor=A</it>
+            <it>?corealt#ActiveAxis=Primary Axis</it>
+            <it>?corealt#ActiveAxisDomain=Time</it>
+            <it>?corealt/Primary%20Axis#Factor.Time.1=800ms</it>
+            <it>?corealt/Primary%20Axis#Offset.Time.1=5000ms</it>
+            <it>?corealt/A#Position=193418ms</it>
+            <it>?strctsin#ActiveCursor=A</it>
+            <it>?fsequen/Primary%20Axis#Factor.Time.0=22ns</it>
+            <it>?fsequen/Primary%20Axis#Offset.Time.0=-8718ns</it>
+            <it>?fsequen#ActiveCursor=A</it>
+            <it>?strctevn/Primary%20Axis#Factor.Time.0=39ns</it>
+            <it>?strctevn/Primary%20Axis#Offset.Time.0=0ns</it>
+            <it>?strctevn#ActiveCursor=A</it>
+            <it>?strctevn/Struct2#Expanded=true</it>
+            <it>?strctevn/Struct1#Expanded=true</it>
+            <it>?strctevn/Event4#Expanded=true</it>
+            <it>?corelabx/Primary%20Axis#Factor.Time.0=39ns</it>
+            <it>?corelabx/Primary%20Axis#Offset.Time.0=0ns</it>
+            <it>?corelabx#ActiveCursor=A</it>
+            <it>?tracflow/Primary%20Axis#Factor.Time.0=5000ps</it>
+            <it>?tracflow/Primary%20Axis#Offset.Time.0=11235000ps</it>
+            <it>?tracflow#ActiveCursor=A</it>
+            <it>?sinextro/Primary%20Axis#Factor.Time.0=39ms</it>
+            <it>?sinextro/Primary%20Axis#Offset.Time.0=0ms</it>
+            <it>?sinextro#ActiveCursor=A</it>
+            <it>?colevent/Primary%20Axis#Factor.Time.0=47ns</it>
+            <it>?colevent/Primary%20Axis#Offset.Time.0=0ns</it>
+            <it>?colevent#ActiveCursor=A</it>
+            <it>?eccfmodx/Primary%20Axis#Factor.Time.0=9000ps</it>
+            <it>?eccfmodx/Primary%20Axis#Offset.Time.0=532500ps</it>
+            <it>?eccfmodx#ActiveCursor=A</it>
+            <it>?eccfmodx/Logs#Expanded=true</it>
+            <it>?log4mixr/Primary%20Axis#Factor.Time.0=63ns</it>
+            <it>?log4mixr/Primary%20Axis#Offset.Time.0=0ns</it>
+            <it>?log4mixr#ActiveCursor=A</it>
+            <it>?log4mixr/Filtered#Expanded=true</it>
+            <it>?log4mixr/Struct1#Expanded=true</it>
+            <it>?simple/reg0001#PreferedHeight.242dcfe7=77</it>
+            <it>?cantrace/Primary%20Axis#Factor.Time.0=10ms</it>
+            <it>?cantrace/Primary%20Axis#Offset.Time.0=1565436982520ms</it>
+            <it>?cantrace#ActiveCursor=A</it>
+            <it>?fsequen/s#Expanded=true</it>
+            <it>?fsequen/A#Position=10200ns</it>
+            <it>?fsequen/s#PreferedHeight.85078315=143</it>
+            <it>?fsequen/s#PreferedHeight.61a443f5=143</it>
+            <it>?fsequen/s#PreferedHeight.ea17f415=143</it>
+            <it>?fsequen/s#PreferedHeight.69ae6335=143</it>
+            <it>?signals/Primary%20Axis#Factor.Time.0=47ns</it>
+            <it>?signals/Primary%20Axis#Offset.Time.0=0ns</it>
+            <it>?signals#ActiveCursor=A</it>
+            <it>?syslog/Primary%20Axis#Factor.Time.0=16us</it>
+            <it>?syslog/Primary%20Axis#Offset.Time.0=1589182417619308us</it>
+            <it>?syslog#ActiveCursor=A</it>
+            <it>?syslog/ThreadA#Expanded=true</it>
+            <it>?syslog/main#Expanded=true</it>
+            <it>?syslog/ThreadB#Expanded=true</it>
+            <it>?syslog/A#Position=1589182417621ms</it>
+        </values>
+    </persistenceEntry>
+    <persistenceEntry name="⧸1%20records%20(recMlMz)⧸2_modplus.recMl" changed="1790076878963">
+        <values len="4">
+            <it>reader.atempted</it>
+            <it>reader.used=de.toem.serializer.genericXmlReader</it>
+            <it>view=modplus</it>
+            <it>reader.atempted</it>
+        </values>
+    </persistenceEntry>
+    <persistenceEntry name="⧸1%20records%20(recMlMz)⧸3_scanio.recMl" changed="1790076901834">
+        <values len="6">
+            <it>reader.atempted</it>
+            <it>reader.used=de.toem.serializer.genericXmlReader</it>
+            <it>views.column.sort.Fit=-1</it>
+            <it>views.column.sort=true</it>
+            <it>view=scanio</it>
+            <it>part.dialog.maximize=0</it>
+        </values>
+    </persistenceEntry>
+    <persistenceEntry name="⧸1%20records%20(recMlMz)⧸4_vortec.recMz" changed="1790076926270">
+        <values len="10">
+            <it>reader.atempted</it>
+            <it>reader.used=de.toem.serializer.genericZmlReader</it>
+            <it>view=vortec</it>
+            <it>left.v.maximize=2</it>
+            <it>paintTree.showCursorDetails=true</it>
+            <it>paintTree.showVSplit=true</it>
+            <it>paintTree.treeWidth=250</it>
+            <it>paintTree.valueColumnWidth=50</it>
+            <it>paintTree.splitWidth=684</it>
+            <it>paintTree.splitHeight=150</it>
+        </values>
+    </persistenceEntry>
+    <persistenceEntry name="⧸2%20traces%20(recTr)⧸1_numeric.recTr" changed="1790086137522">
+        <values len="3">
+            <it>reader.atempted</it>
+            <it>reader.used=de.toem.impulse.reader.flux</it>
+            <it>view=numeric</it>
+        </values>
+    </persistenceEntry>
+    <persistenceEntry name="⧸2%20traces%20(recTr)⧸2_arrays.recTr" changed="1790086142282">
+        <values len="6">
+            <it>reader.atempted</it>
+            <it>reader.used=de.toem.impulse.reader.flux</it>
+            <it>part.dialog.maximize=1</it>
+            <it>views.column.sort.Fit=-1</it>
+            <it>views.column.sort=true</it>
+            <it>view=arrays</it>
+        </values>
+    </persistenceEntry>
+    <persistenceEntry name="⧸2%20traces%20(recTr)⧸3_event.recTr" changed="1790086159085">
+        <values len="7">
+            <it>reader.atempted</it>
+            <it>reader.used=de.toem.impulse.reader.flux</it>
+            <it>part.dialog.maximize=1</it>
+            <it>views.column.sort.Fit=-1</it>
+            <it>views.column.sort=true</it>
+            <it>view=event</it>
+            <it>left.v.maximize=2</it>
+        </values>
+    </persistenceEntry>
+    <persistenceEntry name="⧸2%20traces%20(recTr)⧸4_corealt.recTr" changed="1790086173163">
+        <values len="8">
+            <it>reader.atempted</it>
+            <it>reader.used=de.toem.impulse.reader.flux</it>
+            <it>view=corealt</it>
+            <it>paintTree.showVSplit=true</it>
+            <it>paintTree.treeWidth=250</it>
+            <it>paintTree.valueColumnWidth=50</it>
+            <it>paintTree.splitWidth=439</it>
+            <it>paintTree.splitHeight=150</it>
+        </values>
+    </persistenceEntry>
+    <persistenceEntry name="⧸3%20expressions%20(recJx)⧸1_strctsin.recJx" changed="1790086225732">
+        <values len="4">
+            <it>reader.atempted</it>
+            <it>reader.used=de.toem.impulse.reader.recjx</it>
+            <it>view=strctsin</it>
+            <it>left.v.maximize=2</it>
+        </values>
+    </persistenceEntry>
+    <persistenceEntry name="⧸4%20values%20(csv)⧸2_fsequen.csv" changed="1790086238036">
+        <values len="3">
+            <it>reader.atempted</it>
+            <it>reader.used=FSequenCsv</it>
+            <it>view=fsequen</it>
+        </values>
+    </persistenceEntry>
+    <persistenceEntry name="⧸3%20expressions%20(recJx)⧸2_strctevn.recJx" changed="1790086262652">
+        <values len="3">
+            <it>reader.atempted</it>
+            <it>reader.used=de.toem.impulse.reader.recjx</it>
+            <it>view=strctevn</it>
+        </values>
+    </persistenceEntry>
+    <persistenceEntry name="⧸3%20expressions%20(recJx)⧸3_corelabx.recJx" changed="1790086279203">
+        <values len="3">
+            <it>reader.atempted</it>
+            <it>reader.used=de.toem.impulse.reader.recjx</it>
+            <it>view=corelabx</it>
+        </values>
+    </persistenceEntry>
+    <persistenceEntry name="⧸3%20expressions%20(recJx)⧸4_tracflow.recJx" changed="1790086284555">
+        <values len="3">
+            <it>reader.atempted</it>
+            <it>reader.used=de.toem.impulse.reader.recjx</it>
+            <it>view=tracflow</it>
+        </values>
+    </persistenceEntry>
+    <persistenceEntry name="⧸3%20expressions%20(recJx)⧸5_sinextro.recJx" changed="1790086291260">
+        <values len="3">
+            <it>reader.atempted</it>
+            <it>reader.used=de.toem.impulse.reader.recjx</it>
+            <it>view=sinextro</it>
+        </values>
+    </persistenceEntry>
+    <persistenceEntry name="⧸3%20expressions%20(recJx)⧸6_colevent.recJx" changed="1790086294495">
+        <values len="3">
+            <it>reader.atempted</it>
+            <it>reader.used=de.toem.impulse.reader.recjx</it>
+            <it>view=colevent</it>
+        </values>
+    </persistenceEntry>
+    <persistenceEntry name="⧸3%20expressions%20(recJx)⧸7_eccfmodx.recJx" changed="1790086296331">
+        <values len="3">
+            <it>reader.atempted</it>
+            <it>reader.used=de.toem.impulse.reader.recjx</it>
+            <it>view=eccfmodx</it>
+        </values>
+    </persistenceEntry>
+    <persistenceEntry name="⧸3%20expressions%20(recJx)⧸8_log4mixr.recJx" changed="1790086306250">
+        <values len="3">
+            <it>reader.atempted</it>
+            <it>reader.used=de.toem.impulse.reader.recjx</it>
+            <it>view=log4mixr</it>
+        </values>
+    </persistenceEntry>
+    <persistenceEntry name="⧸4%20values%20(csv)⧸1_cantrace.csv" changed="1790088447651">
+        <values len="3">
+            <it>reader.atempted</it>
+            <it>reader.used=CanTraceCsv</it>
+            <it>view=cantrace</it>
+        </values>
+    </persistenceEntry>
+    <persistenceEntry name="⧸4%20values%20(csv)⧸3_signals.csv" changed="1790088475217">
+        <values len="3">
+            <it>reader.atempted</it>
+            <it>reader.used=SignalsCsv</it>
+            <it>view=signals</it>
+        </values>
+    </persistenceEntry>
+    <persistenceEntry name="⧸4%20values%20(csv)⧸4_syslog.csv" changed="1790088476655">
+        <values len="3">
+            <it>reader.atempted</it>
+            <it>reader.used=SysLogCsv</it>
+            <it>view=syslog</it>
+        </values>
+    </persistenceEntry>
+    <persistenceEntry name="prefs﹕⧸⧸ws⧸de.toem.impulse.base⧸serializers" changed="1790238604472"/>
+    <persistenceEntry name="prefs﹕⧸⧸ws⧸de.toem.impulse.base⧸adaptors" changed="1790238604488"/>
+    <persistenceEntry name="prefs﹕⧸⧸ws⧸de.toem.impulse.base⧸producers" changed="1790238604489"/>
+    <persistenceEntry name="prefs﹕⧸⧸ws⧸de.toem.impulse.base⧸processors" changed="1790238604496"/>
+    <persistenceEntry name="prefs﹕⧸⧸ws⧸de.toem.impulse.base⧸diagrams" changed="1790238604501"/>
+    <persistenceEntry name="prefs﹕⧸⧸ws⧸de.toem.impulse.base⧸search" changed="1790238604504"/>
+    <persistenceEntry name="prefs﹕⧸⧸ws⧸de.toem.impulse.base⧸formatters" changed="1790238604505"/>
+    <persistenceEntry name="prefs﹕⧸⧸ws⧸de.toem.impulse.base⧸templates" changed="1790238604506"/>
+    <persistenceEntry name="prefs﹕⧸⧸ws⧸de.toem.impulse.base⧸licenses" changed="1790238604516"/>
+    <persistenceEntry name="prefs﹕⧸⧸ws⧸de.toem.impulse.base⧸colors" changed="1790238604518"/>
+</persistence>

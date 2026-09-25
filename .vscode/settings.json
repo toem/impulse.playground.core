@@ -25,8 +25,16 @@
         "*.txlog": "de.toem.impulse.editor.viewer",
         "*.SVDat": "de.toem.impulse.editor.viewer",
         "*.fsdb": "de.toem.impulse.editor.viewer",
-        "*.csv": "de.toem.impulse.editor.viewer"
+        "*.csv": "de.toem.impulse.editor.viewer",
+        "*.copilotmd": "vscode.markdown.preview.editor",
+        "*.scv": "de.toem.impulse.editor.viewer",
+        "*.xml": "de.toem.impulse.editor.viewer",
+        "*.tab": "de.toem.impulse.editor.viewer",
+        "*.raw": "de.toem.impulse.editor.viewer",
+        "*.tr0": "de.toem.impulse.editor.viewer",
+        "*.walMl": "de.toem.impulse.editor.wallet"
     },
-    "workbench.colorTheme": "Dark 2026"
+    "workbench.colorTheme": "Dark Modern",
+    "impulse.preferenceLocation.persistence": "Workspace Folder"
 
 }

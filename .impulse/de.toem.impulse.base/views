@@ -82,7 +82,7 @@
         <view.axis name="Secondary Axis"/>
         <view.signal name="wire0018" primarySource="scp0001/scp0002/wire0018" description="wire" preferedHeight="84"/>
         <view.signal name="rst0001" primarySource="scp0001/scp0002/rst0001" description="wire"/>
-        <view.signal name="real0001" primarySource="scp0001/scp0002/real0001" axisIdx="0" description="real" diagram="de.toem.impulse.diagram.chart.line" preferedHeight="219">
+        <view.signal name="real0001" primarySource="scp0001/scp0002/real0001" axisIdx="0" description="real" diagram="de.toem.impulse.diagram.chart.line" preferedHeight="116">
             <diagramProperties len="1">
                 <categorize>1</categorize>
             </diagramProperties>
@@ -141,9 +141,10 @@
     </view>
     <view name="modplus">
         <view.signal name="parameter0001" primarySource="scp0001/scp0002/scp0003/scp0004/scp0005/scp0006/scp0007/parameter0001" description="parameter"/>
-        <view.signal name="reg0069" primarySource="scp0001/scp0002/scp0003/scp0004/scp0005/scp0006/scp0007/reg0069" description="reg" preferedHeight="134">
-            <deduceProperties len="1">
+        <view.signal name="reg0069n" primarySource="scp0001/scp0002/scp0003/scp0004/scp0005/scp0006/scp0007/reg0069" description="reg" preferedHeight="134">
+            <deduceProperties len="2">
                 <grouped>2</grouped>
+                <expression>qweqweq</expression>
             </deduceProperties>
         </view.signal>
         <view.signal name="reg0070" primarySource="scp0001/scp0002/scp0003/scp0004/scp0005/scp0006/scp0007/reg0070" description="reg" preferedHeight="77"/>
@@ -160,7 +161,13 @@
         <view.signal name="parameter0001" primarySource="scp0001/scp0002/scp0003/scp0004/scp0005/scp0006/scp0008/parameter0001" description="parameter"/>
         <view.signal name="clk0001" primarySource="scp0001/scp0002/scp0003/scp0004/scp0005/scp0006/clk0001" description="reg"/>
         <view.signal name="clk0002" primarySource="scp0001/scp0002/scp0003/scp0004/scp0005/scp0006/clk0002" description="reg"/>
-        <view.signal name="reg0069" primarySource="scp0001/scp0002/scp0003/scp0004/scp0005/scp0009/scp0007/reg0069" description="reg"/>
+        <view.signal name="reg0069" primarySource="scp0001/scp0002/scp0003/scp0004/scp0005/scp0009/scp0007/reg0069" description="reg" deduceProducer="de.toem.impulse.processor.expression">
+            <deduceProperties len="2">
+                <expression>(*s0 &amp;amp;  0b1)  != 0b0 ? &amp;quot;yes&amp;quot;:&amp;quot;no&amp;quot;</expression>
+                <sampleType>1</sampleType>
+            </deduceProperties>
+            <view.deduced name="State B" primarySource="#result" diagram="de.toem.impulse.diagram.gantt" colorIdx="5"/>
+        </view.signal>
         <view.signal name="reg0070" primarySource="scp0001/scp0002/scp0003/scp0004/scp0005/scp0009/scp0007/reg0070" description="reg"/>
         <view.signal name="clk0001" primarySource="scp0001/scp0002/scp0003/scp0004/scp0005/scp0009/scp0007/clk0001" description="reg"/>
         <view.signal name="parameter0001" primarySource="scp0001/scp0002/scp0003/scp0004/scp0005/scp0009/scp0008/parameter0001" description="parameter"/>
@@ -788,7 +795,7 @@
         </view.signal>
         <view.signal name="Filtered" iconId="ri-newspaper-line" primarySource="scp0001/scp0002/scp0003/scp0004/scp0005/scp0006/reg0068" description="reg" induceProducer="de.toem.impulse.processor.expressionFilter" preferedHeight="77">
             <induceProperties len="10">
-                <expression>((int)*s0 &amp; 1) == 1</expression>
+                <expression>((int)*s0 &amp;amp; 1) == 1</expression>
                 <keepAttachments>true</keepAttachments>
                 <keepTags>false</keepTags>
                 <scale>16</scale>
@@ -1016,7 +1023,12 @@
         </view.signal>
     </view>
     <view name="numeric">
-        <view.signal name="0-255" primarySource="Integers/0-255" description="Signal Description" diagram="de.toem.impulse.diagram.line" preferedHeight="77" colorIdx="5"/>
+        <view.signal name="0-255" primarySource="Integers/0-255" description="Signal Description" deduceProducer="de.toem.impulse.processor.expressionFilter" diagram="de.toem.impulse.diagram.line" preferedHeight="77" colorIdx="2">
+            <diagramProperties len="0"/>
+            <deduceProperties len="1">
+                <expression>*s &amp;gt;5</expression>
+            </deduceProperties>
+        </view.signal>
         <view.signal name="-10000-40000" primarySource="Integers/-10000-40000" description="Signal Description" diagram="de.toem.impulse.diagram.line" preferedHeight="77" colorIdx="6"/>
         <view.signal name="0-64535" primarySource="Integers/0-64535" description="Signal Description" diagram="de.toem.impulse.diagram.line" preferedHeight="77" colorIdx="7" combine="1"/>
         <view.signal name="a double" primarySource="Floats/a double" preferedHeight="77" colorIdx="10"/>
@@ -1040,7 +1052,7 @@
                 <expression>*s0</expression>
             </induceProperties>
         </view.signal>
-        <view.signal name="Trap" primarySource="//view/Combine" description="Signal Description" diagram="de.toem.impulse.diagram.line" induceProducer="de.toem.impulse.processor.expression#TrapIntegration" preferedHeight="136" colorIdx="24"/>
+        <view.signal name="Trap" primarySource="//view/Combine" description="Signal Description" diagram="de.toem.impulse.diagram.line" induceProducer="de.toem.impulse.processor.expression#TrapIntegration" preferedHeight="136" colorIdx="9"/>
         <view.signal name="Stat" primarySource="//view/Combine" diagram="de.toem.impulse.diagram.table" induceProducer="de.toem.impulse.processor.floatStatistics" preferedHeight="254">
             <induceProperties len="10">
                 <expression>*s0*1.1</expression>
@@ -1138,7 +1150,7 @@
             <view.signal name="reg0004" primarySource="scp0001/scp0002/reg0004" description="reg"/>
             <view.signal name="reg0005" primarySource="scp0001/scp0002/reg0005" description="reg"/>
         </view.folder>
-        <view.signal name="reg0001" primarySource="scp0001/scp0002/reg0001" description="reg" preferedHeight="70">
+        <view.signal name="reg0001" primarySource="scp0001/scp0002/reg0001" description="reg" preferedHeight="134">
             <diagramProperties len="0"/>
             <deduceProperties len="1">
                 <grouped>3</grouped>
@@ -1853,6 +1865,13 @@
         <view.signal name="ThreadB" primarySource="ThreadB"/>
         <view.signal name="main" primarySource="main"/>
         <view.signal name="ThreadA" primarySource="ThreadA"/>
+        <view.cursor name="A"/>
+        <view.cursor name="B" colorIdx="1"/>
+        <view.axis name="Primary Axis"/>
+        <view.axis name="Secondary Axis"/>
+    </view>
+    <view name="reg0069">
+        <view.signal name="Lines" primarySource="Lines"/>
         <view.cursor name="A"/>
         <view.cursor name="B" colorIdx="1"/>
         <view.axis name="Primary Axis"/>
